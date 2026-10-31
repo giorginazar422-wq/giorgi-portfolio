@@ -55,9 +55,18 @@ This command only serves static files for local development; it does not start a
 
 ## How the chat demo works
 
-The submit handler in `index.html` trims the input, converts it to lowercase and searches the `answers` array with `find()` and `includes()`. The first matching keyword wins, in this order: `python`, `caritas`, `skill`, `email`, `hello`, `hi`. If nothing matches, it displays a fixed help message.
+The submit handler in `index.html` trims the input, converts it to lowercase and searches the `answers` array with `find()` and `includes()`. The first matching keyword wins, in the order shown below. If nothing matches, it displays a fixed help message.
 
-Try `Python`, `Caritas`, `skills`, `email` or `hello` in the chat box.
+| Keyword, in matching order | Example message | Reply topic |
+| --- | --- | --- |
+| `python` | `Tell me about Python` | Python's role in the course project |
+| `caritas` | `What is Caritas?` | Caritas Georgia and Course 3 |
+| `skill` | `What are your skills?` | Self-reported skill levels |
+| `email` | `What is your email?` | Contact address |
+| `hello` | `Hello!` | Greeting |
+| `hi` | `Hi!` | Greeting |
+
+For example, `Python skills` matches both `python` and `skill`, but returns the Python reply because it comes first.
 
 - Replies are predefined strings. There is no language model, semantic understanding, learning or conversation memory.
 - Matching uses substrings, not whole words. For example, `this` contains `hi` and can trigger the greeting; English keywords are not a multilingual chat system.
@@ -69,6 +78,8 @@ Try `Python`, `Caritas`, `skills`, `email` or `hello` in the chat box.
 ## GitHub Pages deployment
 
 The existing workflow checks out the repository, uploads its root (`path: .`) and deploys it to GitHub Pages. It runs on pushes to `main` and through `workflow_dispatch`; there is no compilation step. In the repository's **Settings → Pages**, use **GitHub Actions** as the publishing source.
+
+After a successful deployment, the default project URL is [https://giorginazar422-wq.github.io/giorgi-portfolio/](https://giorginazar422-wq.github.io/giorgi-portfolio/).
 
 GitHub Pages hosts static files and does not run a Python web server. The frontend can stay on Pages while a separately hosted HTTPS API handles chat requests. See the [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
 
@@ -92,6 +103,8 @@ The following is a proposed implementation plan, not functionality already avail
 | `POST /api/chat` | JSON `{ "message": "Hello" }` | `200` with JSON `{ "reply": "Hello!" }` |
 
 The reply above is illustrative. No API endpoint is implemented or deployed by this README.
+
+For failed requests, define a consistent JSON error body such as `{"error":"Message must not be blank."}` alongside documented `4xx` validation and `5xx` server-error statuses. FastAPI's default validation response uses a `detail` field; either normalize it to the chosen format or document and handle that format in the frontend.
 
 ### Future backend commands
 
