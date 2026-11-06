@@ -1,0 +1,12 @@
+{
+  "name": "giorgi-ai-chatbot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Responsive Georgian Gemini chatbot",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
