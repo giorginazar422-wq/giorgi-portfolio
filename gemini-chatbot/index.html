@@ -87,11 +87,11 @@
  <div class="brand"><span class="logo" aria-hidden="true">✦</span><span>Giorgi AI <span class="tag">GEMINI</span></span></div>
  <button class="new" id="newChat">＋ ახალი ჩატი</button>
  <div class="label">საუბრები</div><div class="history" id="history"></div>
- <div class="sidebar-bottom"><small>Giorgi AI • ქართული ვერსია</small><button class="theme-btn" id="themeBtn" aria-label="თემის შეცვლა" title="მუქი / ღია რეჟიმი">☾</button></div>
+ <div class="sidebar-bottom"><small>Giorgi AI • 3.8 Flash • v2</small><button class="theme-btn" id="themeBtn" aria-label="თემის შეცვლა" title="მუქი / ღია რეჟიმი">☾</button></div>
 </aside>
 <div class="overlay" id="overlay"></div>
 <main class="main">
- <header class="topbar"><div class="topbar-left"><button class="icon-btn mobile-menu" id="menuBtn" aria-label="მენიუს გახსნა">☰</button><span class="top-title">✦ Giorgi AI • Flash 3.8</span></div><div style="display:flex;align-items:center"><span class="status"><span class="dot"></span><span id="connectionStatus">Gemini ასისტენტი</span></span><button class="api-btn" type="button" id="keyBtn" aria-label="Gemini API გასაღების დაყენება">🔑 API გასაღები</button></div></header>
+ <header class="topbar"><div class="topbar-left"><button class="icon-btn mobile-menu" id="menuBtn" aria-label="მენიუს გახსნა">☰</button><span class="top-title">✦ Giorgi AI • Gemini 3.8 Flash</span></div><div style="display:flex;align-items:center"><span class="status"><span class="dot"></span><span id="connectionStatus">Gemini 3.8 Flash</span></span><button class="api-btn" type="button" id="keyBtn" aria-label="Gemini API გასაღების დაყენება">🔑 API გასაღები</button></div></header>
  <section class="messages" id="messages" aria-label="საუბარი" aria-live="polite"></section>
  <div class="composer-area"><form class="composer" id="chatForm"><textarea id="input" rows="1" maxlength="6000" placeholder="მომწერე ნებისმიერი კითხვა..." aria-label="შეტყობინება" required></textarea><button class="send" type="submit" id="send" aria-label="გაგზავნა">↑</button></form><p class="disclaimer">AI შეიძლება შეცდეს — მნიშვნელოვანი ინფორმაცია გადაამოწმე.</p></div>
 </main></div>
@@ -161,7 +161,7 @@ async function fetchReply(messages,signal){
      method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},
      body:JSON.stringify({
        systemInstruction:{parts:[{text:"You are Giorgi AI, a friendly, accurate assistant. Respond in Georgian when the user writes in Georgian."}]},
-       contents, generationConfig:{maxOutputTokens:2048,temperature:0.7}
+       contents, generationConfig:{maxOutputTokens:4096}
      }),signal
    });
    const data=await res.json().catch(()=>({}));
@@ -169,6 +169,7 @@ async function fetchReply(messages,signal){
      const reason=data?.error?.message||"Google Gemini API შეცდომა.";
      if(res.status===400||res.status===403||res.status===401)throw new Error("გასაღები ან API პარამეტრები გადაამოწმე ("+res.status+"): "+reason.slice(0,180));
      if(res.status===429)throw new Error("Gemini-ის უფასო ლიმიტი ამოიწურა — სცადე მოგვიანებით.");
+     if(res.status===404)throw new Error("Gemini 3.8 Flash API-ზე ვერ მოიძებნა. თუ შეცდომაში 2.5 წერია, ძველი გვერდი გაქვს გახსნილი — განაახლე საიტი.");
      throw new Error("Gemini API შეცდომა ("+res.status+"): "+reason.slice(0,120));
    }
    const reply=(data.candidates?.[0]?.content?.parts||[]).map(p=>typeof p.text==="string"?p.text:"").join("").trim();
