@@ -61,6 +61,7 @@
 .disclaimer{font-size:11px;color:var(--muted);text-align:center;margin:10px 0 0}
 .toast{position:fixed;left:50%;bottom:112px;transform:translateX(-50%);background:#21314c;color:white;border-radius:12px;padding:12px 18px;z-index:50;max-width:min(90vw,440px);box-shadow:var(--shadow);font-size:13px}
 .overlay{display:none}
+.demo-notice{padding:12px 24px;background:var(--panel2);color:var(--text);font-size:13px;line-height:1.6;border-bottom:1px solid var(--line)}.demo-notice a{color:var(--accent);font-weight:750;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:0;bottom:0;width:min(85vw,310px);transform:translateX(-100%);transition:transform .2s}.sidebar.open{transform:translateX(0)}.overlay.show{display:block;position:fixed;inset:0;background:#0e1d39a8;z-index:15}.mobile-menu{display:grid}.topbar{height:62px;min-height:62px;padding:0 15px}.topbar-left{display:flex;align-items:center;gap:11px}.messages{padding:18px 15px}.composer-area{padding:8px 13px calc(13px + env(safe-area-inset-bottom))}.welcome{margin:clamp(25px,9vh,90px) auto}.prompt{padding:14px}.status{font-size:11px}}
 @media(max-width:420px){.prompts{grid-template-columns:1fr}.welcome{margin:20px auto}.welcome h1{font-size:28px}.welcome p{margin-bottom:20px}.hero-icon{width:58px;height:58px;font-size:27px;margin-bottom:12px}.prompt{padding:11px 14px}.prompt span{display:none}.message-body{max-width:calc(100% - 44px)}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
@@ -86,6 +87,22 @@
 const STORAGE="giorgi-ai-chats-v1", CURRENT="giorgi-ai-current-v1", THEME="giorgi-ai-theme-v1";
 const $=id=>document.getElementById(id);
 let chats=[], currentId="", busy=false, toastTimer=null;
+const staticPreview = /(^|\\.)github\\.io$/i.test(location.hostname);
+function previewNotice(){
+ if(!staticPreview)return;
+ const status=document.querySelector(".status");
+ if(status)status.textContent="დემო • Gemini არ არის დაკავშირებული";
+ const notice=document.createElement("div");
+ notice.className="demo-notice";
+ notice.append(document.createTextNode("ეს ბმული აჩვენებს საიტის დიზაინს. Gemini-სთან ჩატისთვის საჭიროა Vercel-ზე გაშვება და უსაფრთხო API გასაღები. "));
+ const link=document.createElement("a");
+ link.href="https://github.com/giorginazar422-wq/giorgi-portfolio/blob/main/gemini-chatbot/README.md";
+ link.textContent="გაშვების ინსტრუქცია";
+ link.target="_blank";
+ link.rel="noopener noreferrer";
+ notice.append(link);
+ document.querySelector(".topbar").after(notice);
+}
 const safeLoad=(key,fallback)=>{try{const v=JSON.parse(localStorage.getItem(key));return v??fallback;}catch{return fallback;}};
 chats=safeLoad(STORAGE,[]);if(!Array.isArray(chats))chats=[];
 chats=chats.filter(c=>c&&typeof c.id==="string"&&Array.isArray(c.messages)).slice(0,50);
@@ -114,10 +131,10 @@ function renderMessages(){const root=$("messages");root.replaceChildren();const 
  row.append(body);root.append(row);});root.scrollTop=root.scrollHeight;}
 function render(){renderHistory();renderMessages();}
 function resize(){const input=$("input");input.style.height="auto";input.style.height=Math.min(input.scrollHeight,180)+"px";}
-async function submit(){const t=$("input").value.trim();if(!t||busy)return;if(t.length>6000){toast("შეტყობინება ძალიან გრძელია");return;}if(!current())newChat();const c=current();c.messages.push({role:"user",text:t});if(c.messages.length===1)c.title=t.length>35?t.slice(0,35)+"…":t;save();$("input").value="";resize();render();busy=true;$("send").disabled=true;
+async function submit(){const t=$("input").value.trim();if(!t||busy)return;if(staticPreview){toast("ეს არის GitHub Pages-ის დემო. Gemini-ის ჩატისთვის საიტი Vercel-ზე გაუშვი.");return;}if(t.length>6000){toast("შეტყობინება ძალიან გრძელია");return;}if(!current())newChat();const c=current();c.messages.push({role:"user",text:t});if(c.messages.length===1)c.title=t.length>35?t.slice(0,35)+"…":t;save();$("input").value="";resize();render();busy=true;$("send").disabled=true;
  const root=$("messages");const loading=el("div","message-row assistant");loading.append(el("div","avatar","✦"));const loadingBody=el("div","message-body");loadingBody.append(el("div","bubble","Giorgi AI ფიქრობს…"));loading.append(loadingBody);root.append(loading);root.scrollTop=root.scrollHeight;
  try{const ctl=new AbortController();const timer=setTimeout(()=>ctl.abort(),32000);let res;try{res=await fetch("./api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:c.messages.slice(-20)}),signal:ctl.signal});}finally{clearTimeout(timer);}
- const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||"სერვერზე შეცდომაა ("+res.status+")");if(typeof data.reply!=="string"||!data.reply.trim())throw new Error("ცარიელი პასუხია");
+ const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(res.status===405?"სერვერს API-ის POST მოთხოვნა არ მიუღია (405). გადაამოწმე Vercel-ის Root Directory.":data.error||"სერვერზე შეცდომაა ("+res.status+")");if(typeof data.reply!=="string"||!data.reply.trim())throw new Error("ცარიელი პასუხია");
  c.messages.push({role:"assistant",text:data.reply});save();}catch(e){toast(e.name==="AbortError"?"პასუხის დრო ამოიწურა. სცადე თავიდან.":e.message||"კავშირის შეცდომაა");}
  finally{busy=false;$("send").disabled=false;render();$("input").focus();}}
 $("chatForm").addEventListener("submit",e=>{e.preventDefault();submit();});
@@ -128,7 +145,7 @@ $("menuBtn").onclick=()=>{$("sidebar").classList.add("open");$("overlay").classL
 $("overlay").onclick=closeMenu;
 $("themeBtn").onclick=()=>{const next=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=next;$("themeBtn").textContent=next==="dark"?"☀":"☾";try{localStorage.setItem(THEME,next);}catch{}};
 const theme=localStorage.getItem(THEME)==="dark"?"dark":"light";document.documentElement.dataset.theme=theme;$("themeBtn").textContent=theme==="dark"?"☀":"☾";
-render();resize();
+previewNotice();render();resize();
 })();
 </script>
 </body>
