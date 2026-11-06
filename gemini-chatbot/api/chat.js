@@ -1,4 +1,4 @@
-const MODEL = process.env.GEMINI_MODEL || "gemini-3.5-flash-lite";
+const MODEL = process.env.GEMINI_MODEL || "gemini-3.8-flash";
 const MAX_MESSAGES = 20;
 module.exports = async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
