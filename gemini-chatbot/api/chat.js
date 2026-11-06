@@ -32,7 +32,7 @@ module.exports = async function handler(req, res) {
        body:JSON.stringify({
          systemInstruction:{parts:[{text:"You are Giorgi AI, a friendly, precise assistant. Reply in the same language as the user, with natural Georgian when the user writes in Georgian. Be transparent about limitations."}]},
          contents,
-         generationConfig:{maxOutputTokens:2048,temperature:0.7}
+         generationConfig:{maxOutputTokens:4096}
        }),signal:controller.signal}
     );
     const data = await upstream.json().catch(()=>({}));
