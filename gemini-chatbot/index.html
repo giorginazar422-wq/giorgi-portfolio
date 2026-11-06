@@ -62,6 +62,20 @@
 .toast{position:fixed;left:50%;bottom:112px;transform:translateX(-50%);background:#21314c;color:white;border-radius:12px;padding:12px 18px;z-index:50;max-width:min(90vw,440px);box-shadow:var(--shadow);font-size:13px}
 .overlay{display:none}
 .demo-notice{padding:12px 24px;background:var(--panel2);color:var(--text);font-size:13px;line-height:1.6;border-bottom:1px solid var(--line)}.demo-notice a{color:var(--accent);font-weight:750;text-decoration:underline;text-underline-offset:3px}
+.api-btn{height:36px;border-radius:11px;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:0 12px;font-size:12px;font-weight:800;margin-left:12px}
+.key-backdrop{position:fixed;inset:0;background:rgba(10,22,42,.65);z-index:100;display:none;align-items:center;justify-content:center;padding:18px}
+.key-backdrop.open{display:flex}
+.key-dialog{background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.22);max-width:470px;width:100%;padding:28px;max-height:90dvh;overflow-y:auto}
+.key-dialog h2{margin:0 0 10px;font-size:23px;letter-spacing:-.7px}
+.key-dialog p{font-size:13px;color:var(--muted);line-height:1.75}
+.key-dialog a{color:var(--accent);font-weight:700}
+.key-dialog label{display:block;font-size:13px;font-weight:700;margin:21px 0 7px}
+.key-dialog input{width:100%;height:46px;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:0 13px;font-size:14px}
+.key-warning{border-radius:12px;background:var(--panel2);padding:12px;margin:12px 0;font-size:12px;color:var(--muted);line-height:1.65}
+.key-actions{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
+.key-actions button{border-radius:11px;padding:11px 15px;font-size:13px;font-weight:750;border:1px solid var(--line);background:var(--panel);color:var(--text)}
+.key-actions .primary{background:var(--accent);color:white;border-color:var(--accent);flex:1}
+@media(max-width:760px){.api-btn{margin-left:6px;padding:0 9px;font-size:11px}.status{display:none}.key-dialog{padding:21px}}
 @media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:0;bottom:0;width:min(85vw,310px);transform:translateX(-100%);transition:transform .2s}.sidebar.open{transform:translateX(0)}.overlay.show{display:block;position:fixed;inset:0;background:#0e1d39a8;z-index:15}.mobile-menu{display:grid}.topbar{height:62px;min-height:62px;padding:0 15px}.topbar-left{display:flex;align-items:center;gap:11px}.messages{padding:18px 15px}.composer-area{padding:8px 13px calc(13px + env(safe-area-inset-bottom))}.welcome{margin:clamp(25px,9vh,90px) auto}.prompt{padding:14px}.status{font-size:11px}}
 @media(max-width:420px){.prompts{grid-template-columns:1fr}.welcome{margin:20px auto}.welcome h1{font-size:28px}.welcome p{margin-bottom:20px}.hero-icon{width:58px;height:58px;font-size:27px;margin-bottom:12px}.prompt{padding:11px 14px}.prompt span{display:none}.message-body{max-width:calc(100% - 44px)}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
@@ -77,10 +91,11 @@
 </aside>
 <div class="overlay" id="overlay"></div>
 <main class="main">
- <header class="topbar"><div class="topbar-left"><button class="icon-btn mobile-menu" id="menuBtn" aria-label="მენიუს გახსნა">☰</button><span class="top-title">✦ Giorgi AI Assistant</span></div><span class="status"><span class="dot"></span>Gemini ასისტენტი</span></header>
+ <header class="topbar"><div class="topbar-left"><button class="icon-btn mobile-menu" id="menuBtn" aria-label="მენიუს გახსნა">☰</button><span class="top-title">✦ Giorgi AI Assistant</span></div><div style="display:flex;align-items:center"><span class="status"><span class="dot"></span><span id="connectionStatus">Gemini ასისტენტი</span></span><button class="api-btn" type="button" id="keyBtn" aria-label="Gemini API გასაღების დაყენება">🔑 API გასაღები</button></div></header>
  <section class="messages" id="messages" aria-label="საუბარი" aria-live="polite"></section>
  <div class="composer-area"><form class="composer" id="chatForm"><textarea id="input" rows="1" maxlength="6000" placeholder="მომწერე ნებისმიერი კითხვა..." aria-label="შეტყობინება" required></textarea><button class="send" type="submit" id="send" aria-label="გაგზავნა">↑</button></form><p class="disclaimer">AI შეიძლება შეცდეს — მნიშვნელოვანი ინფორმაცია გადაამოწმე.</p></div>
 </main></div>
+<div class="key-backdrop" id="keyModal" role="dialog" aria-modal="true" aria-labelledby="keyTitle"><div class="key-dialog"><h2 id="keyTitle">🔑 Gemini API გასაღები</h2><p>GitHub Pages-ზე AI რომ იმუშაოს, შეიყვანე შენი Gemini API გასაღები. უფასო ტარიფით გამოყენება შესაძლებელია Google-ის ლიმიტების ფარგლებში.</p><p><a href="https://aistudio.google.com/api-keys" target="_blank" rel="noopener noreferrer">ახალი API გასაღების შექმნა Google AI Studio-ში ↗</a></p><form id="keyForm"><label for="keyInput">შენი API გასაღები</label><input id="keyInput" type="password" autocomplete="off" spellcheck="false" placeholder="ჩასვი API გასაღები..." required /><div class="key-warning">ეს გასაღები GitHub-ზე არ აიტვირთება. ამ ბრაუზერის ჩანართში დროებით შეინახება და პირდაპირ Google-ის API-ს გაეგზავნება. ბრაუზერში გამოყენებული გასაღები სრულად დაცული არ არის — გამოიყენე მხოლოდ პირადი დემოსთვის, არ გააზიარო და არ გამოიყენო გადახდის მქონე გასაღები.</div><div class="key-actions"><button type="button" id="keyClose">დახურვა</button><button type="button" id="keyClear">წაშლა</button><button class="primary" type="submit">შენახვა და ჩართვა</button></div></form></div></div>
 <script>
 (function(){
 "use strict";
@@ -88,16 +103,23 @@ const STORAGE="giorgi-ai-chats-v1", CURRENT="giorgi-ai-current-v1", THEME="giorg
 const $=id=>document.getElementById(id);
 let chats=[], currentId="", busy=false, toastTimer=null;
 const staticPreview = location.hostname.toLowerCase().endsWith(".github.io");
+const KEY_SESSION="giorgi-ai-key-session-v1";
+let ephemeralKey="";
+function getKey(){try{return sessionStorage.getItem(KEY_SESSION)||ephemeralKey;}catch{return ephemeralKey;}}
+function setKey(k){ephemeralKey=k;try{if(k)sessionStorage.setItem(KEY_SESSION,k);else sessionStorage.removeItem(KEY_SESSION);}catch{}updateConnection();}
+function updateConnection(){const v=$("connectionStatus");if(v)v.textContent=getKey()?"Gemini ჩართულია":(staticPreview?"API გასაღები საჭიროა":"Gemini ასისტენტი");$("keyBtn").textContent=getKey()?"🔑 API ✓":"🔑 API გასაღები";}
+function openKeyModal(){$("keyInput").value=getKey();$("keyModal").classList.add("open");$("keyInput").focus();}
+function closeKeyModal(){$("keyModal").classList.remove("open");$("keyBtn").focus();}
 function previewNotice(){
  if(!staticPreview)return;
- const status=document.querySelector(".status");
- if(status)status.textContent="დემო • Gemini არ არის დაკავშირებული";
  const notice=document.createElement("div");
  notice.className="demo-notice";
- notice.append(document.createTextNode("ეს ბმული აჩვენებს საიტის დიზაინს. Gemini-სთან ჩატისთვის საჭიროა Vercel-ზე გაშვება და უსაფრთხო API გასაღები. "));
+ const info=document.createElement("span");
+ info.textContent="🟦 უფასო პირადი დემო: Gemini-სთან სასაუბროდ დააჭირე „🔑 API გასაღები“ და დაამატე შენი გასაღები. ";
+ notice.append(info);
  const link=document.createElement("a");
- link.href="https://github.com/giorginazar422-wq/giorgi-portfolio/blob/main/gemini-chatbot/README.md";
- link.textContent="გაშვების ინსტრუქცია";
+ link.href="https://aistudio.google.com/api-keys";
+ link.textContent="შექმენი გასაღები";
  link.target="_blank";
  link.rel="noopener noreferrer";
  notice.append(link);
@@ -131,12 +153,69 @@ function renderMessages(){const root=$("messages");root.replaceChildren();const 
  row.append(body);root.append(row);});root.scrollTop=root.scrollHeight;}
 function render(){renderHistory();renderMessages();}
 function resize(){const input=$("input");input.style.height="auto";input.style.height=Math.min(input.scrollHeight,180)+"px";}
-async function submit(){const t=$("input").value.trim();if(!t||busy)return;if(staticPreview){toast("ეს არის GitHub Pages-ის დემო. Gemini-ის ჩატისთვის საიტი Vercel-ზე გაუშვი.");return;}if(t.length>6000){toast("შეტყობინება ძალიან გრძელია");return;}if(!current())newChat();const c=current();c.messages.push({role:"user",text:t});if(c.messages.length===1)c.title=t.length>35?t.slice(0,35)+"…":t;save();$("input").value="";resize();render();busy=true;$("send").disabled=true;
- const root=$("messages");const loading=el("div","message-row assistant");loading.append(el("div","avatar","✦"));const loadingBody=el("div","message-body");loadingBody.append(el("div","bubble","Giorgi AI ფიქრობს…"));loading.append(loadingBody);root.append(loading);root.scrollTop=root.scrollHeight;
- try{const ctl=new AbortController();const timer=setTimeout(()=>ctl.abort(),32000);let res;try{res=await fetch("./api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:c.messages.slice(-20)}),signal:ctl.signal});}finally{clearTimeout(timer);}
- const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(res.status===405?"სერვერს API-ის POST მოთხოვნა არ მიუღია (405). გადაამოწმე Vercel-ის Root Directory.":data.error||"სერვერზე შეცდომაა ("+res.status+")");if(typeof data.reply!=="string"||!data.reply.trim())throw new Error("ცარიელი პასუხია");
- c.messages.push({role:"assistant",text:data.reply});save();}catch(e){toast(e.name==="AbortError"?"პასუხის დრო ამოიწურა. სცადე თავიდან.":e.message||"კავშირის შეცდომაა");}
- finally{busy=false;$("send").disabled=false;render();$("input").focus();}}
+async function fetchReply(messages,signal){
+ const key=getKey();
+ if(key){
+   const contents=messages.slice(-20).map(m=>({role:m.role==="assistant"?"model":"user",parts:[{text:m.text}]}));
+   const res=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",{
+     method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},
+     body:JSON.stringify({
+       systemInstruction:{parts:[{text:"You are Giorgi AI, a friendly, accurate assistant. Respond in Georgian when the user writes in Georgian."}]},
+       contents, generationConfig:{maxOutputTokens:2048,temperature:0.7}
+     }),signal
+   });
+   const data=await res.json().catch(()=>({}));
+   if(!res.ok){
+     const reason=data?.error?.message||"Google Gemini API შეცდომა.";
+     if(res.status===400||res.status===403||res.status===401)throw new Error("გასაღები ან API პარამეტრები გადაამოწმე ("+res.status+"): "+reason.slice(0,180));
+     if(res.status===429)throw new Error("Gemini-ის უფასო ლიმიტი ამოიწურა — სცადე მოგვიანებით.");
+     throw new Error("Gemini API შეცდომა ("+res.status+"): "+reason.slice(0,120));
+   }
+   const reply=(data.candidates?.[0]?.content?.parts||[]).map(p=>typeof p.text==="string"?p.text:"").join("").trim();
+   if(!reply)throw new Error("Gemini-მ ტექსტური პასუხი არ დააბრუნა.");
+   return reply;
+ }
+ const res=await fetch("./api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:messages.slice(-20)}),signal});
+ const data=await res.json().catch(()=>({}));
+ if(!res.ok)throw new Error(res.status===405?"API სერვერზე არ არის გაშვებული. დააყენე შენი API გასაღები ან გამოიყენე Vercel.":data.error||"სერვერის შეცდომაა ("+res.status+")");
+ if(typeof data.reply!=="string"||!data.reply.trim())throw new Error("ცარიელი პასუხია.");
+ return data.reply;
+}
+async function submit(){
+ const t=$("input").value.trim();
+ if(!t||busy)return;
+ if(staticPreview&&!getKey()){openKeyModal();toast("ჩატის გასააქტიურებლად დაამატე შენი API გასაღები.");return;}
+ if(t.length>6000){toast("შეტყობინება ძალიან გრძელია");return;}
+ if(!current())newChat();
+ const c=current();c.messages.push({role:"user",text:t});
+ if(c.messages.length===1)c.title=t.length>35?t.slice(0,35)+"…":t;
+ save();$("input").value="";resize();render();busy=true;$("send").disabled=true;
+ const root=$("messages");const loading=el("div","message-row assistant");
+ loading.append(el("div","avatar","✦"));
+ const loadingBody=el("div","message-body");loadingBody.append(el("div","bubble","Giorgi AI ფიქრობს…"));
+ loading.append(loadingBody);root.append(loading);root.scrollTop=root.scrollHeight;
+ try{
+   const ctl=new AbortController();
+   const timeout=setTimeout(()=>ctl.abort(),32000);
+   try{const reply=await fetchReply(c.messages,ctl.signal);c.messages.push({role:"assistant",text:reply});save();}
+   finally{clearTimeout(timeout);}
+ }catch(e){
+   let message=e.name==="AbortError"?"პასუხის დრო ამოიწურა.":e.message||"კავშირის შეცდომაა.";
+   if(e instanceof TypeError)message="Google Gemini-სთან კავშირი ვერ დამყარდა. შეამოწმე ინტერნეტი და ბრაუზერის შეზღუდვები.";
+   toast(message);
+ }finally{busy=false;$("send").disabled=false;render();$("input").focus();}
+}
+$("keyBtn").onclick=openKeyModal;
+$("keyClose").onclick=closeKeyModal;
+$("keyModal").addEventListener("click",e=>{if(e.target===$("keyModal"))closeKeyModal();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("keyModal").classList.contains("open"))closeKeyModal();});
+$("keyClear").onclick=()=>{setKey("");$("keyInput").value="";toast("გასაღები წაშლილია ამ ჩანართიდან.");};
+$("keyForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const key=$("keyInput").value.trim();
+ if(!key){toast("ჩასვი API გასაღები.");return;}
+ setKey(key);closeKeyModal();toast("გასაღები დამატებულია. ახლა შეტყობინება გაგზავნე.");
+});
 $("chatForm").addEventListener("submit",e=>{e.preventDefault();submit();});
 $("input").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){e.preventDefault();submit();}});
 $("input").addEventListener("input",resize);
@@ -145,7 +224,7 @@ $("menuBtn").onclick=()=>{$("sidebar").classList.add("open");$("overlay").classL
 $("overlay").onclick=closeMenu;
 $("themeBtn").onclick=()=>{const next=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=next;$("themeBtn").textContent=next==="dark"?"☀":"☾";try{localStorage.setItem(THEME,next);}catch{}};
 const theme=localStorage.getItem(THEME)==="dark"?"dark":"light";document.documentElement.dataset.theme=theme;$("themeBtn").textContent=theme==="dark"?"☀":"☾";
-previewNotice();render();resize();
+previewNotice();updateConnection();render();resize();
 })();
 </script>
 </body>
