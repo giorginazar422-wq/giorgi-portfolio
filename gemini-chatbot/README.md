@@ -35,3 +35,6 @@
 - საუბრები ინახება მოწყობილობაზე და არა სერვერზე.
 - ეს არის საწყისი დემო; საჯარო, დიდ დატვირთვაზე აუცილებელია rate limiting, მონიტორინგი და დამატებითი წვდომის კონტროლი.
 - **GitHub Pages მარტო ვერ გაუშვებს /api/chat ფუნქციას**; საიტის სრული მუშაობისთვის საჭიროა Vercel ან მსგავსი backend ჰოსტინგი.
+
+## Gemini 3.8 Flash
+The default model is now `gemini-3.8-flash` in the browser demo and Vercel API. The Google AI Studio free tier is subject to request and token limits. The preview on GitHub Pages uses a user-supplied key held in the session storage of the visitor's browser; for a truly public chatbot with a shared key use a secured server-side deployment with rate limits.
