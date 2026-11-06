@@ -87,7 +87,7 @@
 const STORAGE="giorgi-ai-chats-v1", CURRENT="giorgi-ai-current-v1", THEME="giorgi-ai-theme-v1";
 const $=id=>document.getElementById(id);
 let chats=[], currentId="", busy=false, toastTimer=null;
-const staticPreview = /(^|\\.)github\\.io$/i.test(location.hostname);
+const staticPreview = location.hostname.toLowerCase().endsWith(".github.io");
 function previewNotice(){
  if(!staticPreview)return;
  const status=document.querySelector(".status");
