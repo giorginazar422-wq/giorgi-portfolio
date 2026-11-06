@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#f7faff" />
+<meta name="description" content="Giorgi AI — ქართული ინტერფეისის მქონე Gemini ჩატბოტი." />
+<title>Giorgi AI — შენი AI ასისტენტი</title>
+<style>
+:root{color-scheme:light;--bg:#f7faff;--panel:#fff;--panel2:#edf4ff;--text:#15243e;--muted:#71809b;--line:#e4ecf7;--accent:#3468f6;--accent2:#15a6cf;--shadow:0 12px 36px rgba(38,72,145,.09)}
+[data-theme="dark"]{color-scheme:dark;--bg:#101827;--panel:#182439;--panel2:#22324b;--text:#edf4ff;--muted:#acbbd3;--line:#33435d;--accent:#6993ff;--accent2:#3ab9d8;--shadow:0 12px 34px rgba(0,0,0,.2)}
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--text);background:var(--bg)}button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,textarea:focus-visible{outline:3px solid #80a4ff;outline-offset:2px}
+.app{display:grid;grid-template-columns:286px minmax(0,1fr);height:100dvh;min-height:400px;overflow:hidden}
+.sidebar{background:var(--panel);border-right:1px solid var(--line);padding:23px 15px;display:flex;flex-direction:column;min-width:0;z-index:20}
+.brand{display:flex;align-items:center;gap:12px;padding:3px 10px 25px;font-weight:800;letter-spacing:-.5px;font-size:20px}
+.logo{width:40px;height:40px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#3165f4,#36c3df);color:#fff;box-shadow:0 6px 16px rgba(52,104,246,.25);font-size:20px}
+.tag{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--accent);background:var(--panel2);border-radius:100px;padding:4px 7px;vertical-align:middle;margin-left:3px}
+.new{border:0;background:var(--accent);color:#fff;border-radius:14px;padding:14px;text-align:center;font-weight:750;box-shadow:0 7px 15px rgba(52,104,246,.16)}
+.label{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;font-weight:800;color:var(--muted);padding:25px 11px 10px}
+.history{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:5px}
+.history-item{display:flex;align-items:center;gap:4px;border-radius:12px;padding:4px;color:var(--text)}
+.history-item.active{background:var(--panel2)}
+.history-open{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border:0;background:transparent;color:inherit;text-align:left;padding:9px;font-size:13px;font-weight:600}
+.delete{border:0;background:transparent;color:var(--muted);width:30px;height:30px;border-radius:9px}
+.delete:hover{color:#e54765;background:rgba(229,71,101,.1)}
+.empty-list{padding:0 11px;color:var(--muted);font-size:13px;line-height:1.6}
+.sidebar-bottom{border-top:1px solid var(--line);padding:15px 5px 2px;display:flex;justify-content:space-between;align-items:center}
+.sidebar-bottom small{color:var(--muted);font-size:11px}
+.theme-btn,.icon-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:11px;min-width:38px;height:38px;display:grid;place-items:center}
+.main{min-width:0;display:flex;flex-direction:column;position:relative;background:radial-gradient(ellipse at 60% 0%,rgba(69,138,255,.08),transparent 44%),var(--bg)}
+.topbar{height:70px;min-height:70px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--panel) 82%,transparent)}
+.top-title{font-size:14px;font-weight:750}.status{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12px}
+.dot{width:7px;height:7px;background:#26c49b;border-radius:50%}
+.mobile-menu{display:none}
+.messages{flex:1;overflow-y:auto;padding:26px max(24px,calc((100% - 850px)/2));scroll-behavior:smooth}
+.welcome{text-align:center;max-width:550px;margin:clamp(25px,12vh,115px) auto 35px}
+.hero-icon{width:74px;height:74px;margin:0 auto 22px;border-radius:23px;background:linear-gradient(135deg,#3165f4,#28bdd4);color:white;font-size:32px;display:grid;place-items:center;box-shadow:0 16px 40px rgba(51,105,245,.2)}
+.welcome h1{font-size:clamp(28px,3vw,39px);letter-spacing:-1.4px;margin:0 0 12px}
+.welcome h1 span{color:var(--accent)}
+.welcome p{color:var(--muted);font-size:14px;line-height:1.8;margin:0 0 30px}
+.prompts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;text-align:left}
+.prompt{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:17px 18px;color:var(--text);text-align:left;box-shadow:var(--shadow);transition:transform .15s,border .15s}
+.prompt:hover{transform:translateY(-2px);border-color:var(--accent)}
+.prompt b{display:block;font-size:13px;margin-bottom:6px}.prompt span{display:block;font-size:12px;color:var(--muted);line-height:1.5}
+.message-row{display:flex;margin:0 0 26px;gap:11px;align-items:flex-start}
+.message-row.user{justify-content:flex-end}
+.avatar{width:32px;height:32px;border-radius:11px;background:linear-gradient(135deg,#3468f6,#43c0dd);display:grid;place-items:center;color:white;flex:none;font-weight:800;font-size:13px}
+.message-body{max-width:min(100%,700px);min-width:0}
+.bubble{padding:15px 18px;border-radius:17px;background:var(--panel);border:1px solid var(--line);font-size:14px;line-height:1.78;white-space:pre-wrap;overflow-wrap:anywhere;box-shadow:0 3px 12px rgba(20,40,75,.02)}
+.user .bubble{background:var(--accent);border-color:var(--accent);color:white;border-top-right-radius:4px}
+.assistant .bubble{border-top-left-radius:4px}
+.message-actions{display:flex;gap:10px;margin-top:6px}
+.copy{border:0;background:none;color:var(--muted);font-size:12px;padding:5px 3px}
+.copy:hover{color:var(--accent)}
+.composer-area{padding:12px max(24px,calc((100% - 850px)/2)) 20px}
+.composer{border:1px solid var(--line);background:var(--panel);border-radius:20px;display:flex;align-items:flex-end;gap:8px;padding:10px;box-shadow:var(--shadow)}
+.composer textarea{flex:1;min-width:0;max-height:180px;resize:none;overflow:auto;border:0;outline:none;background:transparent;color:var(--text);padding:11px 9px;font-size:14px;line-height:1.5}
+.composer textarea::placeholder{color:var(--muted)}
+.send{height:43px;min-width:43px;border:0;border-radius:13px;background:var(--accent);color:white;font-size:21px;display:grid;place-items:center}
+.send:disabled{opacity:.5;cursor:not-allowed}
+.disclaimer{font-size:11px;color:var(--muted);text-align:center;margin:10px 0 0}
+.toast{position:fixed;left:50%;bottom:112px;transform:translateX(-50%);background:#21314c;color:white;border-radius:12px;padding:12px 18px;z-index:50;max-width:min(90vw,440px);box-shadow:var(--shadow);font-size:13px}
+.overlay{display:none}
+@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:0;bottom:0;width:min(85vw,310px);transform:translateX(-100%);transition:transform .2s}.sidebar.open{transform:translateX(0)}.overlay.show{display:block;position:fixed;inset:0;background:#0e1d39a8;z-index:15}.mobile-menu{display:grid}.topbar{height:62px;min-height:62px;padding:0 15px}.topbar-left{display:flex;align-items:center;gap:11px}.messages{padding:18px 15px}.composer-area{padding:8px 13px calc(13px + env(safe-area-inset-bottom))}.welcome{margin:clamp(25px,9vh,90px) auto}.prompt{padding:14px}.status{font-size:11px}}
+@media(max-width:420px){.prompts{grid-template-columns:1fr}.welcome{margin:20px auto}.welcome h1{font-size:28px}.welcome p{margin-bottom:20px}.hero-icon{width:58px;height:58px;font-size:27px;margin-bottom:12px}.prompt{padding:11px 14px}.prompt span{display:none}.message-body{max-width:calc(100% - 44px)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar" aria-label="ჩატების მენიუ">
+ <div class="brand"><span class="logo" aria-hidden="true">✦</span><span>Giorgi AI <span class="tag">GEMINI</span></span></div>
+ <button class="new" id="newChat">＋ ახალი ჩატი</button>
+ <div class="label">საუბრები</div><div class="history" id="history"></div>
+ <div class="sidebar-bottom"><small>Giorgi AI • ქართული ვერსია</small><button class="theme-btn" id="themeBtn" aria-label="თემის შეცვლა" title="მუქი / ღია რეჟიმი">☾</button></div>
+</aside>
+<div class="overlay" id="overlay"></div>
+<main class="main">
+ <header class="topbar"><div class="topbar-left"><button class="icon-btn mobile-menu" id="menuBtn" aria-label="მენიუს გახსნა">☰</button><span class="top-title">✦ Giorgi AI Assistant</span></div><span class="status"><span class="dot"></span>Gemini ასისტენტი</span></header>
+ <section class="messages" id="messages" aria-label="საუბარი" aria-live="polite"></section>
+ <div class="composer-area"><form class="composer" id="chatForm"><textarea id="input" rows="1" maxlength="6000" placeholder="მომწერე ნებისმიერი კითხვა..." aria-label="შეტყობინება" required></textarea><button class="send" type="submit" id="send" aria-label="გაგზავნა">↑</button></form><p class="disclaimer">AI შეიძლება შეცდეს — მნიშვნელოვანი ინფორმაცია გადაამოწმე.</p></div>
+</main></div>
+<script>
+(function(){
+"use strict";
+const STORAGE="giorgi-ai-chats-v1", CURRENT="giorgi-ai-current-v1", THEME="giorgi-ai-theme-v1";
+const $=id=>document.getElementById(id);
+let chats=[], currentId="", busy=false, toastTimer=null;
+const safeLoad=(key,fallback)=>{try{const v=JSON.parse(localStorage.getItem(key));return v??fallback;}catch{return fallback;}};
+chats=safeLoad(STORAGE,[]);if(!Array.isArray(chats))chats=[];
+chats=chats.filter(c=>c&&typeof c.id==="string"&&Array.isArray(c.messages)).slice(0,50);
+currentId=localStorage.getItem(CURRENT)||"";
+if(!chats.some(c=>c.id===currentId))currentId=chats[0]?.id||"";
+function save(){try{localStorage.setItem(STORAGE,JSON.stringify(chats));localStorage.setItem(CURRENT,currentId);}catch{toast("საცავი სავსეა ან მიუწვდომელია.");}}
+function uid(){return typeof crypto!=="undefined"&&crypto.randomUUID?crypto.randomUUID():String(Date.now())+"-"+Math.random().toString(36).slice(2);}
+function current(){return chats.find(c=>c.id===currentId);}
+function newChat(){const c={id:uid(),title:"ახალი საუბარი",messages:[],created:Date.now()};chats.unshift(c);currentId=c.id;save();render();closeMenu();$("input").focus();}
+function toast(text){const old=$("toast");if(old)old.remove();clearTimeout(toastTimer);const n=document.createElement("div");n.className="toast";n.id="toast";n.setAttribute("role","status");n.textContent=text;document.body.append(n);toastTimer=setTimeout(()=>n.remove(),3800);}
+function closeMenu(){$("sidebar").classList.remove("open");$("overlay").classList.remove("show");}
+function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
+function renderHistory(){const root=$("history");root.replaceChildren();if(!chats.length){root.append(el("div","empty-list","ჯერ საუბრები არ გაქვს."));return;}
+ chats.forEach(c=>{const row=el("div","history-item"+(c.id===currentId?" active":""));const open=el("button","history-open","▤  "+c.title);open.title=c.title;open.onclick=()=>{if(busy){toast("ჯერ მიმდინარე პასუხს დაელოდე.");return;}currentId=c.id;save();render();closeMenu();};
+ const del=el("button","delete","×");del.title="საუბრის წაშლა";del.setAttribute("aria-label","საუბრის წაშლა");del.onclick=()=>{if(busy){toast("ჯერ მიმდინარე პასუხს დაელოდე.");return;}chats=chats.filter(x=>x.id!==c.id);if(currentId===c.id)currentId=chats[0]?.id||"";save();render();};
+ row.append(open,del);root.append(row);});}
+function renderWelcome(root){const wrap=el("div","welcome");const hero=el("div","hero-icon","✦");const h=document.createElement("h1");h.append("გამარჯობა! მე ვარ ");h.append(el("span","", "Giorgi AI"));const p=el("p","","შენი ციფრული ასისტენტი — კითხვებზე პასუხები, იდეები, ტექსტები და პროგრამირება. დავიწყოთ საუბარი!");
+ const grid=el("div","prompts");const cards=[["✦  იდეების გენერაცია","მომაფიქრებინე ახალი პროექტი","მომიფიქრე საინტერესო ვებსაიტის იდეა."],["⌘  პროგრამირება","დამეხმარე კოდის დაწერაში","ამიხსენი JavaScript მარტივი მაგალითით."],["✎  ტექსტის დაწერა","ესე, ისტორია ან პოსტი","დამიწერე მოკლე ტექსტი ტექნოლოგიების მომავალზე."],["☼  სწავლა","რთული თემები მარტივად","ამიხსენი ხელოვნური ინტელექტი მარტივი სიტყვებით."]];
+ cards.forEach(x=>{const b=el("button","prompt");b.type="button";b.append(el("b","",x[0]),el("span","",x[1]));b.onclick=()=>{$("input").value=x[2];resize();$("input").focus();};grid.append(b);});
+ wrap.append(hero,h,p,grid);root.append(wrap);}
+function renderMessages(){const root=$("messages");root.replaceChildren();const c=current();if(!c||c.messages.length===0){renderWelcome(root);return;}
+ c.messages.forEach(m=>{const row=el("div","message-row "+(m.role==="user"?"user":"assistant"));
+ if(m.role!=="user")row.append(el("div","avatar","✦"));
+ const body=el("div","message-body");body.append(el("div","bubble",m.text));
+ if(m.role!=="user"){const actions=el("div","message-actions");const copy=el("button","copy","▢  კოპირება");copy.onclick=async()=>{try{await navigator.clipboard.writeText(m.text);toast("პასუხი დაკოპირებულია");}catch{toast("კოპირება ვერ მოხერხდა");}};actions.append(copy);body.append(actions);}
+ row.append(body);root.append(row);});root.scrollTop=root.scrollHeight;}
+function render(){renderHistory();renderMessages();}
+function resize(){const input=$("input");input.style.height="auto";input.style.height=Math.min(input.scrollHeight,180)+"px";}
+async function submit(){const t=$("input").value.trim();if(!t||busy)return;if(t.length>6000){toast("შეტყობინება ძალიან გრძელია");return;}if(!current())newChat();const c=current();c.messages.push({role:"user",text:t});if(c.messages.length===1)c.title=t.length>35?t.slice(0,35)+"…":t;save();$("input").value="";resize();render();busy=true;$("send").disabled=true;
+ const root=$("messages");const loading=el("div","message-row assistant");loading.append(el("div","avatar","✦"));const loadingBody=el("div","message-body");loadingBody.append(el("div","bubble","Giorgi AI ფიქრობს…"));loading.append(loadingBody);root.append(loading);root.scrollTop=root.scrollHeight;
+ try{const ctl=new AbortController();const timer=setTimeout(()=>ctl.abort(),32000);let res;try{res=await fetch("./api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:c.messages.slice(-20)}),signal:ctl.signal});}finally{clearTimeout(timer);}
+ const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||"სერვერზე შეცდომაა ("+res.status+")");if(typeof data.reply!=="string"||!data.reply.trim())throw new Error("ცარიელი პასუხია");
+ c.messages.push({role:"assistant",text:data.reply});save();}catch(e){toast(e.name==="AbortError"?"პასუხის დრო ამოიწურა. სცადე თავიდან.":e.message||"კავშირის შეცდომაა");}
+ finally{busy=false;$("send").disabled=false;render();$("input").focus();}}
+$("chatForm").addEventListener("submit",e=>{e.preventDefault();submit();});
+$("input").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){e.preventDefault();submit();}});
+$("input").addEventListener("input",resize);
+$("newChat").onclick=newChat;
+$("menuBtn").onclick=()=>{$("sidebar").classList.add("open");$("overlay").classList.add("show");};
+$("overlay").onclick=closeMenu;
+$("themeBtn").onclick=()=>{const next=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=next;$("themeBtn").textContent=next==="dark"?"☀":"☾";try{localStorage.setItem(THEME,next);}catch{}};
+const theme=localStorage.getItem(THEME)==="dark"?"dark":"light";document.documentElement.dataset.theme=theme;$("themeBtn").textContent=theme==="dark"?"☀":"☾";
+render();resize();
+})();
+</script>
+</body>
+</html>
