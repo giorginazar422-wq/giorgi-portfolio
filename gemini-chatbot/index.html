@@ -75,6 +75,7 @@
 .key-actions{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
 .key-actions button{border-radius:11px;padding:11px 15px;font-size:13px;font-weight:750;border:1px solid var(--line);background:var(--panel);color:var(--text)}
 .key-actions .primary{background:var(--accent);color:white;border-color:var(--accent);flex:1}
+.api-test-btn{margin-top:12px;width:100%;border:1px solid var(--accent);background:var(--panel2);color:var(--text);border-radius:12px;padding:12px 10px;font-weight:750}.api-test-btn:disabled{opacity:.6;cursor:wait}#keyTestResult{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;font-size:12px}
 @media(max-width:760px){.api-btn{margin-left:6px;padding:0 9px;font-size:11px}.status{display:none}.key-dialog{padding:21px}}
 @media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{position:fixed;left:0;top:0;bottom:0;width:min(85vw,310px);transform:translateX(-100%);transition:transform .2s}.sidebar.open{transform:translateX(0)}.overlay.show{display:block;position:fixed;inset:0;background:#0e1d39a8;z-index:15}.mobile-menu{display:grid}.topbar{height:62px;min-height:62px;padding:0 15px}.topbar-left{display:flex;align-items:center;gap:11px}.messages{padding:18px 15px}.composer-area{padding:8px 13px calc(13px + env(safe-area-inset-bottom))}.welcome{margin:clamp(25px,9vh,90px) auto}.prompt{padding:14px}.status{font-size:11px}}
 @media(max-width:420px){.prompts{grid-template-columns:1fr}.welcome{margin:20px auto}.welcome h1{font-size:28px}.welcome p{margin-bottom:20px}.hero-icon{width:58px;height:58px;font-size:27px;margin-bottom:12px}.prompt{padding:11px 14px}.prompt span{display:none}.message-body{max-width:calc(100% - 44px)}}
@@ -87,15 +88,15 @@
  <div class="brand"><span class="logo" aria-hidden="true">✦</span><span>Giorgi AI <span class="tag">GEMINI</span></span></div>
  <button class="new" id="newChat">＋ ახალი ჩატი</button>
  <div class="label">საუბრები</div><div class="history" id="history"></div>
- <div class="sidebar-bottom"><small>Giorgi AI • 3.8 Flash • v2</small><button class="theme-btn" id="themeBtn" aria-label="თემის შეცვლა" title="მუქი / ღია რეჟიმი">☾</button></div>
+ <div class="sidebar-bottom"><small>Giorgi AI • Smart API • v3</small><button class="theme-btn" id="themeBtn" aria-label="თემის შეცვლა" title="მუქი / ღია რეჟიმი">☾</button></div>
 </aside>
 <div class="overlay" id="overlay"></div>
 <main class="main">
- <header class="topbar"><div class="topbar-left"><button class="icon-btn mobile-menu" id="menuBtn" aria-label="მენიუს გახსნა">☰</button><span class="top-title">✦ Giorgi AI • Gemini 3.8 Flash</span></div><div style="display:flex;align-items:center"><span class="status"><span class="dot"></span><span id="connectionStatus">Gemini 3.8 Flash</span></span><button class="api-btn" type="button" id="keyBtn" aria-label="Gemini API გასაღების დაყენება">🔑 API გასაღები</button></div></header>
+ <header class="topbar"><div class="topbar-left"><button class="icon-btn mobile-menu" id="menuBtn" aria-label="მენიუს გახსნა">☰</button><span class="top-title">✦ Giorgi AI • Smart Gemini</span></div><div style="display:flex;align-items:center"><span class="status"><span class="dot"></span><span id="connectionStatus">Gemini 3.8 Flash</span></span><button class="api-btn" type="button" id="keyBtn" aria-label="Gemini API გასაღების დაყენება">🔑 API გასაღები</button></div></header>
  <section class="messages" id="messages" aria-label="საუბარი" aria-live="polite"></section>
  <div class="composer-area"><form class="composer" id="chatForm"><textarea id="input" rows="1" maxlength="6000" placeholder="მომწერე ნებისმიერი კითხვა..." aria-label="შეტყობინება" required></textarea><button class="send" type="submit" id="send" aria-label="გაგზავნა">↑</button></form><p class="disclaimer">AI შეიძლება შეცდეს — მნიშვნელოვანი ინფორმაცია გადაამოწმე.</p></div>
 </main></div>
-<div class="key-backdrop" id="keyModal" role="dialog" aria-modal="true" aria-labelledby="keyTitle"><div class="key-dialog"><h2 id="keyTitle">🔑 Gemini API გასაღები</h2><p>GitHub Pages-ზე AI რომ იმუშაოს, შეიყვანე შენი Gemini API გასაღები. უფასო ტარიფით გამოყენება შესაძლებელია Google-ის ლიმიტების ფარგლებში.</p><p><a href="https://aistudio.google.com/api-keys" target="_blank" rel="noopener noreferrer">ახალი API გასაღების შექმნა Google AI Studio-ში ↗</a></p><form id="keyForm"><label for="keyInput">შენი API გასაღები</label><input id="keyInput" type="password" autocomplete="off" spellcheck="false" placeholder="ჩასვი API გასაღები..." required /><div class="key-warning">ეს გასაღები GitHub-ზე არ აიტვირთება. ამ ბრაუზერის ჩანართში დროებით შეინახება და პირდაპირ Google-ის API-ს გაეგზავნება. ბრაუზერში გამოყენებული გასაღები სრულად დაცული არ არის — გამოიყენე მხოლოდ პირადი დემოსთვის, არ გააზიარო და არ გამოიყენო გადახდის მქონე გასაღები.</div><div class="key-actions"><button type="button" id="keyClose">დახურვა</button><button type="button" id="keyClear">წაშლა</button><button class="primary" type="submit">შენახვა და ჩართვა</button></div></form></div></div>
+<div class="key-backdrop" id="keyModal" role="dialog" aria-modal="true" aria-labelledby="keyTitle"><div class="key-dialog"><h2 id="keyTitle">🔑 Gemini API გასაღები</h2><p>GitHub Pages-ზე AI რომ იმუშაოს, შეიყვანე შენი Gemini API გასაღები. უფასო ტარიფით გამოყენება შესაძლებელია Google-ის ლიმიტების ფარგლებში.</p><p><a href="https://aistudio.google.com/api-keys" target="_blank" rel="noopener noreferrer">ახალი API გასაღების შექმნა Google AI Studio-ში ↗</a></p><form id="keyForm"><label for="keyInput">შენი API გასაღები</label><input id="keyInput" type="password" autocomplete="off" spellcheck="false" placeholder="ჩასვი API გასაღები..." required /><div class="key-warning">ეს გასაღები GitHub-ზე არ აიტვირთება. ამ ბრაუზერის ჩანართში დროებით შეინახება და პირდაპირ Google-ის API-ს გაეგზავნება. ბრაუზერში გამოყენებული გასაღები სრულად დაცული არ არის — გამოიყენე მხოლოდ პირადი დემოსთვის, არ გააზიარო და არ გამოიყენო გადახდის მქონე გასაღები.</div><div class="key-actions"><button type="button" id="keyClose">დახურვა</button><button type="button" id="keyClear">წაშლა</button><button class="primary" type="submit">შენახვა და ჩართვა</button></div><button type="button" class="api-test-btn" id="testApiBtn">✓ API კავშირის შემოწმება</button><p id="keyTestResult" role="status" aria-live="polite"></p></form></div></div>
 <script>
 (function(){
 "use strict";
@@ -104,10 +105,12 @@ const $=id=>document.getElementById(id);
 let chats=[], currentId="", busy=false, toastTimer=null;
 const staticPreview = location.hostname.toLowerCase().endsWith(".github.io");
 const KEY_SESSION="giorgi-ai-key-session-v1";
+const MODEL_CANDIDATES=["gemini-3.8-flash","gemini-3.5-flash-lite","gemini-3.1-flash-lite"];
+let activeModel=MODEL_CANDIDATES[0];
 let ephemeralKey="";
 function getKey(){try{return sessionStorage.getItem(KEY_SESSION)||ephemeralKey;}catch{return ephemeralKey;}}
-function setKey(k){ephemeralKey=k;try{if(k)sessionStorage.setItem(KEY_SESSION,k);else sessionStorage.removeItem(KEY_SESSION);}catch{}updateConnection();}
-function updateConnection(){const v=$("connectionStatus");if(v)v.textContent=getKey()?"Gemini ჩართულია":(staticPreview?"API გასაღები საჭიროა":"Gemini ასისტენტი");$("keyBtn").textContent=getKey()?"🔑 API ✓":"🔑 API გასაღები";}
+function setKey(k){ephemeralKey=k;activeModel=MODEL_CANDIDATES[0];try{if(k)sessionStorage.setItem(KEY_SESSION,k);else sessionStorage.removeItem(KEY_SESSION);}catch{}updateConnection();}
+function updateConnection(){const v=$("connectionStatus");if(v)v.textContent=getKey()?activeModel:(staticPreview?"API გასაღები საჭიროა":"Gemini ასისტენტი");$("keyBtn").textContent=getKey()?"🔑 API ✓":"🔑 API გასაღები";}
 function openKeyModal(){$("keyInput").value=getKey();$("keyModal").classList.add("open");$("keyInput").focus();}
 function closeKeyModal(){$("keyModal").classList.remove("open");$("keyBtn").focus();}
 function previewNotice(){
@@ -153,34 +156,62 @@ function renderMessages(){const root=$("messages");root.replaceChildren();const 
  row.append(body);root.append(row);});root.scrollTop=root.scrollHeight;}
 function render(){renderHistory();renderMessages();}
 function resize(){const input=$("input");input.style.height="auto";input.style.height=Math.min(input.scrollHeight,180)+"px";}
+async function availableModels(key,signal){
+  try{
+    const response=await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=100",{
+      headers:{"x-goog-api-key":key},signal
+    });
+    if(!response.ok)return MODEL_CANDIDATES.slice();
+    const json=await response.json();
+    const supported=new Set((json.models||[]).filter(m=>m.supportedGenerationMethods?.includes("generateContent")).map(m=>m.name.replace(/^models\//,"")));
+    const match=MODEL_CANDIDATES.filter(model=>supported.has(model));
+    return match.length?match:MODEL_CANDIDATES.slice();
+  }catch(e){if(e.name==="AbortError")throw e;return MODEL_CANDIDATES.slice();}
+}
+async function directGeminiReply(messages,signal){
+  const key=getKey();
+  const contents=messages.slice(-20).map(m=>({role:m.role==="assistant"?"model":"user",parts:[{text:m.text}]}));
+  const models=await availableModels(key,signal);
+  const candidates=[activeModel,...models].filter((x,i,arr)=>arr.indexOf(x)===i && MODEL_CANDIDATES.includes(x));
+  let notFoundMessage="";
+  for(const model of candidates){
+    const res=await fetch("https://generativelanguage.googleapis.com/v1beta/models/"+encodeURIComponent(model)+":generateContent",{
+      method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},
+      body:JSON.stringify({
+        systemInstruction:{parts:[{text:"You are Giorgi AI, a friendly, helpful assistant. If the user writes Georgian, reply in natural Georgian."}]},
+        contents,generationConfig:{maxOutputTokens:8192}
+      }),signal
+    });
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok){
+      const reason=data?.error?.message||"Gemini API შეცდომა";
+      if(res.status===404){
+        notFoundMessage=reason.slice(0,150);
+        continue;
+      }
+      if(res.status===400||res.status===401||res.status===403){
+        throw new Error("API გასაღები ან მისი ნებართვები გადაამოწმე ("+res.status+"): "+reason.slice(0,180));
+      }
+      if(res.status===429)throw new Error("Google-ის უფასო მოთხოვნების ლიმიტი ამოიწურა (429). გადაამოწმე კვოტა AI Studio-ში.");
+      throw new Error("Google Gemini ("+res.status+"): "+reason.slice(0,180));
+    }
+    const reply=(data.candidates?.[0]?.content?.parts||[]).map(p=>typeof p.text==="string"?p.text:"").join("").trim();
+    if(!reply){
+      const reason=data?.candidates?.[0]?.finishReason||"empty_response";
+      throw new Error("Gemini-მ პასუხი ვერ დააბრუნა: "+reason);
+    }
+    activeModel=model;updateConnection();
+    return reply;
+  }
+  throw new Error("შენი API გასაღებით ხელმისაწვდომი Gemini მოდელი ვერ მოიძებნა (404). Google-ის პასუხი: "+notFoundMessage);
+}
 async function fetchReply(messages,signal){
- const key=getKey();
- if(key){
-   const contents=messages.slice(-20).map(m=>({role:m.role==="assistant"?"model":"user",parts:[{text:m.text}]}));
-   const res=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",{
-     method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},
-     body:JSON.stringify({
-       systemInstruction:{parts:[{text:"You are Giorgi AI, a friendly, accurate assistant. Respond in Georgian when the user writes in Georgian."}]},
-       contents, generationConfig:{maxOutputTokens:4096}
-     }),signal
-   });
-   const data=await res.json().catch(()=>({}));
-   if(!res.ok){
-     const reason=data?.error?.message||"Google Gemini API შეცდომა.";
-     if(res.status===400||res.status===403||res.status===401)throw new Error("გასაღები ან API პარამეტრები გადაამოწმე ("+res.status+"): "+reason.slice(0,180));
-     if(res.status===429)throw new Error("Gemini-ის უფასო ლიმიტი ამოიწურა — სცადე მოგვიანებით.");
-     if(res.status===404)throw new Error("Gemini 3.8 Flash API-ზე ვერ მოიძებნა. თუ შეცდომაში 2.5 წერია, ძველი გვერდი გაქვს გახსნილი — განაახლე საიტი.");
-     throw new Error("Gemini API შეცდომა ("+res.status+"): "+reason.slice(0,120));
-   }
-   const reply=(data.candidates?.[0]?.content?.parts||[]).map(p=>typeof p.text==="string"?p.text:"").join("").trim();
-   if(!reply)throw new Error("Gemini-მ ტექსტური პასუხი არ დააბრუნა.");
-   return reply;
- }
- const res=await fetch("./api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:messages.slice(-20)}),signal});
- const data=await res.json().catch(()=>({}));
- if(!res.ok)throw new Error(res.status===405?"API სერვერზე არ არის გაშვებული. დააყენე შენი API გასაღები ან გამოიყენე Vercel.":data.error||"სერვერის შეცდომაა ("+res.status+")");
- if(typeof data.reply!=="string"||!data.reply.trim())throw new Error("ცარიელი პასუხია.");
- return data.reply;
+  if(getKey())return directGeminiReply(messages,signal);
+  const res=await fetch("./api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:messages.slice(-20)}),signal});
+  const data=await res.json().catch(()=>({}));
+  if(!res.ok)throw new Error(res.status===405?"GitHub Pages-ს AI სერვერი არ აქვს. დააყენე პირადი Gemini გასაღები.":data.error||"სერვერის შეცდომა ("+res.status+")");
+  if(typeof data.reply!=="string"||!data.reply.trim())throw new Error("ცარიელი პასუხია");
+  return data.reply;
 }
 async function submit(){
  const t=$("input").value.trim();
@@ -215,8 +246,23 @@ $("keyForm").addEventListener("submit",e=>{
  e.preventDefault();
  const key=$("keyInput").value.trim();
  if(!key){toast("ჩასვი API გასაღები.");return;}
- setKey(key);closeKeyModal();toast("გასაღები დამატებულია. ახლა შეტყობინება გაგზავნე.");
+ setKey(key);$("keyTestResult").textContent="გასაღები ამ ჩანართში შენახულია. დააჭირე „API კავშირის შემოწმება“.";toast("გასაღები დამატებულია.");
 });
+$("testApiBtn").onclick=async()=>{
+ const key=$("keyInput").value.trim();
+ if(!key){$("keyTestResult").textContent="ჯერ ჩასვი API გასაღები.";return;}
+ setKey(key);
+ const testBtn=$("testApiBtn");testBtn.disabled=true;
+ $("keyTestResult").textContent="Google API-სთან კავშირს ვამოწმებ…";
+ const ctl=new AbortController(),timeout=setTimeout(()=>ctl.abort(),25000);
+ try{
+   const reply=await directGeminiReply([{role:"user",text:"მომწერე მხოლოდ ერთი ქართული სიტყვა: გამარჯობა"}],ctl.signal);
+   $("keyTestResult").textContent="✅ მუშაობს! მოდელი: "+activeModel+"\nპასუხი: "+reply.slice(0,100);
+ }catch(err){
+   $("keyTestResult").textContent="❌ "+(err.name==="AbortError"?"კავშირის დრო ამოიწურა.":err instanceof TypeError?"ბრაუზერმა Google API-სთან კავშირი დაბლოკა (CORS ან ქსელი).":err.message);
+ }finally{clearTimeout(timeout);testBtn.disabled=false;}
+};
+
 $("chatForm").addEventListener("submit",e=>{e.preventDefault();submit();});
 $("input").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){e.preventDefault();submit();}});
 $("input").addEventListener("input",resize);
