@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><body style="margin:0;background:#080b14">
+<svg id="s" xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100" font-family="sans-serif">
+<rect width="1800" height="1100" fill="#080b14"/>
+<text x="40" y="60" fill="#e9eef5" font-size="36" font-weight="700">«ВТОРАЯ ЛУНА» — лист персонажей и фонов</text>
+<g id="c"></g></svg>
+<script src="assets.js"></script>
+<script>
+const g=document.getElementById('c');let h='';
+const box=(x,y,w,hh,t,inner)=>`<g transform="translate(${x},${y})"><rect width="${w}" height="${hh}" rx="14" fill="#111827" stroke="#2a3550"/><text x="16" y="30" fill="#8fa3c7" font-size="22">${t}</text>${inner}</g>`;
+h+=box(40,90,330,420,'Артём (обычный)',ART.artyom({t:'translate(165,140) scale(1.05)'}));
+h+=box(390,90,330,420,'Артём (испуган)',ART.artyom({scared:1,t:'translate(165,140) scale(1.05)'}));
+h+=box(740,90,330,420,'Доктор Ким (по телефону)',ART.kim({t:'translate(165,160) scale(1.05)'}));
+h+=box(1090,90,670,420,'Астероид — до и после огней',
+ ART.asteroid({r:150,t:'translate(170,250) scale(.7)'})+ART.asteroid({r:150,lights:1,t:'translate(500,250) scale(.7)'}));
+// фоны 270x480 (уменьшенные кадры 9:16)
+const bgs=[
+['Двор ночью',`<svg width="270" height="480" viewBox="0 0 540 960" x="0" y="0">${ART.sky(540,960)}<circle cx="400" cy="200" r="70" fill="${P.glow}" opacity=".5"/>${ART.building(-20,420,200,540,[12,23])}${ART.building(190,500,180,460,[31])}${ART.building(380,380,200,580,[3,22])}<rect y="880" width="540" height="80" fill="#0a0d16"/><ellipse cx="270" cy="920" rx="140" ry="14" fill="${P.glow}" opacity=".2"/></svg>`],
+['Станция (интерьер)',`<svg width="270" height="480" viewBox="0 0 540 960"><rect width="540" height="960" fill="#0e1422"/><rect x="60" y="120" width="420" height="320" fill="#05070f" stroke="#2a3550" stroke-width="8"/><circle cx="380" cy="230" r="46" fill="${P.glow}" opacity=".6"/><rect x="0" y="720" width="540" height="240" fill="#151b2b"/><rect x="40" y="560" width="200" height="160" fill="#1b2438"/><rect x="56" y="576" width="168" height="100" fill="#0d3b2e"/><path d="M64 650 l30 -30 l30 20 l40 -40 l50 30" stroke="#5dffb0" stroke-width="4" fill="none"/><rect x="300" y="620" width="200" height="100" fill="#1b2438"/><circle cx="440" cy="590" r="14" fill="${P.win}" opacity=".7"/></svg>`],
+['Небо / вторая луна',`<svg width="270" height="480" viewBox="0 0 540 960">${ART.sky(540,960)}${ART.asteroid({r:150,t:'translate(300,380) scale(.8)'})}<rect y="860" width="540" height="100" fill="#06080f"/></svg>`],
+['Улица, дождь',`<svg width="270" height="480" viewBox="0 0 540 960">${ART.sky(540,960)}${ART.building(0,300,540,660,[11,22,33,15])}<rect y="840" width="540" height="120" fill="#0a0d16"/>${Array.from({length:40},(_,i)=>`<line x1="${(i*53)%540}" y1="${(i*97)%800}" x2="${(i*53)%540-10}" y2="${(i*97)%800+40}" stroke="#8fa3c7" opacity=".5"/>`).join('')}</svg>`]];
+bgs.forEach((b,i)=>{h+=box(40+i*440,540,420,540,b[0],`<g transform="translate(75,50)">${b[1].replace('<svg','<svg')}</g>`)});
+g.innerHTML=h;
+</script>
