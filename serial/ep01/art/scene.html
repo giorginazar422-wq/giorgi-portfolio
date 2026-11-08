@@ -1,0 +1,83 @@
+<!doctype html><meta charset="utf-8"><body style="margin:0;background:#000;overflow:hidden">
+<div id="v" style="width:1080px;height:1920px"></div>
+<script src="assets.js"></script><script src="timeline.js"></script>
+<script>
+const W=1080,H=1920,TOTAL=75;
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)),ease=x=>{x=cl(x);return x*x*(3-2*x)},seg=(t,a,b)=>ease((t-a)/(b-a));
+const rnd=n=>{const s=Math.sin(n*127.1+3.7)*43758.5453;return s-Math.floor(s)};
+const lerp=(a,b,k)=>a+(b-a)*k;
+const BOUND=[9,23,37,50,58.4];
+function rain(t,n,al,ya=0,yb=H,clip){let s='';for(let i=0;i<n;i++){const sp=1300*(.7+rnd(i+5)*.6);const y=ya+((rnd(i+9)*(yb-ya)+t*sp)%(yb-ya));const x=rnd(i)*W+y*.12;
+ s+=`<line x1="${x}" y1="${y}" x2="${x-14}" y2="${y+55}" stroke="#9db4d8" stroke-width="2.5" opacity="${al*(.4+rnd(i+2)*.6)}"/>`}return s}
+function flick(t){const a=Math.sin(t*23)*Math.sin(t*7.3)+Math.sin(t*3.1+1);return a>1.35?.65:(Math.sin(t*41)>.97?.3:0)}
+function skyBg(t,glow=1){return ART.sky(W,H)+`<rect width="${W}" height="${H}" fill="${P.glow}" opacity="${.05*glow}"/>`}
+function city(y0,lit,t){let s='';const xs=[-30,200,420,640,860];xs.forEach((x,i)=>{const h=500+((i*137)%240);s+=ART.building(x,y0-h+360,210,h+700,lit[i]||[])});return s}
+function walkFix(root,sw){const L=root.querySelector('.legL'),R=root.querySelector('.legR'),aL=root.querySelector('.armL'),aR=root.querySelector('.armR');
+ if(L){L.setAttribute('transform',`rotate(${sw} -17 120)`);R.setAttribute('transform',`rotate(${-sw} 17 120)`);aL.setAttribute('transform',`rotate(${-sw*.6} -51 40)`);aR.setAttribute('transform',`rotate(${sw*.6} 51 40)`)}}
+function content(t){
+ let s='',cam=`translate(${W/2},${H/2}) scale(1) translate(${-W/2},${-H/2})`,walk=null;
+ if(t<BOUND[0]){ // S1 небо
+  const k=t/BOUND[0];cam=`translate(${W/2},${H/2}) scale(${1+.06*k}) translate(${-W/2},${-H/2})`;
+  s+=skyBg(t)+ART.asteroid({r:200,t:`translate(640,${700-60*k}) scale(${lerp(.8,1.6,ease(k))}) rotate(${t*2})`});
+  s+=city(1380,[[3,22],[11],[7,14,31],[2],[15,26]],t)+`<rect y="1560" width="${W}" height="360" fill="#06080f"/>`;
+ }else if(t<BOUND[1]){ // S2 станция
+  const k=(t-9)/14;cam=`translate(${W/2},${H/2}) scale(${1+.04*k}) translate(${-W/2},${-H/2})`;
+  s+=`<rect width="${W}" height="${H}" fill="#0e1422"/><rect x="110" y="240" width="860" height="720" fill="#05070f" stroke="#2a3550" stroke-width="14"/>`;
+  s+=`<g clip-path="inset(240px 110px ${H-960}px 110px)">${ART.sky(W,H).replace('<defs>','<defs>')}<circle cx="780" cy="420" r="${70+k*20}" fill="${P.glow}" opacity=".6"/>${rain(t,70,.5,240,960)}</g>`;
+  s+=`<rect x="0" y="1380" width="${W}" height="540" fill="#151b2b"/><rect x="560" y="1180" width="420" height="200" fill="#1b2438"/><circle cx="880" cy="1130" r="22" fill="${P.win}" opacity="${.5+.3*Math.sin(t*3)}"/>`;
+  const amp=t<16?14:(t<21?14+((t-16)*14)*(rnd(Math.floor(t*10))+.3):10);
+  s+=`<rect x="90" y="1080" width="400" height="300" fill="#1b2438"/><rect x="116" y="1106" width="348" height="210" fill="#0d3b2e"/><polyline fill="none" stroke="#5dffb0" stroke-width="5" points="${Array.from({length:30},(_,i)=>`${116+i*12},${1211+Math.sin(i*.7+t*3)*amp*(t>17&&t<21?rnd(i+Math.floor(t*12))*3:1)}`).join(' ')}"/>`;
+  s+=ART.artyom({t:'translate(700,1500) scale(2.3)'});
+ }else if(t<BOUND[2]){ // S3 телефон
+  const sh=t<29?Math.sin(t*60)*(Math.sin(t*5)>0?7:0):0;
+  s+=`<rect width="${W}" height="${H}" fill="#0a0e18"/><g transform="translate(${sh},0)"><rect x="250" y="260" width="500" height="960" rx="60" fill="#05070c" stroke="#2a3550" stroke-width="8"/><rect x="274" y="290" width="452" height="900" rx="40" fill="#10213a"/>`;
+  s+=`<circle cx="500" cy="560" r="${120+Math.sin(t*6)*6}" fill="#1b3a66"/>${ART.kim({t:'translate(500,590) scale(1.1)'})}<text x="500" y="800" fill="#e9eef5" font-size="58" font-family="sans-serif" font-weight="700" text-anchor="middle">Доктор Ким</text><text x="500" y="860" fill="#8fa3c7" font-size="36" font-family="sans-serif" text-anchor="middle">${t<32?'входящий звонок…':'0:'+String(Math.floor(t-31)).padStart(2,'0')}</text>`;
+  if(t>=32)s+=Array.from({length:15},(_,i)=>`<rect x="${300+i*27}" y="${1010-Math.abs(Math.sin(t*9+i))*60*(.4+rnd(i)*.6)}" width="14" height="${Math.abs(Math.sin(t*9+i))*120*(.4+rnd(i)*.6)+8}" fill="#5dffb0"/>`).join('');
+  else s+=`<circle cx="500" cy="1050" r="${52+Math.sin(t*8)*5}" fill="#2faa5c"/>`;
+  s+=`</g>`+ART.artyom({scared:1,t:'translate(880,1360) scale(2.1)'});
+ }else if(t<BOUND[3]){ // S4 двор
+  const k=(t-37)/13;cam=`translate(${W/2},${H/2}) scale(${1.04+.04*k}) translate(${-W/2+k*-30},${-H/2})`;
+  const lit=[[3,22],[11,33],[7,14],[2,24],[15,26]];
+  s+=skyBg(t)+ART.asteroid({r:200,t:`translate(820,330) scale(.9) rotate(${t*2})`});
+  const hide=t>45.8?1:0;s+=city(1400,[[3,22],[11,33],[7,14],[2,24],[15,26]],t);
+  if(!hide)s+=`<rect x="656" y="1020" width="22" height="28" fill="${P.win}"/><circle cx="667" cy="1034" r="40" fill="${P.win}" opacity=".12"/>`;
+  s+=`<rect y="1500" width="${W}" height="420" fill="#0a0d16"/><ellipse cx="540" cy="1620" rx="420" ry="40" fill="${P.glow}" opacity=".18"/>`;
+  const x=lerp(150,760,ease((t-41)/(49-41)));walk=cl((t-41)/8,0,1)>0&&t<49?Math.sin(t*9)*22:0;
+  s+=ART.artyom({scared:t>47,t:`translate(${x},${1500-212*2.1}) scale(2.1)`});
+  s+=rain(t,110,.55);
+ }else if(t<BOUND[4]){ // S5 небо крупно
+  const k=(t-50)/8.4,sh=Math.sin(t*50)*k*5;cam=`translate(${W/2+sh},${H/2}) scale(${1+.05*k}) translate(${-W/2},${-H/2})`;
+  s+=skyBg(t,2)+ART.asteroid({r:200,t:`translate(540,760) scale(2.5) rotate(${t*2*(1-.8*ease((t-56)/2))})`});
+  for(let i=0;i<40;i++){s+=`<circle cx="${(rnd(i)*W+t*20*(.5+rnd(i+3)))%W}" cy="${(rnd(i+11)*H*.9+t*40*(.5+rnd(i+4)))%(H*.9)}" r="${1+rnd(i+6)*3}" fill="#c9a9a0" opacity=".6"/>`}
+  s+=`<rect y="1600" width="${W}" height="320" fill="#06080f"/>`+ART.artyom({scared:1,t:'translate(300,1370) scale(1.5)'});
+ }else{ // S6 огни
+  const k=(t-58.4)/13,lt=[67.2,67.6,68,68.4,68.8];
+  s+=`<rect width="${W}" height="${H}" fill="#04060c"/>`;
+  let ast=ART.asteroid({r:200,t:'translate(0,0)'});
+  let li='';lt.forEach((a,i)=>{const o=cl((t-a)/0.15);if(o>0){const x=-90+i*45;li+=`<circle cx="${x}" cy="120" r="9" fill="#fff" opacity="${o}"/><circle cx="${x}" cy="120" r="${22+(t>69?(t-69)*14:0)}" fill="#fff" opacity="${.3*o}"/>`}});
+  s+=`<g transform="translate(540,900) scale(${lerp(2.2,3.6,ease(k))}) rotate(${-4+t*.3})">${ast}${li}</g>`;
+  s+=Array.from({length:12},(_,i)=>`<circle cx="${rnd(i)*W}" cy="${rnd(i+5)*H}" r="1.5" fill="#fff" opacity=".4"/>`).join('');
+  if(t>69&&t<71.6)s+=`<rect width="${W}" height="${H}" fill="#fff" opacity="${.12*Math.sin((t-69)*3)+((t-69)/2.6)*.25}"/>`;
+ }
+ return {s,cam,walk}}
+function subs(t){
+ // чанки до 3 слов / 16 знаков в пределах фразы
+ if(!subs.ch){subs.ch=[];let cur=[];const flush=()=>{if(cur.length){subs.ch.push(cur);cur=[]}};
+  TL.forEach((w,i)=>{if(cur.length&&(cur[0].p!==w.p||cur.length>=3||cur.map(x=>x.w).join(' ').length+w.w.length>14))flush();cur.push(w)});flush()}
+ let ci=-1;for(let i=0;i<subs.ch.length;i++){if(t>=subs.ch[i][0].s-.05)ci=i}
+ if(ci<0)return'';const c=subs.ch[ci];if(t>c[c.length-1].e+.9&&(!subs.ch[ci+1]))return'';if(t>c[c.length-1].e+.9)return'';
+ let sp='';c.forEach((w,i)=>{const on=t>=w.s;const cur=on&&(i==c.length-1||t<c[i+1].s);
+  sp+=`<tspan fill="${w.key?'#ffcf3f':(cur?'#ffffff':'#c8d0de')}" opacity="${on?1:.0}">${w.w}${i<c.length-1?' ':''}</tspan>`});
+ return `<text x="540" y="1700" font-size="112" font-weight="800" font-family="DejaVu Sans,Arial,sans-serif" text-anchor="middle" stroke="#000" stroke-width="14" stroke-linejoin="round" paint-order="stroke" letter-spacing="-2">${sp}</text>`}
+function render(t){
+ const c=content(t);let dip=0;BOUND.forEach(b=>{dip=Math.max(dip,1-Math.abs(t-b)/.25)});
+ let end=t>71.6?1:0;let title='';if(t>72.4)title=`<text x="540" y="960" font-size="70" fill="#e9eef5" font-family="DejaVu Sans,Arial,sans-serif" font-weight="800" text-anchor="middle" opacity="${seg(t,72.4,73.4)}" letter-spacing="6">СЕРИЯ 2 — СКОРО</text>`;
+ const lamp=(t>9&&t<23)||(t>23&&t<37)?flick(t):0;
+ document.getElementById('v').innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><defs><radialGradient id="vg" cx=".5" cy=".5" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".75"/></radialGradient></defs>
+ <g transform="${c.cam}" id="cam">${c.s}</g>
+ <rect width="${W}" height="${H}" fill="#000" opacity="${lamp}"/><rect width="${W}" height="${H}" fill="url(#vg)"/>
+ ${t>=BOUND[0]&&t<BOUND[1]&&t<9?'':''}${subs(t)}
+ <rect width="${W}" height="${H}" fill="#000" opacity="${Math.max(dip,t>71.6?seg(t,71.6,72.0):0)}"/>${title}</svg>`;
+ if(c.walk!==null)walkFix(document.querySelector('.artyom'),c.walk)}
+render(0);
+</script>
