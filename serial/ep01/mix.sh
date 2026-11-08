@@ -3,7 +3,7 @@
 set -e; cd "$(dirname "$0")"
 V="$1"
 ffmpeg -y -loglevel error -i audio/bed.wav -i audio/fx.wav -filter_complex \
-"[0]loudnorm=I=-33:TP=-3:LRA=7[b];[1]loudnorm=I=-30:TP=-3:LRA=11[f];[b][f]amix=inputs=2:normalize=0:duration=longest,apad=whole_dur=75[bg]" -map "[bg]" -ar 48000 -ac 2 out/bg.wav
+"[0]loudnorm=I=-36.5:TP=-3:LRA=7[b];[1]loudnorm=I=-33.5:TP=-3:LRA=11[f];[b][f]amix=inputs=2:normalize=0:duration=longest,apad=whole_dur=75[bg]" -map "[bg]" -ar 48000 -ac 2 out/bg.wav
 if [ -n "$V" ]; then
  # голос: нормализация -14 LUFS, фон тише голоса на ~19 дБ
  ffmpeg -y -loglevel error -i "$V" -i out/bg.wav -filter_complex \
