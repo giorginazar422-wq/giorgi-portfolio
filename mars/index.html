@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#130e0c"><meta name="description" content="Giorgi Khuchua — interactive Mars mission portfolio">
+<title>Giorgi Khuchua — Mars Mission</title>
+<style>
+:root{--orange:#ff793c;--paper:#fdf3e8;--ink:#231b16}*{box-sizing:border-box}
+html{scroll-behavior:auto}body{margin:0;background:#170d0a;font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:var(--paper)}
+button,a{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
+#world{position:fixed;inset:0;overflow:hidden;background:linear-gradient(#2b1615,#ac5637)}
+canvas{display:block;width:100%;height:100%}
+#world:after{content:"";pointer-events:none;position:absolute;inset:0;background:linear-gradient(90deg,rgba(24,13,12,.78),rgba(24,13,12,.34) 45%,transparent 78%),linear-gradient(0deg,rgba(20,11,10,.72),transparent 23%)}
+header{position:fixed;z-index:30;left:0;right:0;top:0;padding:25px max(23px,5vw);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff22;background:linear-gradient(#110a09aa,transparent)}
+.brand{font-weight:900;letter-spacing:.07em;font-size:15px}.brand span,.accent{color:var(--orange)}
+nav{display:flex;gap:24px}nav button{color:#f6dfce;background:none;border:0;padding:8px 0;font-size:12px;font-weight:700;opacity:.65}nav button.active,nav button:hover{opacity:1;color:white}
+.github{border:1px solid #ffffff65;border-radius:30px;padding:10px 17px;font-size:11px;font-weight:800;letter-spacing:.09em}
+.panel{position:fixed;z-index:10;top:50%;left:max(23px,8vw);width:min(470px,80vw);opacity:0;transform:translate3d(0,-42%,0);pointer-events:none;transition:opacity .5s,transform .6s}
+.panel.active{opacity:1;transform:translate3d(0,-50%,0);pointer-events:auto}
+.kicker{font-size:11px;letter-spacing:.28em;font-weight:800;color:#ffaf7e;margin:0 0 25px}
+h1,h2{font-size:clamp(58px,7vw,104px);letter-spacing:-.08em;line-height:.91;margin:0 0 30px;font-weight:850}
+h2{font-size:clamp(53px,6.3vw,87px)}
+.panel p.copy{line-height:1.8;color:#efcdbb;max-width:395px;font-size:15px}
+.cta{margin-top:22px;color:#22120c;border:0;background:var(--orange);padding:17px 25px;border-radius:30px;font-size:12px;letter-spacing:.08em;font-weight:900}
+.card{background:#160e0ce3;border:1px solid #ffffff24;border-radius:24px;backdrop-filter:blur(12px);padding:32px 35px;box-shadow:0 22px 80px #0005}
+.card h2{font-size:clamp(49px,5vw,71px)}.card p.copy{font-size:14px}
+.stat{border-top:1px solid #ffffff25;margin-top:24px;padding-top:17px;font-size:12px;display:flex;justify-content:space-between;color:#ffac78}
+.skills-list{display:grid;gap:14px}.skill-header{display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px;font-weight:750}
+.meter{height:5px;background:#ffffff20;border-radius:4px;overflow:hidden}.meter i{display:block;height:100%;background:linear-gradient(90deg,#ff6b37,#ffd099);width:var(--w);border-radius:4px}
+.project{display:block;padding:14px;border:1px solid #ffffff28;background:#ffffff0b;margin-top:10px;border-radius:12px;transition:background .2s}.project:hover{background:#ffffff20}.project b{display:block;font-size:15px;margin:5px 0}.project small{font-size:11px;color:#e8a888}.project .num{font-size:10px;color:var(--orange);letter-spacing:.15em}
+#progress{position:fixed;bottom:0;left:0;right:0;height:3px;background:#ffffff24;z-index:40}#fill{height:100%;width:0;background:var(--orange)}
+#hint{position:fixed;bottom:30px;left:max(23px,5vw);z-index:10;letter-spacing:.18em;font-size:10px;color:#f6b795}
+#sector{position:fixed;bottom:30px;right:max(23px,5vw);z-index:10;font-size:10px;letter-spacing:.15em;color:#f0c4a9}
+#dots{position:fixed;z-index:15;right:24px;top:50%;transform:translateY(-50%);display:grid;gap:14px}#dots button{width:9px;height:9px;padding:0;border:1px solid #ffc2a8;border-radius:50%;background:transparent}#dots button.active{background:var(--orange);transform:scale(1.5);border-color:var(--orange)}
+#scroll-space{height:540vh}
+@media(max-width:700px){header{padding:18px}.brand{font-size:11px}nav{gap:9px}nav button{font-size:10px}.github{display:none}.panel{left:18px;right:18px;width:auto;top:auto;bottom:86px;transform:translateY(20px)}.panel.active{transform:translateY(0)}.panel h1{font-size:60px}.card{padding:23px;max-height:60vh;overflow-y:auto}.card h2{font-size:52px}.panel p.copy{font-size:12px}#dots{right:16px;top:29%}#hint,#sector{bottom:21px;font-size:8px}#sector{max-width:45%;text-align:right}}
+@media(prefers-reduced-motion:reduce){.panel{transition:none}}
+</style></head><body>
+<div id="world"><canvas id="mars" aria-label="Animated three dimensional inspired Mars landscape and rover"></canvas></div>
+<header><a href="#home" class="brand" data-scene="0">GIORGI<span>.</span> / MARS</a><nav><button data-scene="0" class="active">Home</button><button data-scene="1">About Me</button><button data-scene="2">Skills</button><button data-scene="3">Projects</button></nav><a class="github" href="https://github.com/giorginazar422-wq/giorgi-portfolio" target="_blank" rel="noopener">GITHUB ↗</a></header>
+<main>
+<section class="panel active" id="home"><p class="kicker">MISSION 001 / CREATIVE DEVELOPER</p><h1>Giorgi<br>Khuchua<span class="accent">.</span></h1><p class="copy">I turn ideas into immersive websites, interactive experiments, and AI-powered digital experiences.</p><button class="cta" data-scene="1">START THE MISSION ↗</button></section>
+<section class="panel" id="about"><div class="card"><p class="kicker">01 / MY STORY</p><h2>About<br>Me<span class="accent">.</span></h2><p class="copy">I'm Giorgi Khuchua, a creative developer from Georgia. I'm studying AI and programming at <strong>Caritas Georgia</strong> and building my future through code, design and experimentation.</p><div class="stat"><span>MISSION CONTROL</span><strong>GEORGIA 🇬🇪</strong></div></div></section>
+<section class="panel" id="skills"><div class="card"><p class="kicker">02 / SYSTEM CHECK</p><h2>Skills<span class="accent">.</span></h2><div class="skills-list">
+<div><div class="skill-header"><span>HTML5</span><span>Web</span></div><div class="meter"><i style="--w:95%"></i></div></div>
+<div><div class="skill-header"><span>CSS3</span><span>Design</span></div><div class="meter"><i style="--w:90%"></i></div></div>
+<div><div class="skill-header"><span>JavaScript</span><span>Interaction</span></div><div class="meter"><i style="--w:80%"></i></div></div>
+<div><div class="skill-header"><span>AI</span><span>Learning</span></div><div class="meter"><i style="--w:50%"></i></div></div>
+<div><div class="skill-header"><span>Python</span><span>Beginner</span></div><div class="meter"><i style="--w:10%"></i></div></div></div></div></section>
+<section class="panel" id="projects"><div class="card"><p class="kicker">03 / CREATIVE LAB</p><h2>Projects<span class="accent">.</span></h2>
+<a class="project" href="https://github.com/oso95/scroll-world" target="_blank" rel="noopener"><span class="num">01 / INTERACTIVE</span><b>3D Scroll Experience ↗</b><small>A cinematic exploration website</small></a>
+<div class="project"><span class="num">02 / BUILDING</span><b>AI Chatbot</b><small>Python & conversational AI</small></div>
+<div class="project"><span class="num">03 / CONCEPT</span><b>AI Creative App</b><small>Image, code and text generation</small></div></div></section>
+</main>
+<div id="dots" aria-label="Scene navigation"><button class="active" data-scene="0" aria-label="Home"></button><button data-scene="1" aria-label="About Me"></button><button data-scene="2" aria-label="Skills"></button><button data-scene="3" aria-label="Projects"></button></div>
+<div id="hint">↕ SCROLL TO DRIVE THE ROVER</div><div id="sector">SECTOR 01 / LANDING</div><div id="progress"><div id="fill"></div></div><div id="scroll-space" aria-hidden="true"></div>
+<script>
+(()=>{
+const canvas=document.getElementById('mars'),ctx=canvas.getContext('2d'),ids=['home','about','skills','projects'],names=['LANDING','STORY','SYSTEMS','OUTPOST'],milestones=[0,.27,.56,.86];let w=0,h=0,dpr=1,target=0,p=0,active=-1;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),rand=(n)=>{let v=Math.sin(n*127.1+31.7)*43758.5453;return v-Math.floor(v)};
+function resize(){dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}addEventListener('resize',resize);resize();
+function polygon(points,fill){ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);ctx.closePath();ctx.fillStyle=fill;ctx.fill()}
+function ridge(base,amp,color,speed,seed){let offset=p*speed;ctx.beginPath();ctx.moveTo(0,h);for(let x=-40;x<=w+40;x+=12){let z=(x+offset)/w;let y=base+Math.sin(z*7+seed)*amp+Math.sin(z*18+seed*3)*amp*.29+Math.cos(z*35+seed)*amp*.1;ctx.lineTo(x,y)}ctx.lineTo(w,h);ctx.closePath();ctx.fillStyle=color;ctx.fill()}
+function rover(cx,cy,s){ctx.save();ctx.translate(cx,cy);ctx.scale(s,s);ctx.rotate(Math.sin(p*22)*.014);ctx.shadowColor='#120603';ctx.shadowBlur=25;ctx.shadowOffsetY=14;
+ctx.strokeStyle='#2e2523';ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(-82,30);ctx.lineTo(-108,55);ctx.lineTo(88,55);ctx.lineTo(116,30);ctx.stroke();
+for(const x of [-111,-65,65,112]){ctx.fillStyle='#171719';ctx.beginPath();ctx.arc(x,57,25,0,Math.PI*2);ctx.fill();ctx.lineWidth=6;ctx.strokeStyle='#8d6b58';ctx.stroke();ctx.fillStyle='#33383b';ctx.beginPath();ctx.arc(x,57,10,0,Math.PI*2);ctx.fill()}
+ctx.shadowBlur=0;ctx.fillStyle='#e4d6b7';ctx.fillRect(-95,-15,190,47);ctx.fillStyle='#be9c70';ctx.fillRect(-95,13,190,17);
+polygon([[-80,-18],[-60,-58],[37,-58],[80,-18]],'#d8c9ac');polygon([[-51,-58],[-35,-82],[29,-82],[42,-58]],'#556b72');
+ctx.fillStyle='#1d2529';ctx.fillRect(-24,-76,49,18);ctx.fillStyle='#f9b85b';ctx.fillRect(44,-33,22,9);ctx.fillRect(74,-31,12,9);
+ctx.strokeStyle='#b8a98f';ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(9,-81);ctx.lineTo(9,-135);ctx.stroke();ctx.fillStyle='#eee1bf';ctx.fillRect(-16,-145,54,17);ctx.fillStyle='#202b34';ctx.fillRect(-10,-141,15,10);ctx.fillRect(11,-141,15,10);
+ctx.strokeStyle='#c5a982';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-55,-59);ctx.lineTo(-77,-99);ctx.stroke();ctx.fillStyle='#d4c19b';ctx.fillRect(-112,-111,65,15);ctx.restore()}
+function draw(){target=clamp(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight),0,1);p+=(target-p)*.075;ctx.clearRect(0,0,w,h);
+let sky=ctx.createLinearGradient(0,0,0,h);sky.addColorStop(0,'#241317');sky.addColorStop(.45,'#a24d3d');sky.addColorStop(1,'#e5a16b');ctx.fillStyle=sky;ctx.fillRect(0,0,w,h);
+let sunX=w*.72-Math.sin(p*Math.PI)*w*.1,sunY=h*.26;let glow=ctx.createRadialGradient(sunX,sunY,5,sunX,sunY,w*.35);glow.addColorStop(0,'#ffd29d9c');glow.addColorStop(1,'#ff9f6600');ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);ctx.beginPath();ctx.arc(sunX,sunY,Math.min(w,h)*.075,0,7);ctx.fillStyle='#ffd4a3';ctx.fill();
+for(let i=0;i<85;i++){let x=rand(i)*w,y=rand(i+99)*h*.55;ctx.fillStyle='rgba(255,220,191,'+(rand(i+12)*.36)+')';ctx.fillRect(x,y,1.5,1.5)}
+ridge(h*.59,h*.12,'#7e3d36',w*.48,3);ridge(h*.7,h*.11,'#a85641',w*1.05,5);ridge(h*.81,h*.085,'#c06d48',w*1.7,8);
+polygon([[0,h*.83],[w*.23,h*.76],[w*.55,h*.8],[w,h*.74],[w,h],[0,h]],'#a45c41');
+for(let i=0;i<35;i++){let x=((rand(i+130)*w-p*w*(.3+rand(i)*1.5))%(w+160)+w+160)%(w+160)-80;let y=h*(.78+rand(i+225)*.21);let sz=2+rand(i+310)*16;polygon([[x-sz,y],[x,y-sz*.7],[x+sz,y]],i%3?'#8d4836':'#d08658')}
+let baseX=w*(.84-p*.7),baseY=h*.72;if(p>.56){let k=Math.min(1,(p-.56)*3);ctx.globalAlpha=k;ctx.fillStyle='#ead2ab';ctx.fillRect(baseX-70,baseY-64,145,67);ctx.fillStyle='#3c3c3d';ctx.fillRect(baseX-51,baseY-45,100,33);ctx.fillStyle='#d7e4de';ctx.fillRect(baseX-32,baseY-38,60,19);ctx.fillStyle='#eee0c2';ctx.fillRect(baseX-11,baseY-135,18,70);ctx.beginPath();ctx.ellipse(baseX-2,baseY-138,44,12,0,Math.PI,0);ctx.fill();ctx.globalAlpha=1}
+let rx=w*(.66+Math.sin(p*5)*.04),ry=h*(.73+Math.cos(p*10)*.013);rover(rx,ry,clamp(w/1400,.57,1.25)*(1+p*.35));
+for(let i=0;i<20;i++){let x=((rand(i+455)*w-p*w*2)%(w+100)+w+100)%(w+100),y=h*(.8+rand(i+400)*.16);ctx.fillStyle='#eeab7955';ctx.beginPath();ctx.arc(x,y,2+rand(i+301)*5,0,7);ctx.fill()}
+let ch=p>=.77?3:p>=.47?2:p>=.19?1:0;if(ch!==active){active=ch;document.querySelectorAll('.panel').forEach((e,i)=>e.classList.toggle('active',i===ch));document.querySelectorAll('[data-scene]').forEach(e=>e.classList.toggle('active',+e.dataset.scene===ch));document.getElementById('sector').textContent='SECTOR 0'+(ch+1)+' / '+names[ch]}
+document.getElementById('fill').style.width=(p*100)+'%';requestAnimationFrame(draw)}
+function jump(i){scrollTo({top:milestones[i]*(document.documentElement.scrollHeight-innerHeight),behavior:'smooth'})}
+document.querySelectorAll('[data-scene]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();jump(+el.dataset.scene)}));
+addEventListener('keydown',e=>{if(['ArrowRight','ArrowDown'].includes(e.key)){e.preventDefault();jump(Math.min(3,active+1))}if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();jump(Math.max(0,active-1))}});
+requestAnimationFrame(draw);
+})();
+</script></body></html>
