@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VELORA, a cinematic concept for a mountain lodge in the Georgian Caucasus.">
+  <title>VELORA — Above the Clouds</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="journey.js" defer></script>
+</head>
+<body>
+  <div class="scenery" aria-hidden="true">
+    <img class="exterior" src="approach.webp" alt="" fetchpriority="high">
+    <img class="interior" src="lounge.webp" alt="">
+    <video muted playsinline preload="metadata" tabindex="-1"></video>
+  </div>
+  <header class="masthead">
+    <a class="wordmark" href="#approach">VELORA<span> / </span>LODGE</a>
+    <a class="back" href="../../">Portfolio</a>
+  </header>
+  <main id="journey">
+    <section id="approach" aria-labelledby="approach-title">
+      <div class="chapter">
+        <p class="label">01 / The approach</p>
+        <h1 id="approach-title">Above the<br><i>clouds.</i></h1>
+        <p>A mountain lodge concept set in Georgia’s Caucasus, where the road gives way to stone and pine.</p>
+        <a class="step" href="#threshold">Follow the path <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+    <section id="threshold" aria-labelledby="threshold-title">
+      <div class="chapter">
+        <p class="label">02 / The threshold</p>
+        <h2 id="threshold-title">A light in<br><i>the blue.</i></h2>
+        <p>Follow the amber light to the entrance, past dark timber and walls cut from mountain stone.</p>
+        <a class="step" href="#lounge">Step inside <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+    <section id="lounge" aria-labelledby="lounge-title">
+      <div class="chapter">
+        <p class="label">03 / The lounge</p>
+        <h2 id="lounge-title">Stay for<br><i>the view.</i></h2>
+        <p>Settle by the window while the clouds move through the valley below.</p>
+        <a class="step" href="#approach">Back to the ridge <span aria-hidden="true">↑</span></a>
+        <p class="credit">Portfolio concept by Giorgi Khuchua</p>
+      </div>
+    </section>
+  </main>
+  <footer class="controls">
+    <div class="progress" aria-hidden="true"><span></span></div>
+    <nav aria-label="Journey chapters">
+      <a href="#approach" aria-current="location">01 <span>Approach</span></a>
+      <a href="#threshold">02 <span>Threshold</span></a>
+      <a href="#lounge">03 <span>Lounge</span></a>
+    </nav>
+    <label class="preview">Test an MP4 <input type="file" accept="video/mp4"></label>
+    <span class="status" role="status"></span>
+  </footer>
+</body>
+</html>
