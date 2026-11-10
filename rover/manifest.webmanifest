@@ -1,0 +1,15 @@
+{
+  "name": "Giorgi Khuchua Portfolio",
+  "short_name": "Giorgi",
+  "description": "Giorgi Khuchua - web developer from Georgia. Interactive 3D experiences, creative projects and modern web development.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#2a140a",
+  "theme_color": "#2a140a",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
