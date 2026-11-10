@@ -1,30 +1,279 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Giorgi Khuchua — Frontend Developer and AI Student at Caritas Georgia"><title>GIORGI KHUCHUA | Portfolio</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Giorgi Khuchua - web developer from Georgia. Interactive 3D experiences, creative projects and modern web development.">
+<meta name="theme-color" content="#2a140a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Giorgi Khuchua Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap">
 <style>
-:root{color-scheme:dark;--bg:#060915;--card:#0e1629;--blue:#5bbdff;--muted:#9aa9c7}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 85% 3%,#152f64 0,transparent 32%),radial-gradient(ellipse at 10% 55%,#271342 0,transparent 34%),var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:#eff6ff}a{color:inherit;text-decoration:none}.wrap{width:min(1160px,90%);margin:auto}.nav{position:sticky;top:0;z-index:9;display:flex;align-items:center;justify-content:space-between;padding:22px 5%;background:#060915d9;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff16}.logo{font-size:20px;font-weight:900;letter-spacing:2px}.logo span,.accent{color:var(--blue)}nav{display:flex;gap:28px;align-items:center}nav a{font-size:14px;color:#cbd5e9}nav a:hover{color:var(--blue)}.btn{display:inline-flex;justify-content:center;gap:12px;align-items:center;border:1px solid #649df650;border-radius:13px;padding:14px 21px;font-weight:700;background:#ffffff09;cursor:pointer;color:white;transition:.2s}.btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px #2376f842}.primary{background:linear-gradient(115deg,#236aff,#42c7ff);border:0}.menu{display:none}.hero{min-height:640px;display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:center;padding:75px 0}.eyebrow,.kicker{font-size:12px;color:#88d4ff;letter-spacing:2px;font-weight:800;text-transform:uppercase}.eyebrow:before{content:'●';color:#4cf0b5;margin-right:12px}.hero h1{font-size:clamp(56px,8.5vw,108px);line-height:.97;letter-spacing:-5px;margin:25px 0}.hero h1 span{background:linear-gradient(110deg,#65cbff,#8282ff);background-clip:text;color:transparent}.hero p{color:var(--muted);font-size:19px;line-height:1.8}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}.art{position:relative;min-height:430px;display:grid;place-items:center}.ring{height:330px;width:330px;border-radius:50%;border:1px solid #57acff6c;box-shadow:0 0 0 35px #458efa10,0 0 110px #3286ef42;display:grid;place-items:center;animation:float 5s ease-in-out infinite}.monogram{font-size:116px;font-weight:900;letter-spacing:-12px;text-shadow:0 0 60px #49aeff}.chip{position:absolute;background:#111e37e9;border:1px solid #559eff77;padding:13px 19px;border-radius:14px;box-shadow:0 12px 35px #0008}.chip.top{top:16%;right:-5%}.chip.bottom{bottom:10%;left:0}.section{padding:90px 0}.section h2{font-size:clamp(34px,5vw,62px);letter-spacing:-2px;margin:15px 0 30px}.section h2 em{color:#66caff;font-style:normal}.glass{border:1px solid #88b8ff2d;border-radius:24px;background:linear-gradient(145deg,#18284090,#0b1127c9);box-shadow:0 16px 50px #0005}.about{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}.terminal{overflow:hidden}.terminal-head{padding:17px 24px;border-bottom:1px solid #ffffff1c;font-size:13px;color:#a0b6d1}.dots{color:#ff6c89;letter-spacing:4px;margin-right:15px}pre{padding:30px;color:#c6ddfd;font-size:15px;line-height:2;white-space:pre-wrap}.about-text{padding:24px}.about-text h3{font-size:29px;line-height:1.3}.about-text p,.subtitle{color:var(--muted);line-height:1.8}.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.skill{padding:25px;transition:.25s}.skill:hover,.project:hover{transform:translateY(-5px);border-color:#5aaeff6e}.skill .symbol{display:inline-grid;place-items:center;width:52px;height:52px;background:#21538e55;border-radius:13px;font-size:24px;font-weight:900;color:#70d3ff}.skill-header{display:flex;align-items:center;justify-content:space-between;margin:20px 0 8px}.skill-header strong{font-size:21px}.skill-header span{color:#74c8ff}.skill p{color:var(--muted);font-size:14px}.track{height:7px;background:#ffffff19;border-radius:30px;overflow:hidden;margin-top:20px}.fill{height:100%;background:linear-gradient(90deg,#2265ff,#60d6ff);width:var(--w);border-radius:30px;transform-origin:left;animation:grow 1.4s ease}.project{padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:32px;transition:.25s}.project h3{font-size:48px;margin:18px 0}.project p{color:var(--muted);line-height:1.8}.tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:30px}.tags span{padding:8px 14px;border:1px solid #569aff54;background:#2d69c021;border-radius:30px;color:#9dd4ff;font-size:12px}.chat{background:#080e20;border:1px solid #79bdff39;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-height:330px}.chat-head{padding:16px 20px;background:#172742;border-bottom:1px solid #ffffff1a;font-weight:800}.chat-head small{display:block;font-size:11px;color:#62dfb2;margin-top:5px}.messages{padding:20px;flex:1;display:flex;flex-direction:column;gap:12px;max-height:300px;overflow-y:auto}.bubble{padding:11px 14px;border-radius:13px;max-width:87%;line-height:1.5;font-size:13px;background:#243452;align-self:flex-start}.bubble.user{background:#2165cc;align-self:flex-end}.chat-form{display:flex;gap:8px;padding:14px;border-top:1px solid #ffffff16}.chat-form input{background:#ffffff0e;border:1px solid #ffffff24;border-radius:10px;flex:1;padding:13px;color:white;min-width:0}.chat-form button{border:0;background:#328dff;color:white;border-radius:10px;padding:0 17px;cursor:pointer}.demo{font-size:11px;color:#8da2c4;padding:0 16px 13px}.contact{text-align:center;padding:60px 25px}.contact h2{margin-bottom:15px}.contact p{color:var(--muted)}.email{display:inline-block;margin:22px 0;color:#7ed4ff;font-size:clamp(16px,3vw,24px);overflow-wrap:anywhere}.contact .actions{justify-content:center}footer{display:flex;justify-content:space-between;gap:16px;color:#8295b6;font-size:12px;padding:32px 0;border-top:1px solid #ffffff20}@keyframes float{50%{transform:translateY(-15px)}}@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}@media(max-width:800px){.menu{display:block;background:#1b3668;border:0;color:white;padding:9px 14px;border-radius:9px}nav{display:none;position:absolute;top:70px;left:0;right:0;background:#0b1426;padding:25px;flex-direction:column}nav.open{display:flex}.hero{grid-template-columns:1fr;min-height:auto;padding:65px 0}.art{min-height:330px}.ring{width:240px;height:240px}.monogram{font-size:80px}.about,.project{grid-template-columns:1fr}.skills{grid-template-columns:repeat(2,1fr)}.hero h1{letter-spacing:-3px}}@media(max-width:520px){.skills{grid-template-columns:1fr}.project{padding:18px}.chip.top{right:0}.section{padding:60px 0}footer{flex-direction:column}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ring,.fill{animation:none}}
+  /* One scroll journey: the rover drives to the base, opens the door with its key, crosses the corridor and visits the rooms.
+     In each room it stops and the page is written on the room's wall, pinned to the video so it moves and scales with it. */
+  :root{--bg:#2a140a;--accent:#f26a1b;--ink:rgba(22,14,9,.93);--rust:#c4520c;--f-head:'Sora',system-ui,sans-serif;--f-body:'DM Sans',system-ui,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;overscroll-behavior:none;background:var(--bg);color:#fff;font-family:var(--f-body)}
+  body{touch-action:none}
+  #pin{position:relative;width:100%;height:100vh;height:100svh;height:100dvh;overflow:hidden;background:var(--bg)}
+  #bg{position:absolute;inset:0;width:100%;height:100%;filter:blur(18px) saturate(1.2) brightness(.78);transform:scale(1.15);display:none}
+  /* the stage is the video frame itself (1280x720 units); everything inside is placed in frame pixels */
+  #stage{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;will-change:transform}
+  #v{position:absolute;inset:0;width:100%;height:100%;object-fit:fill}
+  #shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(20,8,2,.42),transparent 22%,transparent 72%,rgba(20,8,2,.5))}
+  #ui{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:0 0;pointer-events:none}
+  #brand{position:absolute;left:max(18px,3vw);top:max(16px,env(safe-area-inset-top,0px));font:700 18px var(--f-head);letter-spacing:.02em;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+  #brand i{color:var(--accent);font-style:normal}
+  #ver{position:absolute;right:max(12px,env(safe-area-inset-right,0px));top:max(14px,env(safe-area-inset-top,0px));font:600 12px var(--f-body);background:rgba(0,0,0,.45);padding:4px 9px;border-radius:99px}
+  #fs{position:absolute;right:calc(max(12px,env(safe-area-inset-right,0px)) + 50px);top:max(9px,env(safe-area-inset-top,0px));width:34px;height:34px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;display:none;place-items:center;cursor:pointer;padding:0;pointer-events:auto}
+  #fs svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  #hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font:500 13px var(--f-body);letter-spacing:.1em;text-align:center;
+        text-shadow:0 1px 8px rgba(0,0,0,.7);white-space:nowrap}
+  #prog{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--accent)}
+  #hero{position:absolute;left:max(18px,3vw);top:13vh;width:min(560px,calc(100% - 36px))}
+  #hero h1{margin:0 0 14px;font:700 clamp(44px,7vw,92px)/.98 var(--f-head);text-shadow:0 4px 30px rgba(0,0,0,.55)}
+  #hero p{margin:0;line-height:1.55;font-size:clamp(15px,1.5vw,19px);max-width:30em;text-shadow:0 2px 14px rgba(0,0,0,.7)}
 
-/* Visuals from Giorgi's previously generated portfolio concepts */
-.visual-frame{background-image:url('assets/portfolio-atlas.jpg');background-repeat:no-repeat;background-size:200% 200%;background-color:#0c1936;box-shadow:0 22px 65px #0009,0 0 45px #187aff2c;border:1px solid #75b4ff66;border-radius:22px;position:relative;overflow:hidden}
-.hero-portrait{height:440px;width:min(100%,465px);background-position:left top;transform:rotate(-2deg);animation:float 6s ease-in-out infinite}
-.visual-pill{position:absolute;bottom:14px;left:14px;background:#020917e8;color:#bde6ff;padding:12px 14px;border:1px solid #83bdff80;border-radius:13px;font-size:12px;font-weight:700}
-.reference-visuals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:28px}
-.reference-visuals figure{margin:0}.reference-visuals figcaption{padding:12px 3px;color:#acd9ff;font-size:13px}
-.visual-tile{height:245px;transition:transform .25s,box-shadow .25s}.visual-tile:hover{transform:translateY(-5px);box-shadow:0 15px 60px #126bff50}
-.visual-about{background-position:right top}.visual-skills{background-position:left bottom}.visual-project{background-position:right bottom}
-.site-note{color:#9bb1d0;font-size:12px;margin-top:12px;line-height:1.5}
-@media(max-width:800px){.hero-portrait{height:370px;max-width:390px}.reference-visuals{grid-template-columns:1fr 1fr}}@media(max-width:520px){.reference-visuals{grid-template-columns:1fr}.visual-tile{height:285px}}
-</style></head>
-<body><header class="nav"><a class="logo" href="#home">G<span>.</span> KHUCHUA</a><button id="menu" class="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button><nav id="links"><a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact ↗</a></nav></header>
-<main><section class="wrap hero" id="home"><div><div class="eyebrow">Student at Caritas Georgia</div><h1>GIORGI<br><span>KHUCHUA.</span></h1><p>Frontend Developer / AI Enthusiast<br>Turning ideas into interactive digital experiences.</p><div class="actions"><a href="#projects" class="btn primary">Explore my work ↗</a><a href="#contact" class="btn">Get in touch ↗</a></div></div><div class="art"><div class="visual-frame hero-portrait" role="img" aria-label="AI-generated website design concept showing a developer portrait with glasses"><span class="visual-pill">✦ GIORGI KHUCHUA · FRONTEND</span></div></div></section>
-<section class="section wrap" id="designs"><div class="kicker">Design previews / generated together</div><h2>My <em>visual world.</em></h2><p class="subtitle">These are the exact generated concepts we discussed for Home, About Me, Skills and the Caritas Georgia final project — now visible on the live site.</p><div class="reference-visuals"><figure><div class="visual-frame visual-tile visual-about" role="img" aria-label="Generated About Me concept"></div><figcaption>01 — About Me</figcaption></figure><figure><div class="visual-frame visual-tile visual-skills" role="img" aria-label="Generated neon Skills dashboard"></div><figcaption>02 — Neon skills dashboard</figcaption></figure><figure><div class="visual-frame visual-tile visual-project" role="img" aria-label="Generated Caritas Georgia AI chatbot project visual"></div><figcaption>03 — Caritas Georgia AI Chatbot</figcaption></figure></div><p class="site-note">Visual references are AI-generated. All text, navigation and the demonstration chat interface below are real webpage elements.</p></section><section class="section wrap" id="about"><div class="kicker">01 / Who I Am</div><h2>Beyond the <em>code.</em></h2><div class="about"><div class="glass terminal"><div class="terminal-head"><span class="dots">● ● ●</span>about_me.js</div><pre>const developer = {
-  name: "Giorgi Khuchua",
-  education: "Caritas Georgia",
-  focus: ["Frontend", "AI"],
-  mindset: "Always learning"
-};</pre></div><div class="glass about-text"><div class="kicker">Nice to meet you</div><h3>Building things for the web and beyond.</h3><p>I'm Giorgi Khuchua, a frontend development enthusiast and student at Caritas Georgia. I enjoy combining creative design with code and exploring what artificial intelligence can make possible.</p><p>I'm constantly learning, experimenting, and turning new ideas into projects.</p></div></div></section>
-<section class="section wrap" id="skills"><div class="kicker">02 / What I Use</div><h2>My digital <em>toolkit.</em></h2><p class="subtitle">Technologies I'm learning and building with.</p><div class="skills"><article class="glass skill"><span class="symbol">5</span><div class="skill-header"><strong>HTML5</strong><span>100%</span></div><p>Structure & semantics</p><div class="track"><div class="fill" style="--w:100%"></div></div></article><article class="glass skill"><span class="symbol">3</span><div class="skill-header"><strong>CSS3</strong><span>Learning</span></div><p>Design & responsive layouts</p><div class="track"><div class="fill" style="--w:50%"></div></div></article><article class="glass skill"><span class="symbol">JS</span><div class="skill-header"><strong>JavaScript</strong><span>100%</span></div><p>Logic & interactivity</p><div class="track"><div class="fill" style="--w:100%"></div></div></article><article class="glass skill"><span class="symbol">Py</span><div class="skill-header"><strong>Python</strong><span>15%</span></div><p>Programming fundamentals</p><div class="track"><div class="fill" style="--w:15%"></div></div></article><article class="glass skill"><span class="symbol">✦</span><div class="skill-header"><strong>AI</strong><span>50%</span></div><p>Artificial intelligence</p><div class="track"><div class="fill" style="--w:50%"></div></div></article></div><p class="subtitle">Skill levels are self-reported. CSS3 percentage has not been specified.</p></section>
-<section class="section wrap" id="projects"><div class="kicker">03 / Featured Work</div><h2>Ideas into <em>reality.</em></h2><div class="glass project"><div><div class="kicker">Caritas Georgia · Course 3 “AI”</div><h3>AI Chatbot<span class="accent">.</span></h3><p>My final project at Caritas Georgia: a chatbot developed with Python. This portfolio includes an interactive JavaScript demo. The Python-powered version requires a separate backend host.</p><div class="tags"><span>Python</span><span>AI</span><span>Chatbot</span><span>Final Project</span></div></div><div class="chat"><div class="chat-head">✦ AI Assistant<small>● Interactive frontend demo</small></div><div class="messages" id="messages"><div class="bubble">Hello! 👋 Ask me about Giorgi, his skills or the Caritas Georgia project.</div></div><form class="chat-form" id="chat-form"><input id="chat-text" placeholder="Type your message..." maxlength="250" aria-label="Message" required><button aria-label="Send" type="submit">➤</button></form><div class="demo">Offline JavaScript demo — no Python server connected.</div></div></div></section>
-<section class="section wrap" id="contact"><div class="glass contact"><div class="kicker">04 / Let's connect</div><h2>Have an idea?<br><em>Let's talk.</em></h2><p>Interested in connecting or collaborating? My inbox is open.</p><a class="email" href="mailto:khuchuagiorgi568@gmail.com">✉ khuchuagiorgi568@gmail.com</a><div class="actions"><a href="mailto:khuchuagiorgi568@gmail.com" class="btn primary">Send an email ↗</a><button class="btn" id="copy-email">Copy email ⧉</button></div><p id="copy-status" role="status"></p></div></section></main><footer class="wrap"><span>© <span id="year"></span> GIORGI KHUCHUA</span><span>Made for Caritas Georgia final project ✦</span><a href="#home">Back to top ↑</a></footer>
+  /* wall lettering: dark ink with orange accents, a soft wash of light so it reads like a lit sign on the wall */
+  .wall{position:absolute;opacity:0;visibility:hidden;color:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:14px 18px 14px 26px;
+        background:radial-gradient(ellipse 75% 70% at 48% 50%,rgba(255,243,230,.46),rgba(255,243,230,.2) 60%,rgba(255,243,230,0) 92%)}
+  .wall::before{content:"";position:absolute;left:10px;top:18%;bottom:18%;width:4px;border-radius:4px;background:var(--rust);opacity:.85}
+  .wall .eyebrow{font:700 12px var(--f-head);letter-spacing:.26em;color:var(--rust);margin:0 0 8px}
+  .wall h2{margin:0 0 10px;font:700 30px/1.05 var(--f-head);text-wrap:balance}
+  .wall p{margin:0 0 10px;font:500 15px/1.45 var(--f-body)}
+  .row{display:flex;align-items:center;gap:11px;padding:6px 0;border-top:1px solid rgba(30,20,12,.2);font:600 14.5px/1.3 var(--f-body)}
+  .row:first-of-type{border-top:0}
+  .ic{flex:none;width:28px;height:28px;border-radius:50%;background:rgba(196,82,12,.16);display:grid;place-items:center;color:var(--rust)}
+  .ic svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .tags span{font:600 12px var(--f-body);background:rgba(30,20,12,.12);border-radius:99px;padding:4px 9px}
+  .skill{margin-bottom:10px}
+  .skill div{display:flex;justify-content:space-between;font:600 14px var(--f-body);margin-bottom:5px}
+  .skill i{display:block;height:7px;border-radius:7px;background:rgba(30,20,12,.16);overflow:hidden}
+  .skill u{display:block;height:100%;width:0;background:#e0600f;border-radius:7px;transition:width 1s .15s ease-out}
+  .on .skill u{width:var(--w)}
+  .feat{display:flex;align-items:center;gap:11px;background:rgba(255,248,240,.32);border:1px solid rgba(30,20,12,.16);border-radius:12px;padding:8px 11px;margin-top:7px}
+  .feat b{flex:none;display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:#e0600f;font-size:16px}
+  .feat h3{margin:0 0 1px;font:700 14.5px var(--f-head)}
+  .feat span{font:500 12.5px var(--f-body);opacity:.75}
+  .mail{display:block;font:700 16px var(--f-head);color:var(--ink);margin:0 0 12px;word-break:break-all}
+  .btns{display:flex;gap:8px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:6px;background:#e0600f;color:#fff;text-decoration:none;border:0;cursor:pointer;font:700 13px var(--f-head);padding:9px 15px;border-radius:99px}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid rgba(22,14,9,.75)}
+  .next{display:block;margin:10px 0 0 auto;background:rgba(22,14,9,.86);color:#fff;border:0;border-radius:99px;padding:8px 15px;font:700 12.5px var(--f-head);cursor:pointer}
+  .next:hover,.btn:hover{filter:brightness(1.12)}
+
+  /* portrait screens (phones): the whole frame across the width, a blurred copy fills the rest; the camera moves up to the wall for each page */
+  @media (max-aspect-ratio:1/1){
+    #bg{display:block}
+    #v{-webkit-mask-image:linear-gradient(180deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(180deg,transparent,#000 7%,#000 93%,transparent)}
+    #hero{top:11%}
+    #hero h1{font-size:46px;margin-bottom:10px}
+    #hero p{font-size:15.5px}
+    #hint{font-size:11.5px;letter-spacing:.08em;white-space:normal;width:92%;bottom:20px}
+  }
+  @media (prefers-reduced-motion:reduce){.skill u{transition:none}}
+</style>
+</head>
+<body>
+
+
+<div id="pin">
+  <canvas id="bg"></canvas>
+  <div id="stage">
+    <video id="v" poster="assets/poster.jpg" muted playsinline preload="auto"></video>
+
+    <section class="wall" id="p-about">
+      <p class="eyebrow">ABOUT ME</p>
+      <h2>Hello, I'm Giorgi</h2>
+      <div class="row"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1-4 4-6 7-6s6 2 7 6"/></svg></span><span>A passionate web developer from Georgia</span></div>
+      <div class="row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v4c1.5 1.5 3.2 2 5 2s3.5-.5 5-2v-4"/></svg></span><span>Caritas Georgia</span></div>
+      <div class="row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 6l-3 12"/></svg></span><div class="tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Python</span><span>AI</span></div></div>
+      <div class="row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 4l9 5-9 5-9-5z"/><path d="M3 14l9 5 9-5"/></svg></span><span>Web development · Interactive 3D</span></div>
+      <button class="next" type="button" data-to="p-skills">Next →</button>
+    </section>
+
+    <section class="wall" id="p-skills">
+      <p class="eyebrow">SKILLS</p>
+      <h2>What I work with</h2>
+      <div class="skill"><div><span>HTML5</span><span>90%</span></div><i><u style="--w:90%"></u></i></div>
+      <div class="skill"><div><span>CSS3</span><span>85%</span></div><i><u style="--w:85%"></u></i></div>
+      <div class="skill"><div><span>JavaScript</span><span>88%</span></div><i><u style="--w:88%"></u></i></div>
+      <div class="skill"><div><span>Artificial Intelligence</span><span>75%</span></div><i><u style="--w:75%"></u></i></div>
+      <div class="skill"><div><span>Python</span><span>70%</span></div><i><u style="--w:70%"></u></i></div>
+      <button class="next" type="button" data-to="p-projects">Next room →</button>
+    </section>
+
+    <section class="wall" id="p-projects">
+      <p class="eyebrow">PROJECTS</p>
+      <h2>Giorgi AI</h2>
+      <p>My own AI assistant. Ask it anything, and it answers in plain language.</p>
+      <div class="feat"><b>💬</b><div><h3>Answers questions</h3><span>Clear, direct answers to anything.</span></div></div>
+      <div class="feat"><b>🖼</b><div><h3>Generates images</h3><span>Describe a picture, get a picture.</span></div></div>
+      <div class="feat"><b>⌨</b><div><h3>Writes code</h3><span>Describe what you need, get the code.</span></div></div>
+      <button class="next" type="button" data-to="p-contact">Next room →</button>
+    </section>
+
+    <section class="wall" id="p-contact">
+      <p class="eyebrow">CONTACT ME</p>
+      <h2>Let's build amazing things together</h2>
+      <a class="mail" href="mailto:khuchuagiorgi@gmail.com">khuchuagiorgi@gmail.com</a>
+      <div class="btns">
+        <a class="btn" href="mailto:khuchuagiorgi@gmail.com">Write me ↗</a>
+        <button class="btn ghost" id="copy" type="button">Copy email</button>
+      </div>
+      <button class="next" type="button" data-to="top">↑ Back to start</button>
+    </section>
+  </div>
+  <div id="shade"></div>
+  <div id="ui">
+    <div id="brand">Portfolio<i>.</i></div>
+    <div id="ver">v26</div>
+    <button id="fs" type="button" aria-label="Full screen"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+    <section id="hero">
+      <h1>Giorgi Khuchua</h1>
+      <p>Interactive 3D experiences, creative projects and modern web development.</p>
+    </section>
+    <div id="hint">LOADING…</div>
+    <div id="prog"></div>
+  </div>
+</div>
+
 <script>
-const menu=document.getElementById('menu'),links=document.getElementById('links');menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false')}));document.getElementById('year').textContent=new Date().getFullYear();document.getElementById('copy-email').addEventListener('click',async()=>{let status=document.getElementById('copy-status');try{await navigator.clipboard.writeText('khuchuagiorgi568@gmail.com');status.textContent='Email copied!'}catch{status.textContent='Email: khuchuagiorgi568@gmail.com'}});const form=document.getElementById('chat-form'),input=document.getElementById('chat-text'),messages=document.getElementById('messages');function bubble(text,role){const el=document.createElement('div');el.className='bubble '+role;el.textContent=text;messages.appendChild(el);messages.scrollTop=messages.scrollHeight}const answers=[['python','Python is used for my Caritas Georgia AI chatbot project.'],['caritas','I am a student at Caritas Georgia. This is my Course 3 AI final project.'],['skill','HTML5 100%, JavaScript 100%, Python 15%, AI 50%. I also use CSS3.'],['email','Contact Giorgi at khuchuagiorgi568@gmail.com.'],['hello','Hello! This is Giorgi’s portfolio chatbot demo.'],['hi','Hi! Ask me about Giorgi, skills or Caritas Georgia.']];form.addEventListener('submit',e=>{e.preventDefault();const msg=input.value.trim();if(!msg)return;bubble(msg,'user');input.value='';const found=answers.find(([key])=>msg.toLowerCase().includes(key));bubble(found?found[1]:'This is a browser demo. Try asking about Python, Caritas, skills or email.','bot')});
-</script></body></html>
+(function(){
+  var SRC='assets/story.mp4';
+  var HINT='SCROLL OR SWIPE UP TO DRIVE THE ROVER ↓';
+  // story position (0..1) -> video second. Video: road 0-9.4, door 9.4-16, corridor 16-24, workshop 24-26,
+  // office (About, Skills) 26-30, drive out 30-35, hologram room (Projects) 35-40.4, drive out 40.4-44.4, window room (Contact) 44.4-53.6
+  var KEYS=[[0,0],[0.20,9.4],[0.29,14.4],[0.38,24.4],[0.43,26.4],[0.62,29.4],[0.68,35.2],[0.80,40.0],[0.86,44.6],[1,53.5]];
+  // clear wall areas in each room, in video-frame pixels [x, y, width, height]
+  var WALLS={office:[770,24,356,372],holo:[902,30,362,500],win:[985,30,287,500]};
+  var PAGES=[['p-about','office',0.445,0.535],['p-skills','office',0.535,0.62],['p-projects','holo',0.695,0.795],['p-contact','win',0.875,1.01]];
+  var LEN=40;                      // one full swipe/scroll distance of 40 screens covers the whole journey
+  var PZ=1.08;                     // phones: the frame is 108% of the screen width, so the whole rover stays in view
+
+  var v=document.getElementById('v'), stage=document.getElementById('stage'), hint=document.getElementById('hint'),
+      prog=document.getElementById('prog'), hero=document.getElementById('hero'), ui=document.getElementById('ui');
+  var pages=PAGES.map(function(a){var el=document.getElementById(a[0]),R=WALLS[a[1]];
+    el.style.left=R[0]+'px';el.style.top=R[1]+'px';el.style.width=R[2]+'px';el.style.height=R[3]+'px';
+    return {el:el,R:R,from:a[2],to:a[3]}});
+  var dur=0,p=0,ps=0,mx=0,my=0,cx=0,cy=0,busy=false,portrait=false,z=1;
+  var bg=document.getElementById('bg'),bx=bg.getContext('2d'),poster=new Image();
+  function paint(src,sw0,sh0){var cw=bg.width,ch=bg.height,s=Math.max(cw/sw0,ch/sh0),sw=cw/s,sh=ch/s;
+    try{bx.drawImage(src,(sw0-sw)/2,(sh0-sh)/2,sw,sh,0,0,cw,ch)}catch(e){}}
+  function drawBg(){if(!portrait)return; if(v.videoWidth&&v.readyState>=2)paint(v,v.videoWidth,v.videoHeight); else if(poster.complete&&poster.naturalWidth)paint(poster,poster.naturalWidth,poster.naturalHeight)}
+  poster.onload=drawBg; poster.src='assets/poster.jpg';
+
+  function ramp(x,a,b){return Math.min(1,Math.max(0,(x-a)/(b-a)))}
+  function lerpKeys(K,x){for(var i=1;i<K.length;i++){if(x<=K[i][0]){var a=K[i-1],b=K[i];return a[1]+(b[1]-a[1])*ramp(x,a[0],b[0])}}return K[K.length-1][1]}
+
+  function geo(){
+    var W=innerWidth,H=innerHeight;
+    portrait=matchMedia('(max-aspect-ratio:1/1)').matches;
+    z=(portrait&&W>560)?W/420:1;              // phones that open the page in "desktop mode": lay the text out at phone size and scale it up
+    ui.style.width=(W/z)+'px'; ui.style.height=(H/z)+'px'; ui.style.transform=z===1?'':'scale('+z+')';
+    if(portrait){bg.width=64; bg.height=Math.max(1,Math.round(64*H/W)); drawBg();}
+  }
+  geo(); addEventListener('resize',geo);
+
+  // load the whole video into memory (seeking then works everywhere) and show progress while it loads
+  function setSrc(b){v.src=b?URL.createObjectURL(b):SRC}
+  fetch(SRC).then(function(r){
+    var total=+(r.headers.get('content-length')||0);
+    if(!r.body||!r.body.getReader)return r.blob();
+    var rd=r.body.getReader(),got=0,chunks=[];
+    function pump(){return rd.read().then(function(x){
+      if(x.done)return new Blob(chunks,{type:'video/mp4'});
+      chunks.push(x.value);got+=x.value.length;
+      hint.textContent=total?'LOADING '+Math.min(99,Math.round(got/total*100))+'%':'LOADING '+(got/1048576).toFixed(1)+' MB';
+      return pump()})}
+    return pump();
+  }).then(setSrc).catch(function(){setSrc(null)});
+  function ready(){if(!dur){dur=v.duration||53.6;hint.textContent=HINT}}
+  v.addEventListener('loadedmetadata',ready); v.addEventListener('loadeddata',ready); v.addEventListener('loadeddata',drawBg);
+  function prime(){v.play().then(function(){v.pause()}).catch(function(){});removeEventListener('touchstart',prime);removeEventListener('pointerdown',prime)}
+  addEventListener('touchstart',prime,{passive:true});addEventListener('pointerdown',prime);
+
+  // the page itself never scrolls: wheel, swipe and keys move the journey (works inside previews and phone apps)
+  function range(){return Math.max(1,innerHeight*LEN)}
+  function setP(x){if(dur)p=Math.min(1,Math.max(0,x))}
+  function nudge(px){setP(p+px/range())}
+  addEventListener('wheel',function(e){e.preventDefault();nudge(e.deltaMode===1?e.deltaY*40:e.deltaY)},{passive:false});
+  var ty=null;
+  addEventListener('touchstart',function(e){ty=e.touches[0].clientY},{passive:true});
+  addEventListener('touchmove',function(e){if(ty===null)return;var y=e.touches[0].clientY;nudge((ty-y)*1.6);ty=y;if(e.cancelable)e.preventDefault()},{passive:false});
+  addEventListener('touchend',function(){ty=null},{passive:true});
+  addEventListener('keydown',function(e){var k=e.key;
+    if(k==='ArrowDown'||k==='PageDown'||k===' ')nudge(innerHeight*0.6);
+    else if(k==='ArrowUp'||k==='PageUp')nudge(-innerHeight*0.6);
+    else if(k==='Home')setP(0); else if(k==='End')setP(1); else return;
+    e.preventDefault()});
+  addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+
+  function show(el,o,y){el.style.opacity=o;el.style.visibility=o>0.01?'visible':'hidden';el.style.transform='translateY('+y+'px)'}
+  function frame(){
+    ps+=(p-ps)*0.08;
+    var t=Math.min(lerpKeys(KEYS,ps),(dur||53.6)-0.05);
+    if(!busy&&dur&&Math.abs(v.currentTime-t)>0.01){busy=true;v.currentTime=t}
+    // pages on the walls
+    var m=0,R=null;
+    pages.forEach(function(g){
+      var o=ramp(ps,g.from,g.from+0.02)*(1-ramp(ps,g.to-0.015,g.to));
+      show(g.el,o,(1-ramp(ps,g.from,g.from+0.02))*14);
+      g.el.classList.toggle('on',o>0.5); if(o>m){m=o;R=g.R}
+    });
+    // camera: the frame covers the screen on wide screens; on phones it sits across the width and moves up to the wall while a page is shown
+    var W=innerWidth,H=innerHeight,s,tx,ty;
+    if(portrait){
+      s=W*PZ/1280; tx=(W-1280*s)/2; ty=Math.max(0,H*0.5-360*s+H*0.04);
+      if(R&&m>0){var e=m*m*(3-2*m), s1=0.96*W/(R[2]+28), tx1=W/2-(R[0]+R[2]/2)*s1, ty1=H*0.52-(R[1]+R[3]/2)*s1;
+        s+=(s1-s)*e; tx+=(tx1-tx)*e; ty+=(ty1-ty)*e}
+    }else{
+      cx+=(mx-cx)*0.05;cy+=(my-cy)*0.05;
+      s=Math.max(W/1280,H/720)*1.04; tx=(W-1280*s)/2-cx*18; ty=(H-720*s)/2-cy*12;
+      // if the wall with the page is cut off by the screen edge, slide the camera so the whole text is in view
+      if(R&&m>0){var e2=m*m*(3-2*m),x0=tx+R[0]*s,x1=tx+(R[0]+R[2])*s,y0=ty+R[1]*s,y1=ty+(R[1]+R[3])*s,dx=0,dy=0;
+        if(x1>W-16)dx=W-16-x1; if(x0+dx<16)dx=16-x0;
+        if(y1>H-12)dy=H-12-y1; if(y0+dy<12)dy=12-y0;
+        tx+=dx*e2; ty+=dy*e2}
+    }
+    stage.style.transform='matrix('+s+',0,0,'+s+','+tx+','+ty+')';
+    prog.style.width=(ps*100)+'%';
+    hint.style.opacity=(!dur||ps<0.01)?1:0;
+    var hh=1-ramp(ps,0.03,0.08); show(hero,hh,(1-hh)*-20);
+    requestAnimationFrame(frame);
+  }
+  v.addEventListener('seeked',function(){busy=false;drawBg()});
+  document.getElementById('copy').addEventListener('click',function(){
+    var b=this,done=function(){b.textContent='Copied ✓';setTimeout(function(){b.textContent='Copy email'},1800)};
+    try{navigator.clipboard.writeText('khuchuagiorgi@gmail.com').then(done,function(){})}catch(e){}
+  });
+  [].slice.call(document.querySelectorAll('.next')).forEach(function(b){b.addEventListener('click',function(){
+    var to=b.dataset.to,y=0;
+    if(to!=='top'){var g=pages.filter(function(x){return x.el.id===to})[0];y=g.from+0.03}
+    setP(y)})});
+
+  // full screen: a button, and on phones the first touch opens it (works where the browser allows it, e.g. Chrome on the site's own address)
+  var fsBtn=document.getElementById('fs'),root=document.documentElement;
+  function isFs(){return !!(document.fullscreenElement||document.webkitFullscreenElement)}
+  function enterFs(){var f=root.requestFullscreen||root.webkitRequestFullscreen;if(!f)return;try{var r=f.call(root,{navigationUI:'hide'});if(r&&r.catch)r.catch(function(){})}catch(e){}}
+  function exitFs(){var f=document.exitFullscreen||document.webkitExitFullscreen;if(!f)return;try{var r=f.call(document);if(r&&r.catch)r.catch(function(){})}catch(e){}}
+  if(document.fullscreenEnabled||document.webkitFullscreenEnabled){
+    fsBtn.style.display='grid';
+    fsBtn.addEventListener('click',function(e){e.stopPropagation();isFs()?exitFs():enterFs()});
+    var autoFs=true;
+    addEventListener('touchend',function(e){if(autoFs&&!isFs()&&!(e.target.closest&&e.target.closest('#fs,.next,.btn,.mail'))){autoFs=false;enterFs()}},{passive:true});
+  }
+  document.addEventListener('fullscreenchange',function(){setTimeout(geo,120)});
+  document.addEventListener('webkitfullscreenchange',function(){setTimeout(geo,120)});
+  frame();
+})();
+</script>
+
+</body>
+</html>

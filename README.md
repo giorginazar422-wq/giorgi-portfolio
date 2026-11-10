@@ -1,5 +1,22 @@
 # GIORGI KHUCHUA — Portfolio
 
+## Main page: the rover journey
+
+The main page (`index.html`) is a full-screen, scroll-driven story: a Mars rover drives to a base, opens the door with its key card and visits the rooms. In each room it stops and a page is written on the wall: About Me, Skills, Projects (Giorgi AI) and Contact. Scroll with the mouse wheel or swipe up on a phone to move through the journey; the "Next" buttons on the walls jump to the next room.
+
+| Path | Contents |
+| --- | --- |
+| [`index.html`](index.html) | The rover journey page (HTML, CSS and JavaScript in one file). |
+| [`assets/story.mp4`](assets/story.mp4) | The journey video, played forwards and backwards by scrolling. |
+| [`assets/poster.jpg`](assets/poster.jpg) | First frame, shown while the video loads. |
+| [`manifest.webmanifest`](manifest.webmanifest), `icon-192.png`, `icon-512.png` | Lets phones add the site to the home screen and open it full screen. |
+| [`rover/`](rover/) | Old link to the journey; it forwards to the main page. |
+| [`classic/`](classic/) | The previous portfolio page described below. |
+
+The rest of this README describes the previous portfolio, which now lives in [`classic/`](classic/): its `index.html` is `classic/index.html` and its image atlas is `classic/assets/portfolio-atlas.jpg`.
+
+## Previous portfolio (classic/)
+
 Responsive personal portfolio for Giorgi Khuchua, a frontend development and AI student at Caritas Georgia. It presents his background, skills, design concepts and Course 3 AI chatbot project through a static website with an interactive JavaScript chat demo.
 
 > **Current status:** the website and chat demo run in the browser. This repository does not contain a Python backend or connect to an AI model. Connecting the Python project is a future integration step.
@@ -28,8 +45,8 @@ There is no frontend framework, package manager setup or build step required for
 
 | Path | Contents |
 | --- | --- |
-| [`index.html`](index.html) | Complete page, embedded CSS and JavaScript, including the chat demo. |
-| [`assets/portfolio-atlas.jpg`](assets/portfolio-atlas.jpg) | Shared image atlas used for the generated design previews. |
+| [`classic/index.html`](classic/index.html) | Complete page, embedded CSS and JavaScript, including the chat demo. |
+| [`classic/assets/portfolio-atlas.jpg`](classic/assets/portfolio-atlas.jpg) | Shared image atlas used for the generated design previews. |
 | [`.github/workflows/pages.yml`](.github/workflows/pages.yml) | Static-site deployment on pushes to `main`, or manual runs. |
 | [`.nojekyll`](.nojekyll) | Empty marker to disable Jekyll processing when publishing without Jekyll. |
 | [`README.md`](README.md) | Project overview, demo limitations and backend integration roadmap. |
