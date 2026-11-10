@@ -133,7 +133,7 @@
   <div id="shade"></div>
   <div id="ui">
     <div id="brand">Portfolio<i>.</i></div>
-    <div id="ver">v26</div>
+    <div id="ver">v27</div>
     <button id="fs" type="button" aria-label="Full screen"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
     <section id="hero">
       <h1>Giorgi Khuchua</h1>
@@ -145,8 +145,16 @@
 </div>
 
 <script>
+// always show the newest published version: if the browser opened an old saved copy, load the fresh one
 (function(){
-  var SRC='assets/story.mp4';
+  var BUILD=(document.getElementById('ver')||{}).textContent||'';
+  try{fetch('version.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.text():''}).then(function(t){
+    t=(t||'').trim();
+    if(t&&BUILD&&t!==BUILD&&!new RegExp('[?&]v='+t+'(&|$)').test(location.search))location.replace(location.pathname+'?v='+encodeURIComponent(t)+location.hash);
+  }).catch(function(){})}catch(e){}
+})();
+(function(){
+  var SRC='assets/story.mp4?v=v27';
   var HINT='SCROLL OR SWIPE UP TO DRIVE THE ROVER ↓';
   // story position (0..1) -> video second. Video: road 0-9.4, door 9.4-16, corridor 16-24, workshop 24-26,
   // office (About, Skills) 26-30, drive out 30-35, hologram room (Projects) 35-40.4, drive out 40.4-44.4, window room (Contact) 44.4-53.6
