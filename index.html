@@ -266,8 +266,8 @@
   // office (About, Skills) 26-30, drive out 30-35, hologram room (Projects) 35-40.4, drive out 40.4-44.4, window room (Contact) 44.4-53.6
   var KEYS=[[0,0],[0.20,9.4],[0.29,14.4],[0.38,24.4],[0.43,26.4],[0.62,29.4],[0.68,35.2],[0.80,40.0],[0.86,44.6],[1,53.5]];
   // clear wall areas in each room, in video-frame pixels [x, y, width, height]
-  var WALLS={office:[770,24,356,372],holo:[902,30,362,500],win:[985,30,287,500]};
-  var PAGES=[['p-about','office',0.445,0.535],['p-skills','office',0.535,0.62],['p-projects','holo',0.695,0.795],['p-contact','win',0.875,1.01]];
+  var WALLS={office:[770,24,356,372],skills:[770,24,356,460],holo:[902,30,362,500],win:[985,30,287,500]};
+  var PAGES=[['p-about','office',0.445,0.535],['p-skills','skills',0.535,0.62],['p-projects','holo',0.695,0.795],['p-contact','win',0.875,1.01]];
   var LEN=13;                      // one full swipe/scroll distance of 40 screens covers the whole journey
   var PZ=1.08;                     // phones: the frame is 108% of the screen width, so the whole rover stays in view
 
