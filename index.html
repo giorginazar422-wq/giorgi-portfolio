@@ -198,11 +198,9 @@
 
     <section class="wall" inert id="p-projects">
       <p class="eyebrow">PROJECTS</p>
-      <h2>Selected work</h2>
-      <p>Web experiences and experiments built while learning.</p>
-      <a class="work-link" href="https://github.com/giorginazar422-wq/giorgi-portfolio" target="_blank" rel="noopener noreferrer"><small>01 / CREATIVE WEB</small><strong>Mars Portfolio <span><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span></strong><span>Scroll-controlled cinematic journey</span></a>
-      <a class="work-link" href="mars/"><small>02 / CANVAS EXPERIMENT</small><strong>Mars Mission <span><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span></strong><span>Procedural landscape &amp; rover</span></a>
-      <a class="work-link" href="gemini-chatbot/"><small>03 / AI PROTOTYPE</small><strong>Giorgi AI <span><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span></strong><span>Chat interface · Personal API key required</span></a>
+      <h2>Caritas Georgia Project</h2>
+      <p>My upcoming course project at Caritas Georgia.</p>
+      <div class="work-link"><small>UPCOMING / COURSE PROJECT</small><strong>Teacher-assigned project</strong><span>My teacher will provide the assignment. The project description and completed work will be added here once they are ready.</span></div>
       <button class="next" type="button" data-to="p-contact">Next room →</button>
     </section>
 
@@ -247,9 +245,7 @@
   <section class="dossier-section"><span class="section-number">01 / ABOUT</span><div><h3>Learning by building.</h3><p>I'm a web development and AI student at Caritas Georgia. I enjoy creating responsive interfaces, experimenting with animation and turning new ideas into working browser experiences.</p></div></section>
   <section class="dossier-section"><span class="section-number">02 / TOOLKIT</span><div><h3>Tools behind the work.</h3><div class="toolkit"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Git &amp; GitHub</span><span>AI tools</span><span>Python · learning</span></div><p>I focus on semantic structure, responsive layouts and browser interactions, while developing my Python and AI skills through experiments.</p></div></section>
   <section class="dossier-section"><span class="section-number">03 / SELECTED WORK</span><div>
-    <article class="project-entry"><small>01 — CREATIVE WEBSITE</small><h3>Mars Portfolio</h3><p>A cinematic journey through a Mars base. Scrolling moves the rover between rooms, where each stop introduces a part of my work.</p><div class="project-meta">HTML · CSS · JavaScript · Video</div><a href="https://github.com/giorginazar422-wq/giorgi-portfolio" target="_blank" rel="noopener noreferrer">View source on GitHub <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></article>
-    <article class="project-entry"><small>02 — CANVAS EXPERIMENT</small><h3>Mars Mission</h3><p>A browser-rendered Mars landscape with a rover, procedural terrain and scroll-driven movement.</p><div class="project-meta">Canvas 2D · JavaScript · Creative coding</div><a href="mars/">Open experiment <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></article>
-    <article class="project-entry"><small>03 — AI PROTOTYPE</small><h3>Giorgi AI</h3><p>A Georgian-language chat interface with conversation history and theme controls. AI responses on GitHub Pages require the visitor's own Gemini API key.</p><div class="project-meta">JavaScript · Chat UI · Gemini API</div><a href="gemini-chatbot/">Open prototype <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a><a class="source-link" href="https://github.com/giorginazar422-wq/giorgi-portfolio/tree/main/gemini-chatbot" target="_blank" rel="noopener noreferrer">Source <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></article>
+    <article class="project-entry"><small>UPCOMING — CARITAS GEORGIA</small><h3>Caritas Georgia Project</h3><p>My upcoming course project at Caritas Georgia. My teacher will provide the assignment. The project description and completed work will be added here once they are ready.</p><div class="project-meta">Status · Awaiting the teacher's assignment</div></article>
   </div></section>
   <section class="dossier-section"><span class="section-number">04 / CONTACT</span><div><h3>Have an idea? Let's talk.</h3><p>For projects, collaboration or a conversation about the web.</p><a class="dossier-email" href="mailto:khuchuagiorgi@gmail.com">khuchuagiorgi@gmail.com <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a><div class="contact-actions"><button type="button" data-copy>Copy email</button><a href="https://github.com/giorginazar422-wq" target="_blank" rel="noopener noreferrer">GitHub <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div><p role="status" class="copy-status"></p></div></section>
   <footer>© 2026 Giorgi Khuchua <span>Built with curiosity. Based in Georgia.</span></footer>
@@ -268,7 +264,7 @@
   // clear wall areas in each room, in video-frame pixels [x, y, width, height]
   var WALLS={office:[770,24,356,372],skills:[770,24,356,460],holo:[902,30,362,500],win:[985,30,287,500]};
   var PAGES=[['p-about','office',0.445,0.535],['p-skills','skills',0.535,0.62],['p-projects','holo',0.695,0.795],['p-contact','win',0.875,1.01]];
-  var LEN=13;                      // one full swipe/scroll distance of 40 screens covers the whole journey
+  var LEN=26;                      // twice the scroll distance makes the rover move at half speed
   var PZ=1.08;                     // phones: the frame is 108% of the screen width, so the whole rover stays in view
 
   var v=document.getElementById('v'), stage=document.getElementById('stage'), hint=document.getElementById('hint'),
