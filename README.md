@@ -1,8 +1,8 @@
 # GIORGI KHUCHUA — Portfolio
 
-Личное портфолио Giorgi Khuchua — разработчика сайтов и студента курса AI в Caritas Georgia. Интерактивное путешествие по марсианской базе: движение робота управляется прокруткой, а разделы знакомят со мной, моими навыками и контактами.
+Personal portfolio of Giorgi Khuchua, a web developer and AI student at Caritas Georgia. Explore an interactive journey through a Mars base: scrolling controls the rover, while each room introduces my background, skills and contact information.
 
-**Сайт портфолио:** [Открыть портфолио](https://giorginazar422-wq.github.io/giorgi-portfolio/)
+**Live website:** [Explore my portfolio](https://giorginazar422-wq.github.io/giorgi-portfolio/)
 
 ## Main page: the rover journey
 
