@@ -1,0 +1,40 @@
+/* Mobile enhancements for Giorgi Khuchua portfolio */
+@media (max-width: 600px) {
+  html,body { width:100%; max-width:100%; }
+  #pin { width:100%; min-height:100svh; }
+  #ui { overflow:visible; }
+  #brand { z-index:5; }
+  .read-toggle { z-index:6; min-height:44px; max-width:calc(100vw - 110px); }
+  #hero { z-index:3; top:clamp(110px,17svh,180px); left:20px; width:calc(100% - 40px); }
+  #hero h1 { font-size:clamp(37px,10.5vw,58px); line-height:1.06; overflow-wrap:normal; }
+  #hero .hero-description { max-width:33ch; line-height:1.6; font-size:clamp(12px,3.4vw,15px); }
+  .hero-actions { flex-wrap:wrap; gap:8px 18px; }
+  .action-primary,.action-secondary { min-height:44px; }
+  #navigation { z-index:5; bottom:calc(70px + env(safe-area-inset-bottom,0px)); left:14px; right:14px; gap:4px; padding-top:8px; }
+  #navigation a { justify-content:center; font-size:clamp(10px,2.7vw,12px); padding:4px; min-height:44px; }
+  #hint { bottom:calc(138px + env(safe-area-inset-bottom,0px)); }
+  #chapter { bottom:calc(22px + env(safe-area-inset-bottom,0px)); left:16px; max-width:55%; }
+  #journey-controls { bottom:calc(12px + env(safe-area-inset-bottom,0px)); right:16px; }
+  #journey-controls button { width:44px; height:44px; }
+  dialog { width:calc(100% - 12px); max-height:calc(100dvh - 12px); }
+  .dossier-shell { padding:0 18px; }
+  .dossier-section { min-width:0; }
+  .project-entry,.dossier-section > div { min-width:0; }
+  .project-entry a,.dossier-email { overflow-wrap:anywhere; }
+  .contact-actions { flex-wrap:wrap; gap:12px; }
+  .source-link { margin-left:12px; }
+}
+@media (max-width:600px) and (max-height:700px) {
+  #hero { top:100px; }
+  #hero h1 { font-size:clamp(32px,9vw,46px); margin-bottom:9px; }
+  #hero .hero-kicker { margin-bottom:10px; }
+  #hero .hero-description { line-height:1.4; }
+  .hero-actions { margin-top:12px; }
+  #hint { display:none; }
+}
+@media (max-width:360px) {
+  #hero { left:15px; width:calc(100% - 30px); }
+  #navigation { left:8px; right:8px; }
+  #navigation a { font-size:10px; }
+  .dossier-shell { padding:0 14px; }
+}
