@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QA report — http://127.0.0.1:42563/</title><style>
+:root{--bg:#f6f4f1;--card:#fff;--ink:#1d1a17;--muted:#6b645d;--ok:#1f8a4c;--bad:#c6322a;--skip:#b7791f;--line:#e4dfd8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1100px;margin:0 auto;padding:32px 20px 60px}
+h1{font-size:28px;margin:0 0 4px}h2{font-size:20px;margin:36px 0 12px}.sub{color:var(--muted);margin:0 0 24px}
+.status{display:inline-block;padding:6px 14px;border-radius:999px;font-weight:700;color:#fff;margin-bottom:20px}
+.status.ok{background:var(--ok)}.status.bad{background:var(--bad)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.tile b{display:block;font-size:26px}.tile span{color:var(--muted);font-size:13px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;font-size:14px}th{background:#faf8f5;color:var(--muted);font-weight:600}
+tr:last-child td{border-bottom:0}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700;color:#fff}
+.pill.passed{background:var(--ok)}.pill.failed{background:var(--bad)}.pill.skipped{background:var(--skip)}
+.defect{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--bad);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.defect h3{margin:0 0 6px;font-size:16px}.defect .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+pre{background:#f1eee9;border-radius:8px;padding:10px 12px;overflow:auto;font-size:12.5px;white-space:pre-wrap;word-break:break-word}
+.shots{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}.shots a{display:block;max-width:320px}.shots img{width:100%;border:1px solid var(--line);border-radius:8px}
+.notes{color:var(--muted);font-size:13px}
+@media(max-width:640px){th:nth-child(4),td:nth-child(4){display:none}}
+</style></head>
+<body><main>
+<h1>Website QA report</h1>
+<p class="sub">Site: <a href="http://127.0.0.1:42563/">http://127.0.0.1:42563/</a> · generated 2026-11-16T14:38:07+00:00 · Linux 6.18.44-fc-v470 / Python 3.13.18</p>
+<span class="status bad">7 defect(s) found</span>
+<div class="tiles">
+<div class="tile"><b>55</b><span>tests</span></div>
+<div class="tile"><b style="color:var(--ok)">48</b><span>passed</span></div>
+<div class="tile"><b style="color:var(--bad)">7</b><span>failed</span></div>
+<div class="tile"><b style="color:var(--skip)">0</b><span>skipped</span></div>
+<div class="tile"><b>80.2s</b><span>duration</span></div>
+</div>
+<h2>Defects</h2>
+<div class="defect"><h3>test_manifest_and_icons_are_valid</h3><div class="meta">functional · test_functional.py · 0.0s</div><pre>E   AssertionError: icon icon-191.png answered 404
+    assert 404 == 200
+     +  where 404 = &lt;APIResponse url=&#x27;http://127.0.0.1:42563/icon-191.png&#x27; status=404 status_text=&#x27;File not found&#x27;&gt;.status</pre></div><div class="defect"><h3>test_navigation_link_opens_chapter[p-skills-TOOLKIT]</h3><div class="meta">functional · test_functional.py · 5.0s</div><pre>E   AssertionError: Locator expected to be visible
+    Actual value: None
+    Error: element(s) not found 
+    Call log:
+      - Expect &quot;to_be_visible&quot; locator(&quot;#navigation a[data-to=&#x27;p-skills&#x27;]&quot;) with timeout 5000ms
+      - waiting for locator(&quot;#navigation a[data-to=&#x27;p-skills&#x27;]&quot;)
+    
+    Aria snapshot:
+    - main &quot;Interactive Mars portfolio&quot;:
+      - link &quot;Giorgi Khuchua, home&quot;:
+        - /url: &quot;#top&quot;
+        - text: GK. Giorgi Khuchua CREATIVE DEVELOPMENT
+      - navigation &quot;Portfolio sections&quot;:
+        - link &quot;About&quot;:
+          - /url: &quot;#about&quot;
+        - link &quot;Skills&quot;:
+          - /url: &quot;#skills&quot;
+        - link &quot;Work&quot;:
+          - /url: &quot;#projects&quot;
+        - link &quot;Contact&quot;:
+          - /url: &quot;#contact&quot;
+      - button &quot;Read portfolio&quot;
+      - button &quot;Full screen&quot;:
+        - img
+      - paragraph: TBILISI, GEORGIA / PORTFOLIO 2026
+      - heading &quot;Giorgi Khuchua.&quot; [level=1]
+      - paragraph: Creative web developer &amp; AI student
+      - paragraph: I turn ideas into interactive websites. Explore my work, one room at a time.
+      - link &quot;Explore my work&quot;:
+        - /url: &quot;#projects&quot;
+      - button &quot;Read portfolio&quot;
+      - text: SCROLL OR SWIPE UP TO DRIVE THE ROVER ↓ 01 / 05 — LANDING
+      - button &quot;Previous section&quot; [disabled]: ←
+      - button &quot;Next section&quot;: →</pre><div class="shots"><a href="images/FAIL_test_navigation_link_opens_chapter_p-skills-TOOLKIT.jpg" target="_blank"><img src="images/FAIL_test_navigation_link_opens_chapter_p-skills-TOOLKIT.jpg" alt="images/FAIL_test_navigation_link_opens_chapter_p-skills-TOOLKIT.jpg" loading="lazy"></a></div></div><div class="defect"><h3>test_contact_links_point_to_the_right_places</h3><div class="meta">functional · test_functional.py · 5.0s</div><pre>E   AssertionError: Locator expected to have attribute &#x27;mailto:khuchuagiorgi@gmail.com&#x27;
+    Actual value: mailto:wrong@example.com 
+    Call log:
+      - Expect &quot;to_have_attribute&quot; locator(&quot;#p-contact a.mail&quot;) with timeout 5000ms
+      - waiting for locator(&quot;#p-contact a.mail&quot;)
+        14 × locator resolved to &lt;a class=&quot;mail&quot; href=&quot;mailto:wrong@example.com&quot;&gt;khuchuagiorgi@gmail.com&lt;/a&gt;
+           - unexpected value &quot;mailto:wrong@example.com&quot;
+    
+    Aria snapshot:
+    - main &quot;Interactive Mars portfolio&quot;:
+      - link &quot;Giorgi Khuchua, home&quot;:
+        - /url: &quot;#top&quot;
+        - text: GK. Giorgi Khuchua CREATIVE DEVELOPMENT
+      - navigation &quot;Portfolio sections&quot;:
+        - link &quot;About&quot;:
+          - /url: &quot;#about&quot;
+        - link &quot;Skills&quot;:
+          - /url: &quot;#skills&quot;
+        - link &quot;Work&quot;:
+          - /url: &quot;#projects&quot;
+        - link &quot;Contact&quot;:
+          - /url: &quot;#contact&quot;
+      - button &quot;Read portfolio&quot;
+      - button &quot;Full screen&quot;:
+        - img
+      - paragraph: TBILISI, GEORGIA / PORTFOLIO 2026
+      - heading &quot;Giorgi Khuchua.&quot; [level=1]
+      - paragraph: Creative web developer &amp; AI student
+      - paragraph: I turn ideas into interactive websites. Explore my work, one room at a time.
+      - link &quot;Explore my work&quot;:
+        - /url: &quot;#projects&quot;
+      - button &quot;Read portfolio&quot;
+      - text: SCROLL OR SWIPE UP TO DRIVE THE ROVER ↓ 01 / 05 — LANDING
+      - button &quot;Previous section&quot; [disabled]: ←
+      - button &quot;Next section&quot;: →</pre><div class="shots"><a href="images/FAIL_test_contact_links_point_to_the_right_places.jpg" target="_blank"><img src="images/FAIL_test_contact_links_point_to_the_right_places.jpg" alt="images/FAIL_test_contact_links_point_to_the_right_places.jpg" loading="lazy"></a></div></div><div class="defect"><h3>test_visual_matches_baseline[home-skills-desktop]</h3><div class="meta">visual · test_visual.py · 15.3s</div><pre>E   playwright._impl._errors.TimeoutError: Locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator(&quot;#navigation a[data-to=&#x27;p-skills&#x27;]&quot;)</pre><div class="shots"><a href="images/FAIL_test_visual_matches_baseline_home-skills-desktop.jpg" target="_blank"><img src="images/FAIL_test_visual_matches_baseline_home-skills-desktop.jpg" alt="images/FAIL_test_visual_matches_baseline_home-skills-desktop.jpg" loading="lazy"></a></div></div><div class="defect"><h3>test_visual_matches_baseline[home-skills-mobile]</h3><div class="meta">visual · test_visual.py · 15.8s</div><pre>E   playwright._impl._errors.TimeoutError: Locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator(&quot;#navigation a[data-to=&#x27;p-skills&#x27;]&quot;)</pre><div class="shots"><a href="images/FAIL_test_visual_matches_baseline_home-skills-mobile.jpg" target="_blank"><img src="images/FAIL_test_visual_matches_baseline_home-skills-mobile.jpg" alt="images/FAIL_test_visual_matches_baseline_home-skills-mobile.jpg" loading="lazy"></a></div></div><div class="defect"><h3>test_visual_matches_baseline[home-dialog-desktop]</h3><div class="meta">visual · test_visual.py · 1.0s</div><pre>E   AssertionError: Visual difference for home-dialog-desktop: 1.14% of pixels changed (12502/1092800); see diff image
+    assert 0.011440336749633968 &lt;= 0.01
+     +  where 0.011440336749633968 = VisualDiff(changed_ratio=0.011440336749633968, changed_pixels=12502, total_pixels=1092800, size_mismatch=False, diff_path=PosixPath(&#x27;/home/user/giorgi-portfolio/qa/reports/images/home-dialog-desktop-diff.jpg&#x27;)).changed_ratio
+     +  and   0.01 = config.VISUAL_DIFF_THRESHOLD</pre><p class="notes">1.14% of pixels changed (limit 1%)</p><div class="shots"><a href="images/home-dialog-desktop-diff.jpg" target="_blank"><img src="images/home-dialog-desktop-diff.jpg" alt="images/home-dialog-desktop-diff.jpg" loading="lazy"></a><a href="images/FAIL_test_visual_matches_baseline_home-dialog-desktop.jpg" target="_blank"><img src="images/FAIL_test_visual_matches_baseline_home-dialog-desktop.jpg" alt="images/FAIL_test_visual_matches_baseline_home-dialog-desktop.jpg" loading="lazy"></a></div></div><div class="defect"><h3>test_visual_matches_baseline[home-dialog-mobile]</h3><div class="meta">visual · test_visual.py · 0.8s</div><pre>E   AssertionError: Visual difference for home-dialog-mobile: 11.48% of pixels changed (37775/329160); see diff image
+    assert 0.1147618179608701 &lt;= 0.01
+     +  where 0.1147618179608701 = VisualDiff(changed_ratio=0.1147618179608701, changed_pixels=37775, total_pixels=329160, size_mismatch=False, diff_path=PosixPath(&#x27;/home/user/giorgi-portfolio/qa/reports/images/home-dialog-mobile-diff.jpg&#x27;)).changed_ratio
+     +  and   0.01 = config.VISUAL_DIFF_THRESHOLD</pre><p class="notes">11.48% of pixels changed (limit 1%)</p><div class="shots"><a href="images/home-dialog-mobile-diff.jpg" target="_blank"><img src="images/home-dialog-mobile-diff.jpg" alt="images/home-dialog-mobile-diff.jpg" loading="lazy"></a><a href="images/FAIL_test_visual_matches_baseline_home-dialog-mobile.jpg" target="_blank"><img src="images/FAIL_test_visual_matches_baseline_home-dialog-mobile.jpg" alt="images/FAIL_test_visual_matches_baseline_home-dialog-mobile.jpg" loading="lazy"></a></div></div>
+<h2>All checks</h2>
+<table><thead><tr><th>Result</th><th>Test</th><th>Type</th><th>Time</th><th>Details</th></tr></thead><tbody><tr><td><span class="pill passed">passed</span></td><td>test_document_basics[home]</td><td>a11y</td><td>0.9s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_document_basics[classic]</td><td>a11y</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_document_basics[mars]</td><td>a11y</td><td>0.2s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_buttons_and_links_have_accessible_names[home]</td><td>a11y</td><td>0.4s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_buttons_and_links_have_accessible_names[classic]</td><td>a11y</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_images_have_alternative_text[home]</td><td>a11y</td><td>0.3s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_images_have_alternative_text[classic]</td><td>a11y</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_home_landmarks_and_live_regions</td><td>a11y</td><td>0.3s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_noscript_fallback_exists</td><td>a11y</td><td>0.3s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_home_page_loads</td><td>functional</td><td>0.4s</td><td class="notes">title: Giorgi Khuchua — Creative Web Developer</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_journey_video_becomes_ready</td><td>functional</td><td>0.0s</td><td class="notes">video duration 53.6s</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_no_console_errors_or_broken_resources</td><td>functional</td><td>1.5s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_page_responds_with_200[home]</td><td>functional</td><td>0.4s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_page_responds_with_200[classic]</td><td>functional</td><td>0.0s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_page_responds_with_200[mars]</td><td>functional</td><td>0.0s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_page_responds_with_200[rover]</td><td>functional</td><td>0.0s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_unknown_page_returns_404</td><td>functional</td><td>0.0s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_rover_redirects_to_home</td><td>functional</td><td>0.4s</td><td class="notes"></td></tr><tr><td><span class="pill failed">failed</span></td><td>test_manifest_and_icons_are_valid</td><td>functional</td><td>0.0s</td><td class="notes">E   AssertionError: icon icon-191.png answered 404</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_story_video_and_poster_are_served</td><td>functional</td><td>0.0s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_navigation_link_opens_chapter[p-about-ABOUT ME]</td><td>functional</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill failed">failed</span></td><td>test_navigation_link_opens_chapter[p-skills-TOOLKIT]</td><td>functional</td><td>5.0s</td><td class="notes">E   AssertionError: Locator expected to be visible</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_navigation_link_opens_chapter[p-projects-SELECTED WORK]</td><td>functional</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_navigation_link_opens_chapter[p-contact-CONTACT]</td><td>functional</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_next_buttons_walk_through_every_room</td><td>functional</td><td>0.4s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_journey_arrow_controls</td><td>functional</td><td>0.2s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_keyboard_drives_the_journey</td><td>functional</td><td>0.2s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_hash_deep_link_opens_chapter</td><td>functional</td><td>0.4s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_hero_explore_button_goes_to_work</td><td>functional</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_brand_link_returns_to_start</td><td>functional</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_progress_bar_grows_with_journey</td><td>functional</td><td>0.9s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_read_portfolio_dialog_opens_and_closes</td><td>functional</td><td>0.3s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_copy_email_button</td><td>functional</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill failed">failed</span></td><td>test_contact_links_point_to_the_right_places</td><td>functional</td><td>5.0s</td><td class="notes">E   AssertionError: Locator expected to have attribute &#x27;mailto:khuchuagiorgi@gmail.com&#x27;</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_github_profile_is_reachable</td><td>functional</td><td>0.9s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_mobile_layout_has_no_horizontal_overflow[mobile]</td><td>functional</td><td>0.0s</td><td class="notes">scrollWidth 390px / viewport 390px</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_mobile_navigation_still_works[mobile]</td><td>functional</td><td>0.2s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_classic_navigation_targets_exist</td><td>functional</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_classic_chat_demo_answers[python-Python]</td><td>functional</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_classic_chat_demo_answers[hello-Hello]</td><td>functional</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_classic_chat_demo_answers[caritas-Caritas Georgia]</td><td>functional</td><td>0.0s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_classic_copy_email_and_footer_year</td><td>functional</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_classic_mobile_menu_toggles[mobile]</td><td>functional</td><td>0.1s</td><td class="notes"></td></tr><tr><td><span class="pill passed">passed</span></td><td>test_visual_matches_baseline[home-landing-desktop]</td><td>visual</td><td>1.3s</td><td class="notes">0.00% of pixels changed (limit 1%)</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_visual_matches_baseline[home-landing-tablet]</td><td>visual</td><td>1.3s</td><td class="notes">0.00% of pixels changed (limit 1%)</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_visual_matches_baseline[home-landing-mobile]</td><td>visual</td><td>1.0s</td><td class="notes">0.00% of pixels changed (limit 1%)</td></tr><tr><td><span class="pill failed">failed</span></td><td>test_visual_matches_baseline[home-skills-desktop]</td><td>visual</td><td>15.3s</td><td class="notes">E   playwright._impl._errors.TimeoutError: Locator.click: Timeout 15000ms exceeded.</td></tr><tr><td><span class="pill failed">failed</span></td><td>test_visual_matches_baseline[home-skills-mobile]</td><td>visual</td><td>15.8s</td><td class="notes">E   playwright._impl._errors.TimeoutError: Locator.click: Timeout 15000ms exceeded.</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_visual_matches_baseline[home-contact-desktop]</td><td>visual</td><td>3.1s</td><td class="notes">0.00% of pixels changed (limit 1%)</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_visual_matches_baseline[home-contact-mobile]</td><td>visual</td><td>2.3s</td><td class="notes">0.00% of pixels changed (limit 1%)</td></tr><tr><td><span class="pill failed">failed</span></td><td>test_visual_matches_baseline[home-dialog-desktop]</td><td>visual</td><td>1.0s</td><td class="notes">E   AssertionError: Visual difference for home-dialog-desktop: 1.14% of pixels changed (12502/1092800); see diff image</td></tr><tr><td><span class="pill failed">failed</span></td><td>test_visual_matches_baseline[home-dialog-mobile]</td><td>visual</td><td>0.8s</td><td class="notes">E   AssertionError: Visual difference for home-dialog-mobile: 11.48% of pixels changed (37775/329160); see diff image</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_visual_matches_baseline[classic-desktop]</td><td>visual</td><td>3.4s</td><td class="notes">0.00% of pixels changed (limit 1%)</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_visual_matches_baseline[classic-mobile]</td><td>visual</td><td>2.2s</td><td class="notes">0.00% of pixels changed (limit 1%)</td></tr><tr><td><span class="pill passed">passed</span></td><td>test_visual_matches_baseline[mars-desktop]</td><td>visual</td><td>2.2s</td><td class="notes">0.00% of pixels changed (limit 1%)</td></tr></tbody></table>
+</main></body></html>

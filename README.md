@@ -19,6 +19,22 @@ The main page (`index.html`) is a full-screen, scroll-driven story: a Mars rover
 
 The rest of this README describes the previous portfolio, which now lives in [`classic/`](classic/): its `index.html` is `classic/index.html` and its image atlas is `classic/assets/portfolio-atlas.jpg`.
 
+## Automated testing (qa/)
+
+The [`qa/`](qa/) folder contains a Python + Playwright project that tests the live website
+functionally (navigation, buttons, dialog, clipboard, resources, redirects, mobile layout),
+visually (screenshots compared with approved baselines) and for basic accessibility, and
+generates an HTML/JSON report with screenshots when defects are found.
+
+```bash
+cd qa && pip install -r requirements.txt && python -m playwright install chromium
+python run.py            # report: qa/reports/report.html
+```
+
+See [`qa/README.md`](qa/README.md) (Georgian and English) and the sample
+[`qa/examples/report-with-defects.html`](qa/examples/report-with-defects.html).
+The same checks run in GitHub Actions via [`.github/workflows/qa.yml`](.github/workflows/qa.yml).
+
 ## Previous portfolio (classic/)
 
 Responsive personal portfolio for Giorgi Khuchua, a frontend development and AI student at Caritas Georgia. It presents his background, skills, design concepts and Course 3 AI chatbot project through a static website with an interactive JavaScript chat demo.

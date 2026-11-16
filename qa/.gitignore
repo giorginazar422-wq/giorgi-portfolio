@@ -1,0 +1,4 @@
+reports/screenshots/
+reports/diffs/
+__pycache__/
+.pytest_cache/
