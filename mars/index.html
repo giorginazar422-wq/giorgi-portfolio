@@ -33,6 +33,50 @@ h2{font-size:clamp(53px,6.3vw,87px)}
 #scroll-space{height:540vh}
 @media(max-width:700px){header{padding:18px}.brand{font-size:11px}nav{gap:9px}nav button{font-size:10px}.github{display:none}.panel{left:18px;right:18px;width:auto;top:auto;bottom:86px;transform:translateY(20px)}.panel.active{transform:translateY(0)}.panel h1{font-size:60px}.card{padding:23px;max-height:60vh;overflow-y:auto}.card h2{font-size:52px}.panel p.copy{font-size:12px}#dots{right:16px;top:29%}#hint,#sector{bottom:21px;font-size:8px}#sector{max-width:45%;text-align:right}}
 @media(prefers-reduced-motion:reduce){.panel{transition:none}}
+
+/* Responsive mobile mission controls */
+@media(max-width:700px){
+ html{scroll-padding-top:70px}
+ header{padding:calc(12px + env(safe-area-inset-top,0px)) 14px 12px;gap:10px;align-items:flex-start;flex-wrap:wrap;background:#170d0af0;backdrop-filter:blur(12px)}
+ .brand{font-size:clamp(11px,3.2vw,14px);padding:8px 0;white-space:nowrap}
+ nav{order:3;width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+ nav button{min-height:42px;font-size:clamp(10px,2.7vw,12px);border-radius:9px;padding:8px 2px;white-space:nowrap}
+ nav button.active{background:#ff793c26}
+ .panel{left:14px;right:14px;bottom:calc(64px + env(safe-area-inset-bottom,0px));width:auto;max-width:440px;max-height:calc(100dvh - 165px);overflow-y:auto;overscroll-behavior:contain}
+ .panel h1{font-size:clamp(38px,11vw,64px);overflow-wrap:anywhere}
+ .panel h2,.card h2{font-size:clamp(34px,10vw,52px)}
+ .kicker{font-size:10px;letter-spacing:.15em;margin-bottom:14px}
+ .card{padding:clamp(16px,4vw,24px);max-height:none}
+ .panel p.copy{font-size:clamp(12px,3.5vw,14px);line-height:1.55}
+ .cta{min-height:48px;padding:12px 18px}
+ .project{padding:12px}
+ #dots{right:12px;top:42%;gap:12px}
+ #dots button{width:14px;height:14px}
+ #hint{left:14px;bottom:calc(22px + env(safe-area-inset-bottom,0px));letter-spacing:.08em}
+ #sector{right:14px;bottom:calc(22px + env(safe-area-inset-bottom,0px));max-width:48%}
+ #world:after{background:linear-gradient(0deg,rgba(20,11,10,.78),transparent 60%)}
+}
+@media(max-width:360px){
+ .brand{font-size:11px}
+ .panel{bottom:58px;max-height:calc(100dvh - 145px)}
+ .card{padding:14px}
+ .panel h1{font-size:38px}
+ #hint{font-size:7px}
+}
+@media(max-width:700px) and (orientation:landscape){
+ header{padding:7px 12px;flex-wrap:nowrap;align-items:center}
+ nav{order:initial;width:auto;display:flex;gap:4px}
+ nav button{min-height:36px;padding:6px}
+ .panel{left:14px;right:auto;top:50%;bottom:auto;width:min(48vw,400px);max-height:calc(100dvh - 65px);transform:translateY(-42%)}
+ .panel.active{transform:translateY(-50%)}
+ .panel h1{font-size:clamp(28px,6vw,48px)}
+ .panel h2,.card h2{font-size:clamp(27px,5vw,42px)}
+ .card{padding:14px}
+ .kicker{margin-bottom:8px}
+ .cta{margin-top:8px}
+ #dots{top:50%}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.panel{transition:none}}
 </style></head><body>
 <div id="world"><canvas id="mars" aria-label="Animated three dimensional inspired Mars landscape and rover"></canvas></div>
 <header><a href="#home" class="brand" data-scene="0">GIORGI<span>.</span> / MARS</a><nav><button data-scene="0" class="active">Home</button><button data-scene="1">About Me</button><button data-scene="2">Skills</button><button data-scene="3">Projects</button></nav><a class="github" href="https://github.com/giorginazar422-wq/giorgi-portfolio" target="_blank" rel="noopener">GITHUB ↗</a></header>
@@ -56,7 +100,7 @@ h2{font-size:clamp(53px,6.3vw,87px)}
 (()=>{
 const canvas=document.getElementById('mars'),ctx=canvas.getContext('2d'),ids=['home','about','skills','projects'],names=['LANDING','STORY','SYSTEMS','OUTPOST'],milestones=[0,.27,.56,.86];let w=0,h=0,dpr=1,target=0,p=0,active=-1;
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),rand=(n)=>{let v=Math.sin(n*127.1+31.7)*43758.5453;return v-Math.floor(v)};
-function resize(){dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}addEventListener('resize',resize);resize();
+function resize(){dpr=Math.min(devicePixelRatio||1,innerWidth<700?1.5:2);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}addEventListener('resize',resize);resize();
 function polygon(points,fill){ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);ctx.closePath();ctx.fillStyle=fill;ctx.fill()}
 function ridge(base,amp,color,speed,seed){let offset=p*speed;ctx.beginPath();ctx.moveTo(0,h);for(let x=-40;x<=w+40;x+=12){let z=(x+offset)/w;let y=base+Math.sin(z*7+seed)*amp+Math.sin(z*18+seed*3)*amp*.29+Math.cos(z*35+seed)*amp*.1;ctx.lineTo(x,y)}ctx.lineTo(w,h);ctx.closePath();ctx.fillStyle=color;ctx.fill()}
 function rover(cx,cy,s){ctx.save();ctx.translate(cx,cy);ctx.scale(s,s);ctx.rotate(Math.sin(p*22)*.014);ctx.shadowColor='#120603';ctx.shadowBlur=25;ctx.shadowOffsetY=14;
