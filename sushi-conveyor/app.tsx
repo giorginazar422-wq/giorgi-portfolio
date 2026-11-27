@@ -1177,7 +1177,7 @@ const SUSHI_BELT_DISHES: ConveyorDish[] = [
 
 const SUSHI_BELT_LEGEND = { 1: "$3.20", 2: "$4.20", 3: "$5.40", 4: "$6.80", 5: "$8.50" };
 
-default function SushiConveyorMenuDemo({ autoplay = true }: { autoplay?: boolean }) {
+function SushiConveyorMenuDemo({ autoplay = true }: { autoplay?: boolean }) {
   const [count, setCount] = React.useState(0);
   const [flash, setFlash] = React.useState(false);
   const timer = React.useRef(0);
