@@ -32,7 +32,7 @@ h1{font-size:clamp(30px,7vw,96px);font-weight:800;letter-spacing:-.02em;line-hei
 <p class="status" id="status" role="status">Loading film…</p>
 <div class="controls"><button type="button" id="back" aria-label="Restart film">↺</button><input type="range" id="scrubber" min="0" max="1000" value="0" aria-label="Film progress"></div>
 <div class="line" aria-hidden="true"><i id="bar"></i></div>
-<div class="credit">by <a href="https://www.guglielmogiannattasio.it" target="_blank" rel="noopener noreferrer">guglielmogiannattasio.exe</a></div>
+
 </main>
 <script>
 (()=>{"use strict";const hero=document.getElementById("hero"),v=document.getElementById("film"),title=document.getElementById("title"),tag=document.getElementById("tagline"),hint=document.getElementById("hint"),bar=document.getElementById("bar"),range=document.getElementById("scrubber"),status=document.getElementById("status");const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));let target=0,progress=0,lastTouch=null,raf=0,started=false;
