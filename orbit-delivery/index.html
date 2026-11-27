@@ -1,0 +1,137 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Orbit Delivery — Interactive 3D</title><style>body{margin:0}#boot{padding:24px;font:16px system-ui}@font-face{font-family:'Orbit DM Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url('https://cdn.21st.dev/assets/mirror/46/468d56b6b25b05b70190b6c233d773f6f1770e8579827ce022a57f03fa8002fb.woff2') format('woff2')}
+@font-face{font-family:'Orbit Libre Caslon';font-style:normal;font-weight:400;font-display:swap;src:url('https://cdn.21st.dev/assets/mirror/d7/d7157ad1851673258b7bf8b9d16654e90ca5f2d687aa0c71506d83266e0a20a2.woff2') format('woff2')}
+.orbit-delivery{font-family:'Orbit DM Sans',sans-serif;--orbit-bg:radial-gradient(ellipse at 6% 15%,#fffefa 0%,#fbfcff 38%,#f0f6ff 100%);--orbit-ink:#080e2b;--orbit-muted:#7a87aa;--orbit-nav:#4d5a83;--orbit-accent:#4a72e7;--orbit-cloud:1;color:var(--orbit-ink);width:100%;isolation:isolate;-webkit-font-smoothing:antialiased}
+:is(.dark,[data-theme="dark"]) .orbit-delivery:not([data-theme="light"]),.orbit-delivery[data-theme="dark"]{--orbit-bg:radial-gradient(ellipse at 6% 15%,#151e32 0%,#0d1526 50%,#101e38 100%);--orbit-ink:#f3f6ff;--orbit-muted:#b0bed9;--orbit-nav:#becbe6;--orbit-accent:#8daaff;--orbit-cloud:.14;color-scheme:dark}
+.orbit-delivery *{box-sizing:border-box}.orbit-delivery button{font:inherit;cursor:pointer;color:inherit;border:0;background:none}.orbit-delivery button:focus-visible,.orbit-delivery a:focus-visible{outline:2px solid #4776ee;outline-offset:5px}.orbit-delivery a{color:inherit;text-decoration:none}.orbit-delivery svg{display:block}.orbit-delivery button svg{width:22px;height:22px}.orbit-delivery .page{height:100svh;min-height:760px;position:relative;overflow:hidden;background:var(--orbit-bg);display:flex;flex-direction:column}.orbit-delivery .site-header{height:104px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 6.5%;position:relative;z-index:5}.orbit-delivery .wordmark{display:flex;align-items:center;gap:13px;font-size:32px;font-weight:600;letter-spacing:-1.5px}.orbit-delivery .wordmark>svg{width:35px;height:35px}.orbit-delivery .brand-type{display:flex;flex-direction:column;line-height:1;gap:5px}.orbit-delivery .brand-type small{font-size:8px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#7c96cc;margin-left:2px}.orbit-delivery .site-header nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:49px;align-items:center}.orbit-delivery .site-header nav button{font-size:15px;color:var(--orbit-nav);padding:12px 0}.orbit-delivery .site-header nav button:hover{color:var(--orbit-accent)}.orbit-delivery .header-cta{background:#4673eb;color:white;border-radius:23px;padding:15px 22px;font-size:13px}.orbit-delivery main{flex:1;min-height:0;display:flex}.orbit-delivery .hero{width:100%;position:relative}.orbit-delivery .hero-copy{position:relative;z-index:3;margin-left:6.5%;padding-top:clamp(76px,12.2vh,145px);width:45%;pointer-events:none}.orbit-delivery .hero-copy button{pointer-events:auto}.orbit-delivery .eyebrow{text-transform:uppercase;letter-spacing:.36em;font-size:12px;font-weight:500;color:#7a94df;margin:0 0 21px}.orbit-delivery h1{font-size:clamp(66px,5.55vw,100px);font-weight:550;letter-spacing:-.064em;line-height:1.03;margin:0 0 26px}.orbit-delivery h1 em{font-family:'Orbit Libre Caslon',Georgia,serif;font-size:1.12em;font-weight:400;letter-spacing:-.035em;color:var(--orbit-accent);line-height:.92}.orbit-delivery .hero-description{color:var(--orbit-muted);font-size:clamp(16px,1.25vw,21px);line-height:1.45;letter-spacing:-.3px;margin:0 0 30px}.orbit-delivery .explore-button{display:inline-flex;align-items:center;justify-content:center;gap:13px;min-width:183px;padding:17px 29px;border-radius:32px;background:#4773ec;color:white;font-size:16px;min-height:55px;transition:background .2s,transform .2s}.orbit-delivery .explore-button:hover,.orbit-delivery .header-cta:hover{background:#345fda}.orbit-delivery .explore-button:hover{transform:translateY(-2px)}.orbit-delivery .visual-column{position:absolute;right:-5%;top:0;width:76%;height:calc(100% + 12px);z-index:1}.orbit-delivery .planet-stage{height:100%;width:100%;position:relative;cursor:grab;touch-action:none;user-select:none;outline:none}.orbit-delivery .planet-stage:focus-visible{outline:1px dashed #adc1ef;outline-offset:-15px;border-radius:36px}.orbit-delivery .planet-stage.dragging{cursor:grabbing}.orbit-delivery .planet-caption{position:absolute;right:6.2%;top:17%;z-index:3;width:160px;pointer-events:none;color:#a4b5d8}.orbit-delivery .planet-caption p{font-size:15px;line-height:1.35;font-style:italic;text-align:right;margin:0}.orbit-delivery .planet-caption svg{width:160px;height:149px;margin-top:-17px;margin-left:-32px}.orbit-delivery .cloud-bank{position:absolute;z-index:2;inset:auto -12% -90px 24%;height:250px;pointer-events:none;filter:blur(17px);opacity:var(--orbit-cloud)}.orbit-delivery .cloud-bank i{position:absolute;bottom:0;background:radial-gradient(ellipse at 42% 34%,#fffdfb 27%,#f3f7ff 59%,#e5edfc88 75%,transparent 80%);border-radius:50%;width:30%;height:200px}.orbit-delivery .cloud-bank i:nth-child(1){left:0;bottom:-28px}.orbit-delivery .cloud-bank i:nth-child(2){left:14%;bottom:32px}.orbit-delivery .cloud-bank i:nth-child(3){left:40%;bottom:-2px}.orbit-delivery .cloud-bank i:nth-child(4){right:7%;bottom:-20px}.orbit-delivery .site-footer{position:absolute;bottom:43px;left:6.5%;right:5.1%;z-index:4;display:flex;align-items:flex-end;justify-content:space-between;pointer-events:none}.orbit-delivery .site-footer p{margin:0;text-transform:uppercase;font-size:10px;letter-spacing:.25em;line-height:1.8;color:#94a7d1}.orbit-delivery .site-footer p:last-child{text-align:right}.orbit-delivery .motion-button{color:#7b92be;pointer-events:auto;font-size:12px;padding:8px}.orbit-delivery .loading,.orbit-delivery .scene-fallback{position:absolute;inset:35% 15% auto;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--orbit-muted);text-align:center;font-size:15px}.orbit-delivery .loading{pointer-events:none}.orbit-delivery .scene-fallback button{background:#4773ec;border-radius:20px;color:white;padding:10px 20px}.orbit-delivery .about-dialog{border:1px solid #dce5fa;border-radius:22px;padding:48px;max-width:510px;width:calc(100% - 32px);background:var(--orbit-bg);color:var(--orbit-ink);margin:auto;box-shadow:0 25px 120px #183c7326}.orbit-delivery .about-dialog::backdrop{background:#1a315c33;backdrop-filter:blur(8px)}.orbit-delivery .about-dialog h2{font-size:36px;font-weight:500;letter-spacing:-1.6px;line-height:1.15;margin:26px 0 22px}.orbit-delivery .about-dialog p{font-size:15px;line-height:1.75;color:var(--orbit-muted)}.orbit-delivery .about-dialog .explore-button{margin-top:16px;font-size:14px}.orbit-delivery .close-dialog{position:absolute;right:20px;top:10px;font-size:30px;color:#8194bf}
+@media(max-width:1150px){.orbit-delivery .site-header{height:90px;padding:0 5%}.orbit-delivery .site-header nav{gap:28px}.orbit-delivery .site-header nav button{font-size:13px}.orbit-delivery .hero-copy{margin-left:5%;padding-top:100px;width:48%}.orbit-delivery h1{font-size:65px}.orbit-delivery .hero-description{font-size:15px;max-width:370px}.orbit-delivery .planet-caption{right:4%;width:115px}.orbit-delivery .planet-caption svg{width:130px}}
+@media(max-width:759px){.orbit-delivery .page{height:auto;min-height:100svh}.orbit-delivery .site-header{height:90px;padding:0 25px}.orbit-delivery .site-header nav{display:none}.orbit-delivery .wordmark{font-size:28px;gap:9px}.orbit-delivery .wordmark>svg{width:31px;height:31px}.orbit-delivery .header-cta{padding:12px 15px;font-size:11px}.orbit-delivery main{display:block}.orbit-delivery .hero{display:flex;flex-direction:column}.orbit-delivery .hero-copy{width:calc(100% - 50px);margin:0 25px;padding-top:32px;pointer-events:auto}.orbit-delivery .eyebrow{font-size:9px;letter-spacing:.33em;margin-bottom:18px}.orbit-delivery h1{font-size:clamp(48px,12vw,80px);margin-bottom:23px;line-height:1.025}.orbit-delivery .hero-description{font-size:15px;line-height:1.6;max-width:340px;margin-bottom:24px}.orbit-delivery .desktop-break{display:none}.orbit-delivery .explore-button{padding:15px 24px;min-height:51px;font-size:14px}.orbit-delivery .visual-column{position:relative;width:134%;right:auto;left:-17%;height:clamp(445px,112vw,670px);margin-top:-8px}.orbit-delivery .planet-caption{top:auto;bottom:290px;right:18px;width:96px}.orbit-delivery .planet-caption p{font-size:11px}.orbit-delivery .planet-caption svg{width:92px;height:94px}.orbit-delivery .cloud-bank{left:-20%;right:-20%;height:185px;bottom:-50px;filter:blur(14px)}.orbit-delivery .site-footer{bottom:23px;left:25px;right:25px}.orbit-delivery .site-footer p{font-size:8px;letter-spacing:.18em}.orbit-delivery .about-dialog{padding:35px}.orbit-delivery .about-dialog h2{font-size:31px}}
+@media(prefers-reduced-motion:reduce){.orbit-delivery *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style><script type="importmap">{"imports":{"react":"https://esm.sh/react@19.0.0","react/jsx-runtime":"https://esm.sh/react@19.0.0/jsx-runtime","react-dom":"https://esm.sh/react-dom@19.0.0?external=react","react-dom/client":"https://esm.sh/react-dom@19.0.0/client?external=react","@react-three/fiber":"https://esm.sh/@react-three/fiber@9.0.0?external=react,react-dom,three","three":"https://esm.sh/three@0.180.0","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script></head><body><div id="root"><p id="boot">Loading Orbit Delivery… An internet connection is required.</p></div><script type="module">import {createRoot} from 'react-dom/client';import {createElement} from 'react';
+"use client";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+// Adapted from the user-supplied Orbit Delivery component by @fadeichev2121.
+import { Component, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
+import { AnimationMixer, Euler, Quaternion, Vector3, MathUtils, Raycaster } from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+const REMOTE = 'https://cdn.jsdelivr.net/gh/fadeichev2121/planet@b3f70fbf4b577845b1d9d5947c9410fb4d925dae/';
+const up = new Vector3(0, 1, 0);
+const draco = new DRACOLoader().setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/').setDecoderConfig({ type: 'wasm' }).setWorkerLimit(2);
+const fresh = () => ({ x: 0, y: 0, vx: 0, vy: 0, dragging: false, last: 0, paused: false });
+const stories = { 'How it works': ['From your doorstep to theirs.', 'Pack it with care, choose its destination, and let the journey begin.'], 'For business': ['Your business. On the move.', 'A thoughtful delivery experience connects both sides of your business.'], 'Our story': ['Every parcel brings us closer.', 'What we carry matters, and so does how we get it there.'] };
+class SceneBoundary extends Component {
+    state = { failed: false };
+    static getDerivedStateFromError() { return { failed: true }; }
+    componentDidCatch() { this.props.onError(); }
+    render() { return this.state.failed ? null : this.props.children; }
+}
+function Scene({ base, motion, reduced, onReady }) {
+    const planetAsset = useLoader(GLTFLoader, base + 'models/whimsical-world.glb', l => l.setDRACOLoader(draco));
+    const courierAsset = useLoader(GLTFLoader, base + 'models/courier.glb', l => l.setDRACOLoader(draco));
+    const planet = useRef(null), runner = useRef(null), facing = useRef(null);
+    const { size, camera } = useThree();
+    const q = useMemo(() => new Quaternion().setFromEuler(new Euler(.1, .5, 0)), []);
+    const mixer = useMemo(() => new AnimationMixer(courierAsset.scene), [courierAsset]);
+    const action = useRef(null);
+    const radius = useRef(2.12), sample = useRef(0), targetRadius = useRef(2.12);
+    const tmp = useMemo(() => ({ local: new Vector3(), world: new Vector3(), axis: new Vector3(), delta: new Quaternion(), current: new Vector3(0, 1, 0), inverse: new Quaternion(), ray: new Raycaster(), heading: new Vector3(), prev: new Vector3(0, 1, 0) }), []);
+    const small = size.width < 700, zoom = size.width / (small ? 5.65 : 5.25);
+    useEffect(() => { camera.zoom = zoom; camera.updateProjectionMatrix(); }, [camera, zoom]);
+    useEffect(() => { const clip = courierAsset.animations.find(a => a.duration > .3); if (clip) {
+        action.current = mixer.clipAction(clip);
+        action.current.play();
+    } onReady(); return () => { mixer.stopAllAction(); mixer.uncacheRoot(courierAsset.scene); }; }, [courierAsset, mixer, onReady]);
+    useFrame((_, delta) => {
+        if (!planet.current || !runner.current || !facing.current)
+            return;
+        const dt = Math.min(delta, .05), m = motion.current, t = performance.now() / 1000;
+        if (m.paused) {
+            m.vx = 0;
+            m.vy = 0;
+        }
+        else if (m.dragging) {
+            m.vx *= Math.exp(-8 * dt);
+            m.vy *= Math.exp(-8 * dt);
+        }
+        else {
+            const roam = !reduced && t - m.last > 3.5;
+            m.vx = MathUtils.damp(m.vx, roam ? -.24 * Math.cos(t * .24) : 0, 5, dt);
+            m.vy = MathUtils.damp(m.vy, roam ? .14 * Math.sin(t * .24) : 0, 5, dt);
+        }
+        const vx = m.paused ? 0 : m.vx, vy = m.paused ? 0 : m.vy;
+        tmp.axis.set(vy, vx * .45, -vx);
+        const speed = tmp.axis.length();
+        if (speed > 1e-7) {
+            tmp.delta.setFromAxisAngle(tmp.axis.normalize(), speed * dt);
+            q.premultiply(tmp.delta).normalize();
+        }
+        planet.current.quaternion.copy(q);
+        tmp.local.copy(up).applyQuaternion(tmp.inverse.copy(q).invert());
+        if (!m.paused)
+            tmp.current.lerp(tmp.local, 1 - Math.exp(-7 * dt)).normalize();
+        tmp.world.copy(tmp.current).applyQuaternion(q);
+        // Raycast the actual globe geometry rather than embedding a second surface data table.
+        sample.current += dt;
+        if (sample.current > .12) {
+            sample.current = 0;
+            planet.current.updateWorldMatrix(true, true);
+            const origin = planet.current.getWorldPosition(tmp.heading).addScaledVector(tmp.world, 5);
+            tmp.ray.set(origin, tmp.world.clone().negate());
+            const hit = tmp.ray.intersectObject(planet.current, true)[0];
+            targetRadius.current = hit ? Math.max(1.9, Math.min(2.7, 5 - hit.distance)) : 2.12;
+        }
+        radius.current = MathUtils.damp(radius.current, targetRadius.current, 20, dt);
+        const r = radius.current;
+        runner.current.position.copy(tmp.world).multiplyScalar(r + .008);
+        runner.current.quaternion.setFromUnitVectors(up, tmp.world);
+        const travel = tmp.prev.distanceTo(tmp.current) / Math.max(dt, .001);
+        tmp.prev.copy(tmp.current);
+        if (action.current) {
+            action.current.setEffectiveTimeScale(m.paused || reduced ? 0 : Math.min(2, travel * 4));
+            mixer.update(dt);
+        }
+        const target = m.paused ? 0 : (vx >= 0 ? Math.PI / 2 : -Math.PI / 2);
+        const turn = Math.atan2(Math.sin(target - facing.current.rotation.y), Math.cos(target - facing.current.rotation.y));
+        facing.current.rotation.y += turn * (1 - Math.exp(-6 * dt));
+    });
+    return _jsxs("group", { position: [0, size.height / zoom * (small ? .08 : .19) - 2.17, 0], children: [_jsx("group", { ref: planet, scale: 2.25, children: _jsx("primitive", { object: planetAsset.scene }) }), _jsx("group", { ref: runner, children: _jsx("group", { ref: facing, rotation: [0, Math.PI / 2, 0], children: _jsx("group", { scale: .76 / 1.7, children: _jsx("primitive", { object: courierAsset.scene }) }) }) })] });
+}
+function Arrow() { return _jsx("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": "true", children: _jsx("path", { d: "M4 12h15m-6-6 6 6-6 6", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }) }); }
+function Dialog({ story, onClose }) { const ref = useRef(null); useEffect(() => { const d = ref.current; d?.showModal(); return () => d?.close(); }, []); return _jsxs("dialog", { ref: ref, className: "about-dialog", onCancel: onClose, onClick: e => { if (e.target === e.currentTarget)
+        onClose(); }, children: [_jsx("button", { className: "close-dialog", "aria-label": "Close", onClick: onClose, children: "\u00D7" }), _jsx("p", { className: "eyebrow", children: story }), _jsx("h2", { children: stories[story][0] }), _jsx("p", { children: stories[story][1] }), _jsxs("button", { className: "explore-button", onClick: onClose, children: ["Meet our world ", _jsx(Arrow, {})] })] }); }
+function OrbitDeliveryHero({ theme = 'auto', assetBaseUrl = REMOTE }) {
+    const base = assetBaseUrl.replace(/\/$/, '') + '/';
+    const motion = useRef(fresh()), stage = useRef(null), pointer = useRef(null);
+    const [paused, setPaused] = useState(false), [dragging, setDragging] = useState(false), [ready, setReady] = useState(false), [failed, setFailed] = useState(false), [active, setActive] = useState(true), [visible, setVisible] = useState(true), [reduced, setReduced] = useState(false), [story, setStory] = useState(null);
+    const onReady = useMemo(() => () => setReady(true), []);
+    useEffect(() => { const mq = matchMedia('(prefers-reduced-motion: reduce)'); const update = () => setReduced(mq.matches); update(); mq.addEventListener('change', update); const observer = new IntersectionObserver(([e]) => setVisible(e.isIntersecting)); if (stage.current)
+        observer.observe(stage.current); const vis = () => setActive(!document.hidden); document.addEventListener('visibilitychange', vis); return () => { observer.disconnect(); mq.removeEventListener('change', update); document.removeEventListener('visibilitychange', vis); }; }, []);
+    const toggle = () => { motion.current.paused = !motion.current.paused; motion.current.dragging = false; pointer.current = null; setDragging(false); setPaused(motion.current.paused); };
+    const explore = () => { stage.current?.focus({ preventScroll: true }); if (innerWidth < 760)
+        stage.current?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' }); if (!paused && !reduced) {
+        motion.current.vx = .65;
+        motion.current.last = performance.now() / 1000;
+    } };
+    const end = (id) => { if (pointer.current?.id !== id)
+        return; pointer.current = null; motion.current.dragging = false; motion.current.last = performance.now() / 1000; setDragging(false); };
+    return _jsx("div", { className: "orbit-delivery", "data-theme": theme, children: _jsxs("div", { className: "page", children: [_jsxs("header", { className: "site-header", children: [_jsxs("a", { className: "wordmark", href: "./", "aria-label": "Orbit Delivery home", children: [_jsxs("svg", { viewBox: "0 0 38 38", "aria-hidden": "true", children: [_jsx("circle", { cx: "23", cy: "15", r: "14", fill: "#4674e9" }), _jsx("circle", { cx: "10", cy: "27", r: "8", fill: "#6389f0" }), _jsx("circle", { cx: "15", cy: "8", r: "3.5", fill: "#b2c7ff" })] }), _jsxs("span", { className: "brand-type", children: ["orbit", _jsx("small", { children: "delivery" })] })] }), _jsxs("nav", { "aria-label": "Main navigation", children: [_jsx("button", { onClick: explore, children: "Delivery" }), Object.keys(stories).map(s => _jsx("button", { onClick: () => setStory(s), children: s }, s))] }), _jsx("button", { className: "header-cta", onClick: explore, children: "Meet your courier" })] }), _jsx("main", { children: _jsxs("section", { className: "hero", "aria-labelledby": "hero-title", children: [_jsxs("div", { className: "hero-copy", children: [_jsx("p", { className: "eyebrow", children: "Good things, on their way" }), _jsxs("h1", { id: "hero-title", children: ["Good things.", _jsx("br", {}), "Delivered", _jsx("br", {}), _jsx("em", { children: "with care." })] }), _jsxs("p", { className: "hero-description", children: ["Parcels, packages, and a little peace of mind.", _jsx("br", { className: "desktop-break" }), " From your doorstep to theirs."] }), _jsxs("button", { className: "explore-button", onClick: explore, children: ["Meet your courier ", _jsx(Arrow, {})] })] }), _jsx("div", { className: "visual-column", children: _jsxs("div", { ref: stage, className: 'planet-stage' + (dragging ? ' dragging' : ''), tabIndex: 0, role: "group", "aria-label": "Interactive 3D planet: drag or use arrow keys. Space pauses.", onPointerDown: e => { if (paused || !e.isPrimary || e.button !== 0)
+                                        return; e.currentTarget.setPointerCapture(e.pointerId); pointer.current = { id: e.pointerId, x: e.clientX, y: e.clientY }; motion.current.dragging = true; motion.current.last = performance.now() / 1000; setDragging(true); }, onPointerMove: e => { const p = pointer.current; if (!p || p.id !== e.pointerId || paused)
+                                        return; const factor = 1 / Math.max(360, e.currentTarget.clientWidth); motion.current.vx = MathUtils.clamp((e.clientX - p.x) * factor * 65, -1.15, 1.15); motion.current.vy = MathUtils.clamp((e.clientY - p.y) * factor * 45, -.55, .55); p.x = e.clientX; p.y = e.clientY; motion.current.last = performance.now() / 1000; }, onPointerUp: e => end(e.pointerId), onPointerCancel: e => end(e.pointerId), onLostPointerCapture: e => end(e.pointerId), onKeyDown: e => { if (e.key === ' ') {
+                                        e.preventDefault();
+                                        if (!e.repeat)
+                                            toggle();
+                                    }
+                                    else if (e.key.startsWith('Arrow')) {
+                                        e.preventDefault();
+                                        if (!paused) {
+                                            motion.current.last = performance.now() / 1000;
+                                            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight')
+                                                motion.current.vx += e.key === 'ArrowRight' ? .65 : -.65;
+                                            else
+                                                motion.current.vy += e.key === 'ArrowDown' ? .4 : -.4;
+                                        }
+                                    } }, children: [_jsx(SceneBoundary, { onError: () => setFailed(true), children: _jsxs(Canvas, { orthographic: true, camera: { position: [0, 0, 9], zoom: 150, near: .1, far: 30 }, dpr: [1, 1.5], frameloop: active && visible && !story ? 'always' : 'never', gl: { alpha: true, antialias: true }, children: [_jsx("ambientLight", { intensity: .9 }), _jsx("hemisphereLight", { args: ['#f1f5ff', '#8aabc5', 1.4] }), _jsx("directionalLight", { position: [-3, 5, 5], intensity: 2.6, color: "#fff8f1" }), _jsx("directionalLight", { position: [3, 2, -2], intensity: 1.8, color: "#c5deff" }), _jsx(Suspense, { fallback: null, children: _jsx(Scene, { base: base, motion: motion, reduced: reduced, onReady: onReady }) })] }) }), !ready && !failed && _jsx("div", { className: "loading", role: "status", children: "Your little world is taking shape\u2026" }), failed && _jsxs("div", { className: "scene-fallback", children: [_jsx("p", { children: "We couldn\u2019t load this little world." }), _jsx("button", { onClick: () => location.reload(), children: "Try again" })] })] }) }), _jsxs("div", { className: "planet-caption", "aria-hidden": "true", children: [_jsxs("p", { children: [paused ? 'Press Start' : dragging ? 'Good things.' : 'Drag to turn', _jsx("br", {}), paused ? 'to keep moving' : dragging ? 'On their way.' : 'the world'] }), _jsx("svg", { viewBox: "0 0 180 165", fill: "none", children: _jsx("path", { d: "M161 148C137 82 103 39 28 14m0 0 6 16m-6-16 19-2", stroke: "currentColor", strokeWidth: "2.3", strokeLinecap: "round" }) })] }), _jsxs("div", { className: "cloud-bank", "aria-hidden": "true", children: [_jsx("i", {}), _jsx("i", {}), _jsx("i", {}), _jsx("i", {})] })] }) }), _jsxs("footer", { className: "site-footer", children: [_jsxs("p", { children: ["Small parcels", _jsx("br", {}), "Big possibilities"] }), _jsx("button", { className: "motion-button", onClick: toggle, "aria-pressed": paused, children: paused ? '▶ Start' : 'Ⅱ Pause' }), _jsxs("p", { children: ["A little", _jsx("br", {}), "closer", _jsx("br", {}), "to you"] })] }), story && _jsx(Dialog, { story: story, onClose: () => setStory(null) })] }) });
+}
+
+createRoot(document.getElementById('root')).render(createElement(OrbitDeliveryHero));</script></body></html>
