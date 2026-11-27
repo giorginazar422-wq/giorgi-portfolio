@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8f6f2">
+<meta name="description" content="Kaiten Studio: an interactive sushi conveyor menu concept, created by Giorgi Khuchua.">
+<title>Kaiten Studio — Interactive Sushi Conveyor · Giorgi Khuchua</title>
+<link rel="preconnect" href="https://esm.sh" crossorigin>
+<link rel="preconnect" href="https://cdn.21st.dev" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"react":"https://esm.sh/react@19.1.1","react-dom":"https://esm.sh/react-dom@19.1.1?external=react","react-dom/client":"https://esm.sh/react-dom@19.1.1/client?external=react","lucide-react":"https://esm.sh/lucide-react@0.468.0?external=react"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+@theme {
+  --color-background: #f8f7f4;
+  --color-foreground: #1b292c;
+  --color-card: #ffffff;
+  --color-card-foreground: #1b292c;
+  --color-muted: #f0eee9;
+  --color-muted-foreground: #687578;
+  --color-border: #d7dedc;
+  --color-ring: #e46844;
+  --color-chart-1: #73ad88;
+  --color-chart-2: #e5ad5d;
+  --color-chart-3: #6e9ed0;
+  --color-chart-4: #e17e74;
+  --color-chart-5: #b18ad2;
+}
+</style>
+<style>
+:root{color-scheme:light;--color-background:#f8f7f4;--color-foreground:#1b292c;--color-card:#fff;--color-card-foreground:#1b292c;--color-muted:#f0eee9;--color-muted-foreground:#687578;--color-border:#d7dedc;--color-ring:#e46844;--color-chart-1:#73ad88;--color-chart-2:#e5ad5d;--color-chart-3:#6e9ed0;--color-chart-4:#e17e74;--color-chart-5:#b18ad2}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--color-background);color:var(--color-foreground);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}button,a{touch-action:manipulation}
+.site-nav{position:absolute;top:0;left:0;right:0;z-index:25;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:24px clamp(20px,4.2vw,68px);pointer-events:none}
+.site-nav>*{pointer-events:auto}.site-brand{font:800 18px 'Manrope',sans-serif;letter-spacing:-.065em;color:#17282a;text-decoration:none}.site-brand span{color:#e16b46;margin:0 2px}
+.site-actions{display:flex;align-items:center;gap:22px}.site-actions>span{font:700 10px 'Manrope',sans-serif;letter-spacing:.14em;color:#86928d}.back-link{font:700 12px 'Manrope',sans-serif;color:#253d3b;text-decoration:none;border:1px solid #bcc8c2;border-radius:40px;padding:10px 16px;background:#fff9}
+.back-link:hover{background:#fff}
+[data-sushi-demo]{padding-top:70px}
+[data-sushi-demo] h2{font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-.065em}
+[data-sushi-demo] [data-legend]{font-family:'Manrope',sans-serif}
+[data-sushi-demo] [data-stage]{cursor:grab}
+[data-sushi-demo] [data-stage]:active{cursor:grabbing}
+.menu-details{max-width:1160px;margin:0 auto;padding:80px clamp(20px,5vw,70px) 110px;scroll-margin-top:60px}
+.menu-heading p{font:800 11px 'Manrope',sans-serif;letter-spacing:.18em;color:#bd7259}.menu-heading h2{font:800 clamp(29px,5vw,58px)/1.1 'Manrope',sans-serif;letter-spacing:-.065em;margin:14px 0}.menu-heading>span{color:#667679;line-height:1.6}
+.menu-list{margin-top:35px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.menu-item{display:grid;grid-template-columns:28px 82px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 16px;border:1px solid #dce2dd;border-radius:20px;background:#fff;min-width:0}
+.menu-item img{width:82px;height:82px;object-fit:contain}.menu-num{font:800 11px 'Manrope',sans-serif;color:#b3bdb5;align-self:start;padding-top:8px}.menu-item h3{font:800 14px 'Manrope',sans-serif;margin:0 0 7px}.menu-item p{font-size:12px;color:#71807b;line-height:1.4;margin:0}.menu-item strong{font:800 13px 'Manrope',sans-serif;white-space:nowrap}
+.site-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:24px clamp(20px,4.2vw,68px);border-top:1px solid #dce2dd;color:#70807c;font:700 10px 'Manrope',sans-serif;letter-spacing:.06em}.site-footer a{color:#a65739;text-decoration:none}
+#loading{min-height:100svh;display:grid;place-items:center;color:#7d8985;font:700 12px 'Manrope',sans-serif;letter-spacing:.12em}
+@media(max-width:950px){.menu-list{grid-template-columns:1fr}}
+@media(max-width:600px){.site-nav{padding:18px 16px}.site-actions>span{display:none}.site-brand{font-size:15px}.back-link{font-size:11px;padding:8px 11px}.menu-details{padding:50px 16px 70px}.menu-item{grid-template-columns:22px 65px minmax(0,1fr) auto;gap:8px;padding:10px}.menu-item img{width:65px;height:65px}.menu-item p{font-size:11px}.menu-item h3{font-size:12px}.menu-item strong{font-size:11px}.site-footer{padding:24px 16px;flex-direction:column;align-items:flex-start}.menu-heading h2{font-size:30px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="root"><div id="loading">LOADING THE CONVEYOR...</div></div>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.27.0/babel.min.js"></script>
+<script type="text/babel" data-presets="typescript,react" data-type="module" src="./app.tsx"></script>
+</body>
+</html>
